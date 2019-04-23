@@ -50,6 +50,7 @@
     <mvc:resources mapping="/jsp" location="/WEB-INF/jsp" />
     <mvc:resources mapping="/lay" location="/lay" />
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
+    <mvc:resources mapping="/static" location="/static" />
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
