@@ -84,10 +84,9 @@
 
         <property name="filterChainDefinitions">
             <value>
-                <!--/login.jsp=anon
+                /login.jsp=anon
                 /index.action=anon
-                 /** = authc-->
-                /** = anon
+                 /** = authc
             </value>
         </property>
     </bean>
