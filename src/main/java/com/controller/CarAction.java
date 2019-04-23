@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CarAction {
 
     @RequestMapping(value = "/demo")
-    public void demo(){
+    public String demo(){
         System.out.println("进来了");
+        return "index";
     }
 }

@@ -11,4 +11,5 @@ public class UserController {
         model.addAttribute("msg","这是首页");
         return "index";
     }
+
 }
