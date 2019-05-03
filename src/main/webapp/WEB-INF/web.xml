@@ -53,7 +53,7 @@
 
   <servlet-mapping>
     <servlet-name>SpringMVC-web</servlet-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
   <servlet>

@@ -87,7 +87,7 @@
                 /login.jsp=anon
                 /index.html=anon
                 /static/**=anon
-                 /** = authc
+                 /** = anon
             </value>
         </property>
     </bean>

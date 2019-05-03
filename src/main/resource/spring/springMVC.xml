@@ -13,6 +13,8 @@
     <!-- 配置注解驱动，相当于同时使用最新处理器映射跟处理器适配器，对json数据响应提供支持 -->
     <mvc:annotation-driven conversion-service="MyConverter"/>
 
+    <!--<mvc:default-servlet-handler/>-->
+
     <!-- 定义日期转换器 -->
     <bean id="MyConverter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
@@ -50,7 +52,8 @@
     <mvc:resources mapping="/jsp" location="/WEB-INF/jsp" />
     <mvc:resources mapping="/lay" location="/lay" />
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
-    <mvc:resources mapping="/static" location="/static" />
+    <!---->
+    <mvc:resources mapping="/static/**" location="classpath:static/" />
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
