@@ -1,8 +1,8 @@
-package com.email;
- 
+package com.utils;
+
 import java.util.Date;
 import java.util.Properties;
- 
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -11,94 +11,93 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
- 
+
 public class EmailUtil{
-    //·¢¼şÈËµØÖ·
+    //å‘ä»¶äººåœ°å€
     private static String senderAddress = "2580619995@qq.com";
-    //ÊÕ¼şÈËµØÖ·
+    //æ”¶ä»¶äººåœ°å€
     private static String recipientAddress;
-    //·¢¼şÈËÕË»§Ãû
+    //å‘ä»¶äººè´¦æˆ·å
     private static String senderAccount = "2580619995@qq.com";
-    //·¢¼şÈËÕË»§ÃÜÂë
+    //å‘ä»¶äººè´¦æˆ·å¯†ç 
     private static String senderPassword = "jzavrznowdszecaf";
-    
+
     private static int num;
-    
+
     public static int eamil(String Address){
-    	recipientAddress = Address;
-    	System.out.println("ÊÕĞÅÈËµØÖ·:"+recipientAddress);
-        //1¡¢Á¬½ÓÓÊ¼ş·şÎñÆ÷µÄ²ÎÊıÅäÖÃ
+        recipientAddress = Address;
+        System.out.println("æ”¶ä¿¡äººåœ°å€:"+recipientAddress);
+        //1ã€è¿æ¥é‚®ä»¶æœåŠ¡å™¨çš„å‚æ•°é…ç½®
         Properties props = new Properties();
-        //ÉèÖÃÓÃ»§µÄÈÏÖ¤·½Ê½
+        //è®¾ç½®ç”¨æˆ·çš„è®¤è¯æ–¹å¼
         props.setProperty("mail.smtp.auth", "true");
-        //ÉèÖÃ´«ÊäĞ­Òé
+        //è®¾ç½®ä¼ è¾“åè®®
         props.setProperty("mail.transport.protocol", "smtp");
-        //ÉèÖÃ·¢¼şÈËµÄSMTP·şÎñÆ÷µØÖ·
+        //è®¾ç½®å‘ä»¶äººçš„SMTPæœåŠ¡å™¨åœ°å€
         props.setProperty("mail.smtp.host", "smtp.qq.com");
-        //2¡¢´´½¨¶¨ÒåÕû¸öÓ¦ÓÃ³ÌĞòËùĞèµÄ»·¾³ĞÅÏ¢µÄ Session ¶ÔÏó
+        //2ã€åˆ›å»ºå®šä¹‰æ•´ä¸ªåº”ç”¨ç¨‹åºæ‰€éœ€çš„ç¯å¢ƒä¿¡æ¯çš„ Session å¯¹è±¡
         Session session = Session.getInstance(props);
-        //ÉèÖÃµ÷ÊÔĞÅÏ¢ÔÚ¿ØÖÆÌ¨´òÓ¡³öÀ´
+        //è®¾ç½®è°ƒè¯•ä¿¡æ¯åœ¨æ§åˆ¶å°æ‰“å°å‡ºæ¥
         session.setDebug(true);
         num = myRandom();
-        //3¡¢´´½¨ÓÊ¼şµÄÊµÀı¶ÔÏó
+        //3ã€åˆ›å»ºé‚®ä»¶çš„å®ä¾‹å¯¹è±¡
         try{
-        Message msg = getMimeMessage(session);
-        //4¡¢¸ù¾İsession¶ÔÏó»ñÈ¡ÓÊ¼ş´«Êä¶ÔÏóTransport
-        Transport transport = session.getTransport();
-        
-        //ÉèÖÃ·¢¼şÈËµÄÕË»§ÃûºÍÃÜÂë
-        transport.connect(senderAccount, senderPassword);
-        //·¢ËÍÓÊ¼ş£¬²¢·¢ËÍµ½ËùÓĞÊÕ¼şÈËµØÖ·£¬message.getAllRecipients() »ñÈ¡µ½µÄÊÇÔÚ´´½¨ÓÊ¼ş¶ÔÏóÊ±Ìí¼ÓµÄËùÓĞÊÕ¼şÈË, ³­ËÍÈË, ÃÜËÍÈË
-        transport.sendMessage(msg,msg.getAllRecipients());
-         
-        //Èç¹ûÖ»Ïë·¢ËÍ¸øÖ¸¶¨µÄÈË£¬¿ÉÒÔÈçÏÂĞ´·¨
-        //transport.sendMessage(msg, new Address[]{new InternetAddress("xxx@qq.com")});
-        //5¡¢¹Ø±ÕÓÊ¼şÁ¬½Ó
-        transport.close();
+            Message msg = getMimeMessage(session);
+            //4ã€æ ¹æ®sessionå¯¹è±¡è·å–é‚®ä»¶ä¼ è¾“å¯¹è±¡Transport
+            Transport transport = session.getTransport();
+
+            //è®¾ç½®å‘ä»¶äººçš„è´¦æˆ·åå’Œå¯†ç 
+            transport.connect(senderAccount, senderPassword);
+            //å‘é€é‚®ä»¶ï¼Œå¹¶å‘é€åˆ°æ‰€æœ‰æ”¶ä»¶äººåœ°å€ï¼Œmessage.getAllRecipients() è·å–åˆ°çš„æ˜¯åœ¨åˆ›å»ºé‚®ä»¶å¯¹è±¡æ—¶æ·»åŠ çš„æ‰€æœ‰æ”¶ä»¶äºº, æŠ„é€äºº, å¯†é€äºº
+            transport.sendMessage(msg,msg.getAllRecipients());
+
+            //å¦‚æœåªæƒ³å‘é€ç»™æŒ‡å®šçš„äººï¼Œå¯ä»¥å¦‚ä¸‹å†™æ³•
+            //transport.sendMessage(msg, new Address[]{new InternetAddress("xxx@qq.com")});
+            //5ã€å…³é—­é‚®ä»¶è¿æ¥
+            transport.close();
         }catch (Exception e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
         return num;
     }
-     
+
     /**
-     * »ñµÃ´´½¨Ò»·âÓÊ¼şµÄÊµÀı¶ÔÏó
+     * è·å¾—åˆ›å»ºä¸€å°é‚®ä»¶çš„å®ä¾‹å¯¹è±¡
      * @param session
      * @return
-     * @throws MessagingException 
-     * @throws AddressException 
+     * @throws MessagingException
+     * @throws AddressException
      */
     public static MimeMessage getMimeMessage(Session session) throws Exception{
-        //´´½¨Ò»·âÓÊ¼şµÄÊµÀı¶ÔÏó
+        //åˆ›å»ºä¸€å°é‚®ä»¶çš„å®ä¾‹å¯¹è±¡
         MimeMessage msg = new MimeMessage(session);
-        //ÉèÖÃ·¢¼şÈËµØÖ·
+        //è®¾ç½®å‘ä»¶äººåœ°å€
         msg.setFrom(new InternetAddress(senderAddress));
         /**
-         * ÉèÖÃÊÕ¼şÈËµØÖ·£¨¿ÉÒÔÔö¼Ó¶à¸öÊÕ¼şÈË¡¢³­ËÍ¡¢ÃÜËÍ£©£¬¼´ÏÂÃæÕâÒ»ĞĞ´úÂëÊéĞ´¶àĞĞ
-         * MimeMessage.RecipientType.TO:·¢ËÍ
-         * MimeMessage.RecipientType.CC£º³­ËÍ
-         * MimeMessage.RecipientType.BCC£ºÃÜËÍ
+         * è®¾ç½®æ”¶ä»¶äººåœ°å€ï¼ˆå¯ä»¥å¢åŠ å¤šä¸ªæ”¶ä»¶äººã€æŠ„é€ã€å¯†é€ï¼‰ï¼Œå³ä¸‹é¢è¿™ä¸€è¡Œä»£ç ä¹¦å†™å¤šè¡Œ
+         * MimeMessage.RecipientType.TO:å‘é€
+         * MimeMessage.RecipientType.CCï¼šæŠ„é€
+         * MimeMessage.RecipientType.BCCï¼šå¯†é€
          */
         msg.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recipientAddress));
-        //ÉèÖÃÓÊ¼şÖ÷Ìâ
-        msg.setSubject("×¢²áÑéÖ¤Âë","UTF-8");
-        //ÉèÖÃÓÊ¼şÕıÎÄ
+        //è®¾ç½®é‚®ä»¶ä¸»é¢˜
+        msg.setSubject("éªŒè¯ç ","UTF-8");
+        //è®¾ç½®é‚®ä»¶æ­£æ–‡
         msg.setContent(num+"", "text/html;charset=UTF-8");
-        //ÉèÖÃÓÊ¼şµÄ·¢ËÍÊ±¼ä,Ä¬ÈÏÁ¢¼´·¢ËÍ
+        //è®¾ç½®é‚®ä»¶çš„å‘é€æ—¶é—´,é»˜è®¤ç«‹å³å‘é€
         msg.setSentDate(new Date());
-         
         return msg;
     }
-    
+
     public static int myRandom(){
-    	int ran2 = (int)Math.floor(Math.random()*10000); 
-    	System.out.println(ran2);
-		return ran2;
+        int ran2 = (int)Math.floor(Math.random()*10000);
+        System.out.println(ran2);
+        return ran2;
     }
-    
+
     public static void main(String[] args) {
-		int a =eamil("2560379327@qq.com");
-		System.out.println(a);
-	}
- 
+        int a =eamil("2560379327@qq.com");
+        System.out.println("éªŒè¯ç ï¼š"+a);
+    }
+
 }

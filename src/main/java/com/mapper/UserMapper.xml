@@ -88,9 +88,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.User" >
-    insert into user (id, email, password
-      )
-    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    insert into user (email, password )
+    values ( #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bean.User" >

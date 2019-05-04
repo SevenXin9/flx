@@ -353,35 +353,34 @@
 						<div class="modal-header one">
 							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
 								<div class="discount one">
-									<h3>Sign Up</h3>
+									<h3>注 册</h3>
 									
 								</div>							
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top one">
 								 <form action="#" method="post">
-									<input type="text" name="name" class="name active" placeholder="Your Name" required="">
-									<input type="text" name="email "class="email" placeholder="Email" required="">
-									<input type="password" name="password" class="password" placeholder="Password" required="">		
+									<input type="text" name="email "class="email verify" placeholder="邮箱" required="">
+									<input type="password" name="password" class="password regPassword" placeholder="密码" required="">
+									 <input type="text" name="name" class="name active regActive" placeholder="验证码" required="">
 									<input type="checkbox" id="brand1" value="">
 									<label for="brand1"><span></span> Remember me?</label>
 									<div class="login-bottom one">
 									<ul>
 										<li>
-											<a href="#">Forgot password?</a>
+											<a href="#">忘记秘密?</a>
 										</li>
 										<li>
 										
-										  <input type="submit" value="SIGN UP">
+										  <input type="submit" class="regist" onclick="upLoad()" value="SIGN UP">
 										
 										</li>
 									<div class="clearfix"></div>
 								</ul>
 								</div>	
 								</form>
-								
 							</div>
-							
+
 							
 						 </div>
 						 <div class="social-icons">
@@ -1215,6 +1214,52 @@
 				});
 				});
 				</script>
+<script type="text/javascript">
+    $(function () {
+		$(".verify").blur(function () {
+            var email = $.trim($('.verify').val());
+            var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            if(email == ""){
+               alert("邮箱不能为空");
+            }
+            else if(!(isEmail.test(email))){
+                alert("邮箱格式错误");
+            }else{
+                alert("验证码已发出！");
+                $.get("/user/Verify",{"email":email},function () {//发送验证码
+                })
+			}
+        });
+    });
+</script>
+<!-- 注册 -->
+<script th:inline="javascript">
+
+       function upLoad(){
+           var email= $(".verify").val();
+           var password = $(".regPassword").val();
+           var reg = $(".regActive").val();
+           $.get("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
+			   if (date=="ok"){
+			       alert("注册成功");
+			   }else{
+			       alert("注册失败");
+			       return false;
+			   }
+           })
+	   }
+
+
+		/*$(function () {
+			$(".regist").click(function () {
+                <![CDATA[
+                var yy=[[${verify}]];
+                alert(yy);
+                ]]>
+            })
+        })*/
+
+	</script>
 					<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
 <script th:src="@{/static/js/bootstrap.js}"></script>
  
