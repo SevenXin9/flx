@@ -150,4 +150,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <select id="">
+    select * from user where email=
+  </select>
 </mapper>
