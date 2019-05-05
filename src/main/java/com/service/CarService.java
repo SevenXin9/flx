@@ -14,4 +14,22 @@ public interface CarService {
      * @return
      */
     public List<CarPictureVO> selectCarPicture1();
+
+    /**
+     * 查询流行车
+     * @return
+     */
+    List<CarPictureVO> selectCarPicture2();
+
+    /**
+     * 查询新车上市
+     * @return
+     */
+    List<CarPictureVO> selectCarPicture3();
+
+    /**
+     * 轮播图展示车
+     * @return
+     */
+    public List<CarPictureVO> selectCarPicture4();
 }

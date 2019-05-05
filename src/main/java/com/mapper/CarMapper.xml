@@ -104,6 +104,24 @@
               <include refid="BaseCar_Column_List" />
           FROM car NATURAL JOIN picture limit 0,3;
   </select>
+  <!-- 查询流行车 -->
+  <select id="selectCarPicture2" resultType="com.VO.CarPictureVO">
+    SELECT
+    <include refid="BaseCar_Column_List" />
+    FROM car NATURAL JOIN picture limit 3,3;
+  </select>
+  <!-- 查询新车上市 -->
+  <select id="selectCarPicture3" resultType="com.VO.CarPictureVO">
+    SELECT
+    <include refid="BaseCar_Column_List" />
+    FROM car NATURAL JOIN picture limit 6,3;
+  </select>
+  <!-- 轮播图展示车 -->
+  <select id="selectCarPicture4" resultType="com.VO.CarPictureVO">
+    SELECT
+    <include refid="BaseCar_Column_List" />
+    FROM car NATURAL JOIN picture WHERE type = 5;
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from car

@@ -3,6 +3,10 @@ package com.controller;
 import com.VO.CarPictureVO;
 import com.bean.Address;
 import com.bean.User;
+import com.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.bean.Address;
+import com.bean.Address;
 import com.service.AddressService;
 import com.service.CarService;
 import com.service.UserService;
@@ -50,9 +54,19 @@ public class UserController {
         // 获取省级城市信息
         List<Address> addresses = addressService.getAddressesByParentId(-1);
         // 获取新车发行的车
-        List<CarPictureVO> Cars=carService.selectCarPicture1();
+        List<CarPictureVO> Cars1=carService.selectCarPicture1();
+        //流行车
+        List<CarPictureVO> Cars2=carService.selectCarPicture2();
+        //新车上市
+        List<CarPictureVO> Cars3=carService.selectCarPicture3();
+        //轮播图展示车
+        List<CarPictureVO> Cars4=carService.selectCarPicture4();
+        System.out.println(Cars1.size()+"            "+Cars2.get(2).getUrl()+"                 "+Cars2.size());
         model.addAttribute("addresses", addresses);
-        model.addAttribute("Cars",Cars);
+        model.addAttribute("Cars",Cars1);
+        model.addAttribute("Cars2",Cars2);
+        model.addAttribute("Cars3",Cars3);
+        model.addAttribute("Cars4",Cars4);
         return "index";
     }
 
@@ -82,16 +96,16 @@ public class UserController {
 
     @RequestMapping(value = "/regest")
     @ResponseBody
+    /**
+     * 注册
+     */
     public String regest(User user,@RequestParam("name") String verify2,HttpSession session){
-        System.out.println("添加用户"+session.getAttribute("verify")+"    "+verify2);
         System.out.println(user.getEmail()+"          "+user.getPassword());
-        if (session.getAttribute("verify").equals(verify2)){
+        if (session.getAttribute("verify").equals(verify2)){//比较验证码
             session.removeAttribute("verify");
-            System.out.println("ok");
             userService.insertUser(user);//添加用户
             return "ok";
         }
-        System.out.println("no");
         return "no";
     }
 
