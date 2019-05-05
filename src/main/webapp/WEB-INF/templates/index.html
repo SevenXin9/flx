@@ -60,8 +60,8 @@
 							<li>
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
-							<li><button id="showRight" class="navig">登录 </button>
-							 <div class="cbp-spmenu-push">
+							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
+								<button id="out" class="navig"  th:if="${session.user}!=null">退出</button>
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
 							<div class="login-inner">
@@ -90,7 +90,6 @@
             <script>
 				//登录
                 function login1(){
-                	alert($("#email").val());
 					$.ajax({
 						url: "/user/login"
 						, method: "post"
@@ -100,7 +99,12 @@
 							"password":$("#password").val()
 						}
 						, success: function (data) {
-							alert(data);
+							if(data==true){
+								alert("登录成功");
+								window.location.href="/index";
+							}else {
+								alert("账号或密码错误");
+							}
 						}
 						, error: function () {
 							alert("系统异常");
@@ -115,8 +119,8 @@
 								<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
 								<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
 							</ul> 
-						</div>		
-							</div> 
+						</div>
+							</div>
 							</nav>
 						</div> 
 				<script th:src="@{/static/js/classie2.js}"></script>

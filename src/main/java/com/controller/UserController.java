@@ -4,6 +4,7 @@ import com.bean.Address;
 import com.bean.User;
 import com.service.AddressService;
 import com.service.UserService;
+import com.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -37,6 +38,7 @@ public class UserController {
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean userLogin(User user, HttpSession session){
+        user.setPassword(MD5Utils.MD5(user.getPassword()));
         User us = userService.loginVerify(user);
         if(us!=null){
             session.setAttribute("user",us);

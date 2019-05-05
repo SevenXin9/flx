@@ -9,6 +9,12 @@ button#showRight {
     border: none;
 	margin: 0 1em;
 }
+button#out {
+	background: none;
+	outline: none;
+	border: none;
+	margin: 0 1em;
+}
 .cbp-spmenu h3 {
 color: #fff;
     font-size: 1.9em;
