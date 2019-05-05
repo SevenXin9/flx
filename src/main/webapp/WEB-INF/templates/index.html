@@ -511,7 +511,7 @@
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">即将发行</a></li>
 							<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">流行车</a></li>
-							<li role="presentation"><a href="#tree" role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
+							<li role="presentation"><a href="#tree"  role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
 							
 						</ul>
 						<div id="myTabContent" class="tab-content">
@@ -530,7 +530,7 @@
 														 <div class="date">Mar [[${car.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
-												
+
 													</div>
 									  </span>
 									</div>
@@ -560,7 +560,7 @@
 														<option value="city">London</option>
 														<option value="city">Others...</option>
 													</select>
-												   </div>	
+												   </div>
 													<input type="submit" value="Done">
 
 												</form>
@@ -569,130 +569,24 @@
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								<!--  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f2.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">Audi A4 2.0 TDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 6000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4>Be the first to know</h4>
-											<div class="login-top sign-top">
-												<form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<input type="text" name="phone" class="phone" placeholder="Phone" required=""/>
-													<div class="section_drop">
-													<select id="country3" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>	
-													<input type="submit" value="Done">
-												</form>
-											</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f3.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">Foed Mustang GT 500</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 9000 - $ 12000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4>Be the first to know</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<input type="text" name="phone" class="phone" placeholder="Phone" required=""/>
-													<div class="section_drop">
-													<select id="country4" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null"> Select City</option>
-																		<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>		
-													<input type="submit" value="Done">
-												</form>
-												</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
 								   <div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car2 : ${Cars2}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f4.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car2.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html"> Ford Mustang GT 350</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 8000 - $ 11000</span></div>
+														 <h4><a href="single.html"> [[${car2.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car2.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">June 2016</div>
+														 <div class="date">[[${car2.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
-												
+
 													</div>
 									  </span>
 									</div>
@@ -723,127 +617,17 @@
 														<option value="city">Others...</option>
 													</select>
 													</div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
+													<input type="password" name="password" class="password" placeholder="Password" required=""/>
 													<input type="submit" value="Check Now">
-													
-													
+
+
 												</form>
 											</div>
-											
+
 													</div>
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f5.jpeg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="#">Ferrari F430</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 7000 - $ 13000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">July 2016</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country6" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null"> Select City</option>
-																	<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f6.jpeg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html"> Mercedes-Benz C250 CDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 5000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Aug 2016</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-											   <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country7" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 								
 							</div>
@@ -851,16 +635,16 @@
 								
 								<div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car3 : ${Cars3}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f7.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car3.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html">BMW M4</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 6000 - $ 11000</span></div>
+														 <h4><a href="single.html">[[${car3.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car3.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
+														 <div class="date">[[${car3.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
 												
@@ -903,115 +687,6 @@
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f8.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html"> BMW X4 M Sport</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 7000 - $ 12000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country9" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f9.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">BMW M3 </a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">&nbsp;$ 5000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-											 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country10" onchange="change_country(this.value)" class="frm-field required">
-																		<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 								
 							</div>
@@ -1032,42 +707,15 @@
 				 <h6 class="sub">实惠的价格，超炫的汽车，全面的服务</h6>
 							<div class="car-view-slider">
 					          <ul id="flexiselDemo">
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n2.jpg}" alt=""/>
+							 <li th:each="car4 : ${Cars4}">
+								 <a href="upcoming.html"><img th:src="@{{url}(url=${car4.url})}" alt=""/>
 								  <div class="caption">
-										<h3><a href="upcoming.html">Ford Mustang GT 500</a></h3>
-										<span>Catchy Carz</span>
+										<h3><a href="upcoming.html">[[${car4.name}]]</a></h3>
+										<span>展示车</span>
 										
 									</div>
 								 </a>
 								
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n1.jpeg}" alt=""/>
-								 <div class="caption">
-										<h3><a href="upcoming.html">Acura TLX</a></h3>
-										<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n3.jpg}" alt=""/>
-								  <div class="caption">
-										<h3><a href="upcoming.html"> McLaren MP4-12c</a></h3>
-										<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n4.jpg}" alt=""/>
-									<div class="caption">
-										<h3><a href="upcoming.html">BMW Z4</a></h3>
-									<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
 							 </li>
 							</ul>
 						</div>
@@ -1296,6 +944,7 @@
 			}
         });
     });
+
 </script>
 <!-- 注册 -->
 <script th:inline="javascript">

@@ -18,6 +18,9 @@ public interface CarMapper {
     int insertSelective(Car record);
 
     List<CarPictureVO> selectCarPicture1();//查询即将发行车信息
+    List<CarPictureVO> selectCarPicture2();//查询流行车
+    List<CarPictureVO> selectCarPicture3();//查询新车上市
+    List<CarPictureVO> selectCarPicture4();//查询轮播图展示车
 
     List<Car> selectByExample(CarExample example);
 

@@ -18,7 +18,37 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
 
     @Override
+    /**
+     * 即将发行
+     */
     public List<CarPictureVO> selectCarPicture1() {
         return carMapper.selectCarPicture1();
+    }
+
+    /**
+     * 流行车
+     * @return
+     */
+    @Override
+    public List<CarPictureVO> selectCarPicture2() {
+        return carMapper.selectCarPicture2();
+    }
+
+    /**
+     * 新车上市
+     * @return
+     */
+    @Override
+    public List<CarPictureVO> selectCarPicture3() {
+        return carMapper.selectCarPicture3();
+    }
+
+    /**
+     * 轮播图展示车
+     * @return
+     */
+    @Override
+    public List<CarPictureVO> selectCarPicture4() {
+        return carMapper.selectCarPicture4();
     }
 }
