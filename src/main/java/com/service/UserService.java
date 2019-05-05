@@ -3,5 +3,7 @@ package com.service;
 import com.bean.User;
 
 public interface UserService {
-   User selectUserName();
+
+    public void insert(User user);
+    User loginVerify(User user);
 }

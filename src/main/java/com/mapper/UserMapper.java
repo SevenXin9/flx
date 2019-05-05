@@ -20,5 +20,5 @@ public interface UserMapper {
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
-    int selectByEamil(String eamil);
+    User selectByEamil(String eamil);
 }

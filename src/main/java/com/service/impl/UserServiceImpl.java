@@ -10,11 +10,22 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
-    public User selectUserName(String userName) {
-        userMapper
+    public void insert(User user) {
+
+    }
+
+    @Override
+    public User loginVerify(User user) {
+        System.out.println("aaa");
+        User us = userMapper.selectByEamil(user.getEmail());
+        if(us!=null){
+            if(user.getPassword().equals(us.getPassword())){
+                return us;
+            }
+        }
         return null;
     }
 }
