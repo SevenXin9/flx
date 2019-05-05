@@ -3,10 +3,16 @@
 <head>
 <title>Home</title>
 <!-- for-mobile-apps -->
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	<style type="text/css">
+		html{height:100%}
+		body{height:100%;margin:0px;padding:0px}
+		#container{height:100%}
+	</style>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
 <link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
@@ -15,14 +21,14 @@
 <link rel="stylesheet" type="text/css" th:href="@{/static/css/component.css}" />
 <script type="text/javascript" th:src="@{/static/js/modernizr-2.6.2.min.js}"></script>
 <!--/web-fonts-->
-	<link href='http://fonts.useso.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
 <!--//web-fonts-->
 </head>
 <body>
 <!--/banner-section-->
-	<div id="demo-1" data-zs-src='["images/2.jpg", "images/1.jpg", "images/3.jpg"]' data-zs-overlay="dots">
+	<div id="demo-1" data-zs-src='["/static/images/2.jpg", "/static/images/1.jpg", "/static/images/3.jpg"]' data-zs-overlay="dots">
 		<div class="demo-inner-content">
 		   <div class="header-top">
 		    <!-- /header-left -->
@@ -402,36 +408,80 @@
 						<div class="modal-header one">
 							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
 								<div class="discount one">
-									<h3>Please Tell Us Your City</h3>
+									<h3>请选择您的城市</h3>
 									
 								</div>							
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top location">
 								 <form action="#" method="post">
-				                      <select id="country1" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-										</select>
+				                      <select id="province" onchange="getCounty(this.value)" class="frm-field required">
+										  	<option value="">请选择</option>
+											<option th:value="${address.id}" th:text="${address.addressname}" th:each="address:${addresses}"></option>
+									  </select>
+
+									  <select id="county" onchange="intocounty()" class="frm-field required">
+										  <option>请选择省级城市</option>
+									  </select>
 								</form>
+									<div class="login-top sign-top location" style="height: 230px" id="container"></div>
 							     </div>
-							
-							
 						 </div>
 
-								
+						<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FF8Sl8uGGFKbZReYuGxA87owTrGiWyMm"></script>
+							<script type="text/javascript">
+								function getCounty(id) {
+									$.ajax({
+										url:"/user/getCounty"
+										,method:"get"
+										,async:true
+										,data:"parentid="+id
+                                        ,traditional:true
+										,success:function (data) {
+                                            var option = "";
+										    if(data.length <= 0){
+                                                option = "<option value=''>请选择省级城市</option>"
+											}
+
+										    $("#county").html("");
+										    for (var i = 0; i < data.length; i++){
+										        option += "<option value='"+data[i].id+"'>"+data[i].addressname+"</option>"
+											}
+                                            $("#county").html(option);
+										    intocounty();
+                                        }
+                                        ,error:function () {
+											alert("系统异常");
+                                        }
+									})
+
+                                }
+                                // 创建地图实例
+                                var map = new BMap.Map("container");
+                                // 初始化地图，设置中心点坐标和地图级别
+                                map.centerAndZoom("江西省南昌市", 12);
+                                //开启鼠标滚轮缩放
+                                map.enableScrollWheelZoom(true);
+
+                                function intocounty(){
+                                    var cityName = $("#province option:selected").text() + $("#county option:selected").text();
+                                    var id = $("#province").val();
+                                    if(id != null || id != ""){
+                                        // 创建地址解析器实例
+                                        var myGeo = new BMap.Geocoder();
+                                        // 将地址解析结果显示在地图上,并调整地图视野
+                                        myGeo.getPoint(cityName, function(point){
+                                            if (point) {
+                                                map.centerAndZoom(point, 12);
+                                                map.addOverlay(new BMap.Marker(point));
+                                            }else{
+                                                alert("您选择地址没有解析到结果!");
+                                            }
+                                        });
+									}
+                                }
+							</script>
+
 					</div>
 				</div>
 			</div>
