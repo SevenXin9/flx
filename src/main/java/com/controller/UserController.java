@@ -22,14 +22,20 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private AddressService addressService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/index")
     public String index(Model model){
-        model.addAttribute("msg","这是首页");
+        // 获取省级城市信息
+        List<Address> addresses = addressService.getAddressesByParentId(-1);
+        model.addAttribute("addresses", addresses);
         return "index";
     }
 
