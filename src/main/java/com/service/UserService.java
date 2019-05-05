@@ -9,7 +9,7 @@ import com.bean.User;
 public interface UserService {
     //获取验证码
     public int getVerify(String email);
-
     //添加用户
     public void insertUser(User user);
+    User loginVerify(User user);
 }
