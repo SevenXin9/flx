@@ -75,7 +75,8 @@
 							<li>
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
-							<li><button id="showRight" class="navig">登录 </button>
+							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
+                                <button id="out" class="navig" th:if="${session.user}!=null">登录 </button>
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
