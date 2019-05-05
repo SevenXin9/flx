@@ -69,12 +69,6 @@ public class UserController {
         return false;
     }
 
-    // 获取县级城市信息
-    @RequestMapping(value = "/getCounty", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Address> getCounty(Model model, @RequestParam(value = "parentid", defaultValue = "0") Integer parentid){
-        return addressService.getAddressesByParentId(parentid);
-    }
 
     //传输注册验证码
     @RequestMapping(value = "/Verify")

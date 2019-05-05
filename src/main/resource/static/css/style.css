@@ -6487,15 +6487,14 @@ p.free {
 	select#country11, select#country12, select#country19 {
     padding: 10px 22px;
 	}
+
 	.item {
 		margin-bottom: 1em;
 		float: left;
 		width: 100%;
 		padding-left: 0;
 	}
-	.car-info p {
-      font-size: 0.8em;
-	}
+
 	h4.tittle {
 		margin-bottom: 0.6em;
 		font-size: 1.2em;
