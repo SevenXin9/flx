@@ -11,6 +11,21 @@
 		html{height:100%}
 		body{height:100%;margin:0px;padding:0px}
 		#container{height:100%}
+		/*去除文字*/
+		/*.BMap_cpyCtrl {
+			display:none;
+		}*/
+
+		/*去除地图*/
+		/*
+		.anchorBL {
+			display:none;
+		}*/
+
+		/*去除百度地图版权*/
+		.anchorBL{
+			display:none;
+		}
 	</style>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -60,25 +75,26 @@
 							<li>
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
-							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
-								<button id="out" class="navig"  th:if="${session.user}!=null">退出</button>
+							<li><button id="showRight" class="navig">登录 </button>
+							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
 							<div class="login-inner">
 								<div class="login-top">
-								 <form action="#" method="post" onsubmit="return login1();">
-									<input type="text" id="email" name="email" class="email" placeholder="邮箱" required=""/>
-									<input type="password" id="password" name="password" class="password" placeholder="密码" required=""/>
+								 <form action="#" method="post">
+									<input type="text" name="email" class="email" placeholder="Email" required=""/>
+									<input type="password" name="password" class="password" placeholder="Password" required=""/>	
 									<input type="checkbox" id="brand" value="">
-                                     <label for="brand"><span></span> 记住密码</label>
+									<label for="brand"><span></span> 记住密码</label>
+								</form>
 								<div class="login-bottom">
 									<ul>
 										<li>
 											<a href="#">忘记密码?</a>
 										</li>
 										<li>
-
-												<input type="submit" value="登录" id="login"/>
+											<form action="#" method="post">
+												<input type="submit" value="LOGIN"/>
 											</form>
 										</li>
 									</ul>
@@ -119,8 +135,8 @@
 								<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
 								<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
 							</ul> 
-						</div>
-							</div>
+						</div>		
+							</div> 
 							</nav>
 						</div> 
 				<script th:src="@{/static/js/classie2.js}"></script>
@@ -458,27 +474,27 @@
 							<script type="text/javascript">
 								function getCounty(id) {
 									$.ajax({
-											url:"/user/getCounty"
-											,method:"get"
-											,async:true
-											,data:"parentid="+id
-											,traditional:true
-											,success:function (data) {
-												var option = "";
-												if(data.length <= 0){
-													option = "<option value=''>请选择省级城市</option>"
-												}
+										url:"/user/getCounty"
+										,method:"get"
+										,async:true
+										,data:"parentid="+id
+                                        ,traditional:true
+										,success:function (data) {
+                                            var option = "";
+										    if(data.length <= 0){
+                                                option = "<option value=''>请选择省级城市</option>"
+											}
 
-												$("#county").html("");
-												for (var i = 0; i < data.length; i++){
-													option += "<option value='"+data[i].id+"'>"+data[i].addressname+"</option>"
-												}
-												$("#county").html(option);
-												intocounty();
+										    $("#county").html("");
+										    for (var i = 0; i < data.length; i++){
+										        option += "<option value='"+data[i].id+"'>"+data[i].addressname+"</option>"
 											}
-											,error:function () {
-												alert("系统异常");
-											}
+                                            $("#county").html(option);
+										    intocounty();
+                                        }
+                                        ,error:function () {
+											alert("系统异常");
+                                        }
 									})
 
                                 }
@@ -1292,5 +1308,7 @@
 				</script>
 					<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
 <script th:src="@{/static/js/bootstrap.js}"></script>
+ 
+
 </body>
 </html>
