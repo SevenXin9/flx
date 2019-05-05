@@ -1,20 +1,17 @@
 package com.controller;
 
+import com.VO.CarPictureVO;
 import com.bean.User;
+import com.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bean.Address;
-import com.bean.User;
 import com.service.AddressService;
 import com.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
-import com.service.*;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +24,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    private CarService carService;
+
+    @Autowired
     private AddressService addressService;
 
     @Autowired
@@ -36,7 +36,10 @@ public class UserController {
     public String index(Model model){
         // 获取省级城市信息
         List<Address> addresses = addressService.getAddressesByParentId(-1);
+        // 获取新车发行的车
+        List<CarPictureVO> Cars=carService.selectCarPicture1();
         model.addAttribute("addresses", addresses);
+        model.addAttribute("Cars",Cars);
         return "index";
     }
 
@@ -45,16 +48,6 @@ public class UserController {
     @ResponseBody
     public List<Address> getCounty(Model model, @RequestParam(value = "parentid", defaultValue = "0") Integer parentid){
         return addressService.getAddressesByParentId(parentid);
-    }
-
-    @RequestMapping(value = "/intoInsert", method = RequestMethod.GET)
-    public String intoInsert(Model model){
-        User user = new User();
-        user.setEmail("123");
-        user.setPassword("123");
-        System.out.println(user);
-        userService.insert(user);
-        return "index";
     }
 
     //传输注册验证码
@@ -73,6 +66,7 @@ public class UserController {
         System.out.println("添加用户"+session.getAttribute("verify")+"    "+verify2);
         System.out.println(user.getEmail()+"          "+user.getPassword());
         if (session.getAttribute("verify").equals(verify2)){
+            session.removeAttribute("verify");
             System.out.println("ok");
             userService.insertUser(user);//添加用户
             return "ok";
@@ -80,4 +74,5 @@ public class UserController {
         System.out.println("no");
         return "no";
     }
+
 }

@@ -24,11 +24,7 @@
         </property>
     </bean>
 
-    <!-- 配置视图解析器 -->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="prefix" value="/WEB-INF/jsp/" />-->
-        <!--<property name="suffix" value=".jsp" />-->
-    <!--</bean>-->
+    
 
     <!-- 配置多媒体处理器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

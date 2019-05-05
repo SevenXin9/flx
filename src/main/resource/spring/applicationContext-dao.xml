@@ -46,7 +46,6 @@
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSourse"/>
-
         <!-- 加载mybatis核心配置文件 -->
         <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
         <!-- 配置别名包扫描 -->

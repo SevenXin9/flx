@@ -12,6 +12,7 @@
     <context:component-scan base-package="com.service"/>
 
     <!--  扫描serviceImpl -->
-    <bean class="com.service.impl.UserServiceImpl" id="userService"></bean>
+  <!--  <bean class="com.service.impl.UserServiceImpl" id="userService"></bean>
+    <bean class="com.service.impl.CarServiceImpl" id="carService"></bean>-->
 
 </beans>

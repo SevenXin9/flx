@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService {
     //添加用户
     public void insertUser(User user){
         System.out.println("进来了");
+        String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
+        user.setPassword(pwd);
         System.out.println(userMapper.insertSelective(user));
     }
 }

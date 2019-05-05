@@ -503,16 +503,16 @@
 							<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
 							   <div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car : ${Cars}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f1.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html">Mercedes-Benz C250 CDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 8000 - $ 12000</span></div>
+														 <h4><a href="single.html"><!--<span th:text="${car.name}"></span>-->[[${car.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
+														 <div class="date">Mar [[${car.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
 												
@@ -556,7 +556,7 @@
 								  </div>
 								    <!-- //card1 -->
 									<!-- /card2 -->
-								  <div class="card effect__hover">
+								<!--  <div class="card effect__hover">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
@@ -1239,7 +1239,7 @@
 				});
 				</script>
 						<script type="text/javascript">
-				 $(window).load(function() {			
+				 $(window).load(function() {
 				  $("#flexiselDemo1").flexisel({
 					visibleItems: 4,
 					animationSpeed: 1000,
@@ -1298,16 +1298,6 @@
 			   }
            })
 	   }
-
-
-		/*$(function () {
-			$(".regist").click(function () {
-                <![CDATA[
-                var yy=[[${verify}]];
-                alert(yy);
-                ]]>
-            })
-        })*/
 
 	</script>
 					<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
