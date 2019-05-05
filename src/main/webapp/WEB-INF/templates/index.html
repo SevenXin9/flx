@@ -76,31 +76,31 @@
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
 							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
-                                <button id="out" class="navig" th:if="${session.user}!=null">登录 </button>
+                                <button id="out" class="navig" th:if="${session.user}!=null">退出　</button>
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
 							<div class="login-inner">
 								<div class="login-top">
-								 <form action="#" method="post">
-									<input type="text" name="email" class="email" placeholder="Email" required=""/>
-									<input type="password" name="password" class="password" placeholder="Password" required=""/>	
+								 <form action="#" method="post" onsubmit="return login1();">
+									<input type="text" id="email" name="email" class="email" placeholder="Email" required=""/>
+									<input type="password" id="password" name="password" class="password" placeholder="Password" required=""/>
 									<input type="checkbox" id="brand" value="">
 									<label for="brand"><span></span> 记住密码</label>
-								</form>
+
 								<div class="login-bottom">
 									<ul>
 										<li>
 											<a href="#">忘记密码?</a>
 										</li>
 										<li>
-											<form action="#" method="post">
 												<input type="submit" value="LOGIN"/>
-											</form>
 										</li>
 									</ul>
 									<div class="clearfix"></div>
+
 								</div>
+                                 </form>
 								<div class="clearfix"></div>
 													
 							</div>
@@ -118,7 +118,7 @@
 						, success: function (data) {
 							if(data==true){
 								alert("登录成功");
-								window.location.href="/index";
+								window.location.href="/user/index";
 							}else {
 								alert("账号或密码错误");
 							}
