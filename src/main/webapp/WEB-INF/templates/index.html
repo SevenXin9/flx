@@ -11,6 +11,21 @@
 		html{height:100%}
 		body{height:100%;margin:0px;padding:0px}
 		#container{height:100%}
+		/*去除文字*/
+		/*.BMap_cpyCtrl {
+			display:none;
+		}*/
+
+		/*去除地图*/
+		/*
+		.anchorBL {
+			display:none;
+		}*/
+
+		/*去除百度地图版权*/
+		.anchorBL{
+			display:none;
+		}
 	</style>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -430,12 +445,12 @@
 						 </div>
 
 						<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FF8Sl8uGGFKbZReYuGxA87owTrGiWyMm"></script>
-							<script type="text/javascript">
-								function getCounty(id) {
-									$.ajax({
-										url:"/user/getCounty"
-										,method:"get"
-										,async:true
+						<script type="text/javascript">
+                            function getCounty(id) {
+                                $.ajax({
+                                    url:"/user/getCounty"
+                                    ,method:"get"
+                                    ,async:true
 										,data:"parentid="+id
                                         ,traditional:true
 										,success:function (data) {
