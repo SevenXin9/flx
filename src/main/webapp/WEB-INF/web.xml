@@ -56,6 +56,8 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+
+  <!-- 德鲁伊连接池 -->
   <servlet>
     <servlet-name>DruidStatView</servlet-name>
     <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
@@ -80,6 +82,8 @@
     <url-pattern>/druid/*</url-pattern>
   </servlet-mapping>
 
+
+  <!-- shiro -->
   <filter>
     <filter-name>shiroFilter</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
