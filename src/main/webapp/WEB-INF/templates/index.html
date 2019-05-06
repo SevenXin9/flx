@@ -75,34 +75,61 @@
 							<li>
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
-							<li><button id="showRight" class="navig">登录 </button>
+							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
+                                <button id="out" class="navig" th:if="${session.user}!=null">退出　</button>
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
 							<div class="login-inner">
 								<div class="login-top">
-								 <form action="#" method="post">
-									<input type="text" name="email" class="email" placeholder="Email" required=""/>
-									<input type="password" name="password" class="password" placeholder="Password" required=""/>	
+								 <form action="#" method="post" onsubmit="return login1();">
+									<input type="text" id="email" name="email" class="email" placeholder="Email" required=""/>
+									<input type="password" id="password" name="password" class="password" placeholder="Password" required=""/>
 									<input type="checkbox" id="brand" value="">
 									<label for="brand"><span></span> 记住密码</label>
-								</form>
+
 								<div class="login-bottom">
 									<ul>
 										<li>
 											<a href="#">忘记密码?</a>
 										</li>
 										<li>
-											<form action="#" method="post">
 												<input type="submit" value="LOGIN"/>
-											</form>
 										</li>
 									</ul>
 									<div class="clearfix"></div>
+
 								</div>
+                                 </form>
 								<div class="clearfix"></div>
 													
 							</div>
+            <script>
+				//登录
+                function login1(){
+					$.ajax({
+						url: "/user/login"
+						, method: "post"
+						, async: true
+						, data: {
+							"email":$("#email").val(),
+							"password":$("#password").val()
+						}
+						, success: function (data) {
+							if(data==true){
+								alert("登录成功");
+								window.location.href="/user/index";
+							}else {
+								alert("账号或密码错误");
+							}
+						}
+						, error: function () {
+							alert("系统异常");
+						}
+					});
+                    return false;
+                }
+            </script>
 							<div class="social-icons">
 							<ul> 
 								<li><a href="#"><span class="icons"></span><span class="text">Facebook</span></a></li>
@@ -147,7 +174,7 @@
 				<p>看中它 – 试着 – 买吧!</p>
 			       <form action="#" method="post">
 					<div class="search-two">
-					<select id="country12" onchange="change_country(this.value)" class="frm-field required">
+					<select id="country12" onchange="change_country(this.value)" class="frm-field required" >
 						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
 
 							<option value="abt">ABT</option>
@@ -158,141 +185,6 @@
 							<option value="acura">Acura</option>
 							<option value="alfa romeo">Alfa Romeo</option>
 							<option value="arial">Ariel</option>
-							<option value="armstrong siddeley">Armstrong Siddeley</option>
-							<option value="ascari">Ascari</option>
-							<option value="aston martin">Aston Martin</option>
-							<option value="audi">Audi</option>
-							<option value="austin">Austin</option>
-							<option value="bac">BAC</option>
-							<option value="bmw">BMW</option>
-							<option value="byd">BYD</option>
-							<option value="bentley">Bentley</option>
-							<option value="bertone">Bertone</option>
-							<option value="brilliance">Brilliance</option>
-							<option value="bristol">Bristol</option>
-							<option value="bufori">Bufori</option>
-							<option value="bugatti">Bugatti</option>
-							<option value="buick">Buick</option>
-							<option value="caddilac">Caddilac</option>
-							<option value="caparo">Caparo</option>
-							<option value="carbon motors">Carbon Motors</option>
-							<option value="caterham">Caterham</option>
-							<option value="cheri">Cheri</option>
-							<option value="chevrolet">Chevrolet</option>
-							<option value="chrysler">Chrysler</option>
-							<option value="citroen">Citroën</option>
-							<option value="continental">Continental</option>
-							<option value="dacia">Dacia</option>
-							<option value="daewoo">Daewoo</option>
-							<option value="daihatsu">Daihatsu</option>
-							<option value="daimler">Daimler</option>
-							<option value="datsun">Datsun</option>
-							<option value="de lorean">De Lorean</option>
-							<option value="de tomaso">De Tomaso</option>
-							<option value="dodge">Dodge</option>
-							<option value="eagle">Eagle</option>
-							<option value="ferrari">Ferrari</option>
-							<option value="fiat">Fiat</option>
-							<option value="">Fisker</option>
-							<option value="force">Force</option>
-							<option value="ford">Ford</option>
-							<option value="gmc">GMC</option>
-							<option value="">GTA Motors</option>
-							<option value="geely">Geely</option>
-							<option value="general motors">General Motors</option>
-							<option value="ghia">Ghia</option>
-							<option value="ginetta">Ginetta</option>
-							<option value="gumpert">Gumpert</option>
-							<option value="hsv">HSV</option>
-							<option value="healey">Healey</option>
-							<option value="hennessey motors">Hennessey Motors</option>
-							<option value="holden">Holden</option>
-							<option value="honda">Honda</option>
-							<option value="hummer">Hummer</option>
-							<option value="hyundai">Hyundai</option>
-							<option value="infinity">Infinty</option>
-							<option value="isuzu">Isuzu</option>
-							<option value="italdesign">Italdesign</option>
-							<option value="jaguar">Jaguar</option>
-							<option value="jeep">Jeep</option>
-							<option value="jensen motors">Jensen Motors</option>
-							<option value="kia motors">Kia Motors</option>
-							<option value="koenig">Koeing</option>
-							<option value="koenigsegg">Koenigsegg</option>
-							<option value="lada">Lada</option>
-							<option value="lamborghini">Lamborghini</option>
-							<option value="lancia">Lancia</option>
-							<option value="land rover">Land Rover</option>
-							<option value="lexus">Lexus</option>
-							<option value="lincoln">Lincoln</option>
-							<option value="lotus">Lotus</option>
-							<option value="marussia">Marussia</option>
-							<option value="mclaren">McLaren</option>
-							<option value="mgb">MG Motor</option>
-							<option value="mini">MINI</option>
-							<option value="mahindra">Mahindra</option>
-							<option value="maruti suzuki">Maruti Suzuki</option>
-							<option value="maserati">Maserati</option>
-							<option value="maybach">Maybach</option>
-							<option value="mazda">Mazda</option>
-							<option value="mercedes-benz">Mercedes-Benz</option>
-							<option value="mercury">Mercury</option>
-							<option value="mitsubishi">Mitsubishi</option>
-							<option value="morgan">Morgan</option>
-							<option value="mosler">Mosler</option>
-							<option value="nsu">NSU</option>
-							<option value="noble">Noble</option>
-							<option value="nissan">Nissan</option>
-							<option value="oldsmobile">Oldsmobile</option>
-							<option value="opel">Opel</option>
-							<option value="packard">Packard</option>
-							<option value="pagani">Pagani</option>
-							<option value="panoz">Panoz</option>
-							<option value="peugeot">Peugeot</option>
-							<option value="plymouth">Plymouth</option>
-							<option value="pontiac">Pontiac</option>
-							<option value="porsche">Porsche</option>
-							<option value="proton">Proton</option>
-							<option value="ram">RAM</option>
-							<option value="ruf automobile">RUF Automobile</option>
-							<option value="radical">Radical</option>
-							<option value="reliant">Reliant</option>
-							<option value="renault">Renault</option>
-							<option value="rimac">Rimac</option>
-							<option value="rinspeed">Rinspeed</option>
-							<option value="rolls royce">Rolls Royce</option>
-							<option value="rover">Rover</option>
-							<option value="srt">SRT</option>
-							<option value="ssc">SSC</option>
-							<option value="saab">SAAB</option>
-							<option value="saleen">Saleen</option>
-							<option value="saturn">Saturn</option>
-							<option value="scion">Scion</option>
-							<option value="seat">SEAT</option>
-							<option value="shelby">Shelby</option>
-							<option value="skoda">Škoda</option>
-							<option value="smart">Smart</option>
-							<option value="spyker">Spyker</option>
-							<option value="ssangyong">Ssangyong</option>
-							<option value="studebaker">Studebaker</option>
-							<option value="subaru">Subaru</option>
-							<option value="sunbeam">Sunbeam</option>
-							<option value="suzuki">Suzuki</option>
-							<option value="tata motors">TATA Motors</option>
-							<option value="tvr">TVR</option>
-							<option value="tesla">Tesla</option>
-							<option value="toyota">Toyota</option>
-							<option value="triumph">Triumph</option>
-							<option value="vauxhall">Vauxhall</option>
-							<option value="Vector">Vector</option>
-							<option value="venturi">Venturi</option>
-							<option value="volkswagen">Volkswagen</option>
-							<option value="volvo">Volvo</option>
-							<option value="w motors">W Motors</option>
-							<option value="webasto">Webasto</option>
-							<option value="zagato">Zagato</option>
-							<option value="zenos">Zenos</option>
-							<option value="zenvo">Zenvo</option>
 					</select>
 				</div>
 				<div class="section_room">
@@ -374,35 +266,34 @@
 						<div class="modal-header one">
 							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
 								<div class="discount one">
-									<h3>Sign Up</h3>
+									<h3>注 册</h3>
 									
 								</div>							
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top one">
-								 <form action="/user/intoInsert" method="post">
-									<input type="text" name="name" class="name active" placeholder="Your Name" required="">
-									<input type="text" name="email "class="email" placeholder="Email" required="">
-									<input type="password" name="password" class="password" placeholder="Password" required="">		
+								 <form action="#" method="post">
+									<input type="text" name="email "class="email verify" placeholder="邮箱" required="">
+									<input type="password" name="password" class="password regPassword" placeholder="密码" required="">
+									 <input type="text" name="name" class="name active regActive" placeholder="验证码" required="">
 									<input type="checkbox" id="brand1" value="">
 									<label for="brand1"><span></span> Remember me?</label>
 									<div class="login-bottom one">
 									<ul>
 										<li>
-											<a href="#">Forgot password?</a>
+											<a href="#">忘记秘密?</a>
 										</li>
 										<li>
 										
-										  <input type="submit" value="SIGN UP">
+										  <input type="submit" class="regist" onclick="upLoad()" value="SIGN UP">
 										
 										</li>
 									<div class="clearfix"></div>
 								</ul>
 								</div>	
 								</form>
-								
 							</div>
-							
+
 							
 						 </div>
 						 <div class="social-icons">
@@ -497,7 +388,7 @@
 									}
                                 }
 							</script>
-								
+
 					</div>
 				</div>
 			</div>
@@ -512,26 +403,26 @@
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">即将发行</a></li>
 							<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">流行车</a></li>
-							<li role="presentation"><a href="#tree" role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
+							<li role="presentation"><a href="#tree"  role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
 							
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
 							   <div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car : ${Cars}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f1.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html">Mercedes-Benz C250 CDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 8000 - $ 12000</span></div>
+														 <h4><a href="single.html"><!--<span th:text="${car.name}"></span>-->[[${car.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
+														 <div class="date">Mar [[${car.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
-												
+
 													</div>
 									  </span>
 									</div>
@@ -561,7 +452,7 @@
 														<option value="city">London</option>
 														<option value="city">Others...</option>
 													</select>
-												   </div>	
+												   </div>
 													<input type="submit" value="Done">
 
 												</form>
@@ -570,130 +461,24 @@
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f2.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">Audi A4 2.0 TDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 6000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4>Be the first to know</h4>
-											<div class="login-top sign-top">
-												<form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<input type="text" name="phone" class="phone" placeholder="Phone" required=""/>
-													<div class="section_drop">
-													<select id="country3" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>	
-													<input type="submit" value="Done">
-												</form>
-											</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f3.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">Foed Mustang GT 500</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 9000 - $ 12000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4>Be the first to know</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<input type="text" name="phone" class="phone" placeholder="Phone" required=""/>
-													<div class="section_drop">
-													<select id="country4" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null"> Select City</option>
-																		<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>		
-													<input type="submit" value="Done">
-												</form>
-												</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
 								   <div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car2 : ${Cars2}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f4.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car2.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html"> Ford Mustang GT 350</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 8000 - $ 11000</span></div>
+														 <h4><a href="single.html"> [[${car2.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car2.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">June 2016</div>
+														 <div class="date">[[${car2.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
-												
+
 													</div>
 									  </span>
 									</div>
@@ -724,127 +509,17 @@
 														<option value="city">Others...</option>
 													</select>
 													</div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
+													<input type="password" name="password" class="password" placeholder="Password" required=""/>
 													<input type="submit" value="Check Now">
-													
-													
+
+
 												</form>
 											</div>
-											
+
 													</div>
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f5.jpeg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="#">Ferrari F430</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 7000 - $ 13000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">July 2016</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country6" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null"> Select City</option>
-																	<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-													</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f6.jpeg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html"> Mercedes-Benz C250 CDI</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 5000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Aug 2016</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-											   <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country7" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 								
 							</div>
@@ -852,16 +527,16 @@
 								
 								<div class="section__content clearfix">
 							   <!-- /card1 -->
-								  <div class="card effect__hover">
+								  <div class="card effect__hover" th:each="car3 : ${Cars3}">
 									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
-													<img th:src="@{/static/images/f7.jpg}" alt="Catchy Carz">
+													<img th:src="@{{url}(url=${car3.url})}" alt="Catchy Carz">
 													<div class="car_description">
-														 <h4><a href="single.html">BMW M4</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 6000 - $ 11000</span></div>
+														 <h4><a href="single.html">[[${car3.name}]]</a></h4>
+														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car3.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
+														 <div class="date">[[${car3.releasetime}]]</div>
 														 <p>Expected Launch</p>
 														</div>
 												
@@ -904,115 +579,6 @@
 									  </span>
 									</div>
 								  </div>
-								    <!-- //card1 -->
-									<!-- /card2 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f8.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html"> BMW X4 M Sport</a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ 7000 - $ 12000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-												 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country9" onchange="change_country(this.value)" class="frm-field required">
-															<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card2 -->
-									<!-- /card3 -->
-								  <div class="card effect__hover">
-									<div class="card__front">
-									  <span class="card__text">
-									       <div class="img-grid">
-													<img th:src="@{/static/images/f9.jpg}" alt="Catchy Carz">
-													<div class="car_description">
-														 <h4><a href="single.html">BMW M3 </a></h4>
-														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">&nbsp;$ 5000 - $ 10000</span></div>
-														 <p>Estimated Price</p>
-														 <div class="date">Mar 2017</div>
-														 <p>Expected Launch</p>
-														</div>
-												
-													</div>
-									  </span>
-									</div>
-									<div class="card__back">
-									  <span class="card__text">
-									     	 <div class="login-inner2">
-												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz">  Check On-Road Price</h4>
-											<div class="login-top sign-top">
-											 <form action="#" method="post">
-													<input type="text" name="name" class="name active" placeholder="Name" required=""/>
-													<input type="text" name="email" class="email" placeholder="Email" required=""/>
-													<div class="section_drop">
-													<select id="country10" onchange="change_country(this.value)" class="frm-field required">
-																		<option value="null"> Select City</option>
-														<option value="city">Amsterdam</option>
-														<option value="city">Bahrain</option>
-														<option value="city">Cannes</option>
-														<option value="city">Dublin</option>
-														<option value="city">Edinburgh</option>
-														<option value="city">Florence</option>
-														<option value="city">Georgia</option>
-														<option value="city">Hungary</option>
-														<option value="city">Hong Kong</option>
-														<option value="city">Johannesburg</option>
-														<option value="city">Kiev</option>
-														<option value="city">London</option>
-														<option value="city">Others...</option>
-													</select>
-												   </div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
-													<input type="submit" value="Check Now">
-													
-													
-												</form>
-											</div>
-										</div>
-									  </span>
-									</div>
-								  </div>
-								    <!-- //card3 -->
 								 </div>
 								
 							</div>
@@ -1033,42 +599,15 @@
 				 <h6 class="sub">实惠的价格，超炫的汽车，全面的服务</h6>
 							<div class="car-view-slider">
 					          <ul id="flexiselDemo">
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n2.jpg}" alt=""/>
+							 <li th:each="car4 : ${Cars4}">
+								 <a href="upcoming.html"><img th:src="@{{url}(url=${car4.url})}" alt=""/>
 								  <div class="caption">
-										<h3><a href="upcoming.html">Ford Mustang GT 500</a></h3>
-										<span>Catchy Carz</span>
+										<h3><a href="upcoming.html">[[${car4.name}]]</a></h3>
+										<span>展示车</span>
 										
 									</div>
 								 </a>
-								
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n1.jpeg}" alt=""/>
-								 <div class="caption">
-										<h3><a href="upcoming.html">Acura TLX</a></h3>
-										<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n3.jpg}" alt=""/>
-								  <div class="caption">
-										<h3><a href="upcoming.html"> McLaren MP4-12c</a></h3>
-										<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
-							 </li>
-							 <li>
-								 <a href="upcoming.html"><img th:src="@{/static/images/n4.jpg}" alt=""/>
-									<div class="caption">
-										<h3><a href="upcoming.html">BMW Z4</a></h3>
-									<span>Catchy Carz</span>
-										
-									</div>
-								 </a>
+
 							 </li>
 							</ul>
 						</div>
@@ -1255,7 +794,7 @@
 				});
 				</script>
 						<script type="text/javascript">
-				 $(window).load(function() {			
+				 $(window).load(function() {
 				  $("#flexiselDemo1").flexisel({
 					visibleItems: 4,
 					animationSpeed: 1000,
@@ -1280,9 +819,46 @@
 				});
 				});
 				</script>
+<script type="text/javascript">
+    $(function () {
+		$(".verify").blur(function () {
+            var email = $.trim($('.verify').val());
+            var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            if(email == ""){
+               alert("邮箱不能为空");
+            }
+            else if(!(isEmail.test(email))){
+                alert("邮箱格式错误");
+            }else{
+                alert("验证码已发出！");
+                $.get("/user/Verify",{"email":email},function () {//发送验证码
+                })
+			}
+        });
+    });
+
+</script>
+<!-- 注册 -->
+<script th:inline="javascript">
+
+       function upLoad(){
+           var email= $(".verify").val();
+           var password = $(".regPassword").val();
+           var reg = $(".regActive").val();
+           $.get("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
+			   if (date=="ok"){
+			       alert("注册成功");
+			   }else{
+			       alert("注册失败");
+			       return false;
+			   }
+           })
+	   }
+
+	</script>
 					<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
 <script th:src="@{/static/js/bootstrap.js}"></script>
- 
+
 
 </body>
 </html>

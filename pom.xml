@@ -62,13 +62,9 @@
     <!--1:日志，java日志：slf4j,log4j,logback,common-logging 使用：slf4j+logBack -->
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.5.6</version>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.2</version>
+      <scope>test</scope>
     </dependency>
     <!--2:数据库相关依赖 -->
     <dependency>
@@ -264,16 +260,25 @@
       <artifactId>thymeleaf-layout-dialect</artifactId>
       <version>2.2.2</version>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.5.6</version>
-    </dependency>
+
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
       <version>3.9</version>
     </dependency>
+
+    <!-- 发送邮件需要用到的包 -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+<!-- jq的包 -->
+  <!--  <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery</artifactId>
+      <version>3.1.1</version>
+    </dependency>-->
       <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
