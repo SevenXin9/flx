@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Search cars</title>
 <!-- for-mobile-apps -->
@@ -9,18 +9,18 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../../moban1394/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/zoomslider.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/component.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/jquery-ui1.css">
-			<link href="../../moban1394/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+<link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/zoomslider.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/component.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/jquery-ui1.css}">
+			<link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
 
-<script type="text/javascript" src="../../moban1394/js/modernizr-2.6.2.min.js"></script>
+<script type="text/javascript" th:src="@{/static/js/modernizr-2.6.2.min.js}"></script>
 <!--/web-fonts-->
-	<link href='http://fonts.useso.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
 <!--//web-fonts-->
 </head>
 <body>
@@ -103,8 +103,8 @@
 							</form>
 						</div>
 						<!-- search-scripts -->
-						<script src="../../moban1394/js/classie.js"></script>
-						<script src="../../moban1394/js/uisearch.js"></script>
+						<script th:src="@{/static/js/classie.js}"></script>
+						<script th:src="@{/static/js/uisearch.js}"></script>
 							<script>
 								new UISearch( document.getElementById( 'sb-search' ) );
 							</script>
@@ -152,7 +152,7 @@
 							</div> 
 							</nav>
 						</div> 
-					<script src="../../moban1394/js/classie2.js"></script>
+					<script th:src="@{/static/js/classie2.js}"></script>
 						<script>
 							var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 								showRight = document.getElementById( 'showRight' ),
@@ -376,7 +376,7 @@
 		                            <h4>FORD MUSTANG</h4>
 								   <h5>$36000</h5>
 								  
-			                        <img src="../../moban1394/images/4.jpg" alt="Catchy Carz">
+			                        <img th:src="@{/static/images/4.jpg}" alt="Catchy Carz">
 									<div class="car-form-pop">
 										<p>Starts from <span>$36000</span></p>
 										<div class="location">
@@ -592,7 +592,7 @@
 							<div id="products" class="row list-group">
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f2.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f2.jpg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Audi A4 2.0 TDI</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -629,7 +629,7 @@
 								</div>
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f3.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f3.jpg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ford Mustang GT 500</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -666,7 +666,7 @@
 								</div>
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f1.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f1.jpg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Mercedes-Benz C250 CDI</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -703,7 +703,7 @@
 								</div>
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f4.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f4.jpg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ford Mustang GT 350</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -740,7 +740,7 @@
 								</div>
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f5.jpeg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f5.jpeg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ferrari F430</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -777,7 +777,7 @@
 								</div>
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f8.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f8.jpg}" alt="Catchy Carz"></a>
 		                                       <div class="table-text">
                                                                 <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">BMW X4 M Sport</span></a></h4>
                                                                 <p class="gridViewPrice hide">
@@ -842,31 +842,31 @@
 				<div class="col-md-3 footer-grid">
 					<h3>Flickr Posts</h3>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/14.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/14.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/16.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/16.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/14.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/14.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/16.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/16.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -874,7 +874,7 @@
 					<h3>Blog Posts</h3>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/11.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/11.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">culpa qui officia deserunt</a></h4>
@@ -884,7 +884,7 @@
 					</div>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/10.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/10.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">Quis autem vel eum iure</a></h4>
@@ -894,7 +894,7 @@
 					</div>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">Quis autem vel eum iure</a></h4>
@@ -915,10 +915,10 @@
 	</div>
 
 
-<script type="text/javascript" src="../../moban1394/js/jquery.min.js"></script>
-<script src="../../moban1394/js/bootstrap.js"></script>
+<script type="text/javascript" th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.js}"></script>
 					<!---->
-							<script type="text/javascript" src="../../moban1394/js/jquery-ui.js"></script>
+							<script type="text/javascript" th:src="@{/static/js/jquery-ui.js}"></script>
 							<script type='text/javascript'>//<![CDATA[ 
 							$(window).load(function(){
 							 $( "#slider-range" ).slider({

@@ -9,10 +9,20 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application dao" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resource/spring/applicationContext-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resource/spring/applicationContext-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resource/spring/applicationContext-shiro.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resource/spring/applicationContext-trans.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
 </module>

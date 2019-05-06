@@ -1,6 +1,7 @@
 package com.service;
 
 import com.VO.CarPictureVO;
+import com.bean.Brand;
 import com.mapper.CarMapper;
 
 import java.util.List;
@@ -19,17 +20,23 @@ public interface CarService {
      * 查询流行车
      * @return
      */
-    List<CarPictureVO> selectCarPicture2();
+    public List<CarPictureVO> selectCarPicture2();
 
     /**
      * 查询新车上市
      * @return
      */
-    List<CarPictureVO> selectCarPicture3();
+    public List<CarPictureVO> selectCarPicture3();
 
     /**
      * 轮播图展示车
      * @return
      */
     public List<CarPictureVO> selectCarPicture4();
+
+    /**
+     * 获取车所有品牌信息
+     * @return
+     */
+    public List<Brand> getBrands();
 }

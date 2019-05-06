@@ -172,38 +172,30 @@
 	<!--		  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>-->
 			    <h2><span>快来围观</span> <span>这些精品吧！</span></h2>
 				<p>看中它 – 试着 – 买吧!</p>
-			       <form action="#" method="post">
+			       <form action="/user/findCar" method="get">
 					<div class="search-two">
-					<select id="country12" onchange="change_country(this.value)" class="frm-field required" >
+					<select id="country12" name="brandId" class="frm-field required" >
 						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
-
-							<option value="abt">ABT</option>
-							<option value="ac">AC</option>
-							<option value="amc">AMC</option>
-							<option value="amg">AMG</option>
-							<option value="abarth">Abarth</option>
-							<option value="acura">Acura</option>
-							<option value="alfa romeo">Alfa Romeo</option>
-							<option value="arial">Ariel</option>
+						<option th:value="${brand.id}" th:text="${brand.name}" th:each="brand:${brands}" />
 					</select>
 				</div>
 				<div class="section_room">
-					<select id="country11" onchange="change_country(this.value)" class="frm-field required">
+					<select id="country11" name="carPrice" class="frm-field required">
 						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
-						<option value="null">0</option>     
-						<option value="AX">10,000</option>
-						<option value="AX">20,000</option>
-						<option value="AX">30,000</option>
-						<option value="AX">40,000</option>
-						<option value="AX">50,000</option>
-						<option value="AX">60,000</option>
-						<option value="AX">80,000</option>
-					    <option value="AX">10,000</option>
-						<option value="AX">15,000</option>
-						<option value="AX">20,000</option>
-						<option value="AX">30,000</option>
-						<option value="AX">40,000</option>
-						<option value="AX">50,000</option>
+						<option value="10000">10,000</option>
+						<option value="20000">20,000</option>
+						<option value="30000">30,000</option>
+						<option value="40000">40,000</option>
+						<option value="50000">50,000</option>
+						<option value="60000">60,000</option>
+						<option value="80000">80,000</option>
+					    <option value="100000">100,000</option>
+						<option value="150000">150,000</option>
+						<option value="200000">200,000</option>
+						<option value="300000">300,000</option>
+						<option value="400000">400,000</option>
+						<option value="500000">500,000</option>
+						<option value="max">∞</option>
 					</select>
 				</div>
 
