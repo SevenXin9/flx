@@ -14,13 +14,13 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailUtil{
     //发件人地址
-    private static String senderAddress = "2580619995@qq.com";
+    private static String senderAddress = "15607050601@163.com";
     //收件人地址
     private static String recipientAddress;
     //发件人账户名
-    private static String senderAccount = "2580619995@qq.com";
+    private static String senderAccount = "15607050601@163.com";
     //发件人账户密码
-    private static String senderPassword = "jzavrznowdszecaf";
+    private static String senderPassword = "A20000202";
 
     private static int num;
 
@@ -34,7 +34,7 @@ public class EmailUtil{
         //设置传输协议
         props.setProperty("mail.transport.protocol", "smtp");
         //设置发件人的SMTP服务器地址
-        props.setProperty("mail.smtp.host", "smtp.qq.com");
+        props.setProperty("mail.smtp.host", "smtp.163.com");
         //2、创建定义整个应用程序所需的环境信息的 Session 对象
         Session session = Session.getInstance(props);
         //设置调试信息在控制台打印出来
