@@ -42,5 +42,6 @@ public class UserServiceImpl implements UserService {
     public void insertUser(User user){
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
+        userMapper.insertSelective(user);
     }
 }

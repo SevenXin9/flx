@@ -1,8 +1,8 @@
 package com.service;
 
+import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
-import com.mapper.CarMapper;
 
 import java.util.List;
 
@@ -39,4 +39,11 @@ public interface CarService {
      * @return
      */
     public List<Brand> getBrands();
+
+    /**
+     * 条件查询汽车信息
+     * @param carPictureTypeBrandVO
+     * @return
+     */
+    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
 }

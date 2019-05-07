@@ -10,6 +10,34 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="count" property="count" jdbcType="INTEGER" />
   </resultMap>
+
+  <resultMap id="car_picture_type_brand_map" type="com.VO.CarPictureTypeBrandVO">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <association property="car" javaType="com.bean.Car">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="price" property="price" jdbcType="DOUBLE" />
+      <result column="releaseTime" property="releasetime" jdbcType="DATE" />
+      <result column="brand" property="brand" jdbcType="INTEGER" />
+      <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="count" property="count" jdbcType="INTEGER" />
+    </association>
+    <association property="picture" javaType="com.bean.Picture">
+      <id column="pid" property="id" jdbcType="INTEGER" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="id" property="carId" jdbcType="INTEGER" />
+    </association>
+    <association property="type" javaType="com.bean.Type">
+      <id column="type" property="id" jdbcType="INTEGER" />
+      <result column="tname" property="name" jdbcType="VARCHAR" />
+    </association>
+    <association property="brand" javaType="com.bean.Brand">
+      <id column="brand" property="id" jdbcType="INTEGER" />
+      <result column="bname" property="name" jdbcType="VARCHAR" />
+      <result column="picture" property="picture" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -272,4 +300,30 @@
       count = #{count,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByCar" parameterType="com.VO.CarPictureTypeBrandVO" resultMap="car_picture_type_brand_map">
+    select distinct
+    c.`id`, c.`name`, c.`price`, c.`releaseTime`, c.`brand`, c.`type`, c.`count`,
+    p.`id` pid, p.`url`,
+    t.`name` tname,
+    b.`name` bname, b.`picture`
+    from car c join picture p join type t join brand b
+    on c.id = p.car_id and c.type = t.id and c.brand = b.id
+    <where>
+      <if test="pricemax != null">
+        and #{pricemax} >= c.price
+      </if>
+      <if test="pricemin != null">
+        and c.price >= #{pricemin}
+      </if>
+      <if test="car != null">
+        <if test="car.brand != null">
+          and c.brand = #{car.brand}
+        </if>
+        <if test="car.type != null">
+          and c.type = #{car.type}
+        </if>
+      </if>
+    </where>
+    limit 0,6
+  </select>
 </mapper>

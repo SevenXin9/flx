@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
 import com.mapper.BrandMapper;
@@ -49,5 +50,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Brand> getBrands() {
         return brandMapper.selectByExample(null);
+    }
+
+    // 条件查询汽车信息
+    @Override
+    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
+        return carMapper.selectByCar(carPictureTypeBrandVO);
     }
 }

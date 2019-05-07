@@ -347,9 +347,9 @@
 									<input type="text" name="email" class="email" placeholder="Email" required="">
 									<input type="password" name="password" class="password" placeholder="Password" required="">		
 									<input type="submit" value="Submit">
+								 </form>
 								</div>	
-								</form>
-								
+
 							</div>
 						
 							
@@ -438,7 +438,7 @@
 								<ul class="dropdown-menu6">
 									<li>
 									                
-										<div id="slider-range"></div>							
+										<div id="slider-range"></div>
 											<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 									</li>			
 									</ul>
@@ -590,6 +590,7 @@
 								</div>
 							</div>
 							<div id="products" class="row list-group">
+								<!-- 循环 -->
 								<div class="item  col-xs-4 col-lg-4">
 									<div class="thumbnail">
 										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" th:src="@{/static/images/f2.jpg}" alt="Catchy Carz"></a>
@@ -619,7 +620,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -656,7 +657,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -693,7 +694,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -730,7 +731,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -767,7 +768,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -804,7 +805,7 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS</a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
@@ -931,8 +932,12 @@
 							 });
 							$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-							});//]]>  
-
+							});//]]>
+                                /*onchange($( "#slider-range" ).slider({
+									slide: function () {
+										alert("a")
+                                    }
+								}))*/
 							</script>
 <script>
   $(document).ready(function() {

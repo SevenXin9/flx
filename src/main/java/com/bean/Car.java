@@ -72,4 +72,17 @@ public class Car {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", releasetime=" + releasetime +
+                ", brand=" + brand +
+                ", type=" + type +
+                ", count=" + count +
+                '}';
+    }
 }

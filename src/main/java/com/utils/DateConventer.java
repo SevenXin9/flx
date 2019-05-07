@@ -10,7 +10,7 @@ public class DateConventer implements Converter<String, Date> {
     public Date convert(String s) {
         Date date = null;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             date = sdf.parse(s);
         }catch (Exception e){
             e.printStackTrace();

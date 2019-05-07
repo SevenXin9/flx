@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Car;
 import com.bean.CarExample;
@@ -33,4 +34,6 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
+
+    List<CarPictureTypeBrandVO> selectByCar(CarPictureTypeBrandVO carPictureTypeBrandVO);// 根据条件查询车的所有信息;
 }
