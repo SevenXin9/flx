@@ -36,4 +36,6 @@ public interface CarMapper {
     int updateByPrimaryKey(Car record);
 
     List<CarPictureTypeBrandVO> selectByCar(CarPictureTypeBrandVO carPictureTypeBrandVO);// 根据条件查询车的所有信息;
+
+    CarPictureTypeBrandVO selectVoByKey(@Param("id") Integer id);
 }

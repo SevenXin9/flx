@@ -174,14 +174,14 @@
 				<p>看中它 – 试着 – 买吧!</p>
 			       <form action="/user/findCar" method="get">
 					<div class="search-two">
-					<select id="country12" name="brand" class="frm-field required" >
-						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
+					<select id="country12" name="car.brand" class="frm-field required" >
+						<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
 						<option th:value="${brand.id}" th:text="${brand.name}" th:each="brand:${brands}" />
 					</select>
 				</div>
 				<div class="section_room">
 					<select id="country11" name="pricemax" class="frm-field required">
-						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
+						<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
 						<option value="10000">10,000</option>
 						<option value="20000">20,000</option>
 						<option value="30000">30,000</option>
@@ -195,7 +195,7 @@
 						<option value="300000">300,000</option>
 						<option value="400000">400,000</option>
 						<option value="500000">500,000</option>
-						<option value="max">∞</option>
+						<option value="">∞</option>
 					</select>
 				</div>
 
@@ -203,7 +203,7 @@
 					<div class="clearfix"></div>
 				</form>
 			</div>
-				<!--//banner-info-->	
+				<!--//banner-info-->
 		</div>
 </div>
 <!-- discounts-->

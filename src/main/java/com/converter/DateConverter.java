@@ -1,11 +1,18 @@
-package com.utils;
+package com.converter;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateConventer implements Converter<String, Date> {
+/**
+ * @Create 2019/4/22
+ * 时间转换器
+ */
+
+@Component
+public class DateConverter implements Converter<String, Date> {
     @Override
     public Date convert(String s) {
         Date date = null;

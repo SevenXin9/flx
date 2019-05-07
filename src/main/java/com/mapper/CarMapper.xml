@@ -99,6 +99,16 @@
   <sql id="Base_Column_List" >
     id, name, price, releaseTime, brand, type, count
   </sql>
+  <!-- Vo类SQL -->
+  <sql id="car_picture_type_brand_sql">
+    select distinct
+    c.`id`, c.`name`, c.`price`, c.`releaseTime`, c.`brand`, c.`type`, c.`count`,
+    p.`id` pid, p.`url`,
+    t.`name` tname,
+    b.`name` bname, b.`picture`
+    from car c join picture p join type t join brand b
+    on c.id = p.car_id and c.type = t.id and c.brand = b.id
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.CarExample" >
     select
     <if test="distinct" >
@@ -119,13 +129,12 @@
     from car
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-
-
-
   <sql id="BaseCar_Column_List" >
     id, name, price, releaseTime, brand, type, count, url
   </sql>
+
+
+
   <!-- 查询即将发行车 -->
   <select id="selectCarPicture1" resultType="com.VO.CarPictureVO">
           SELECT
@@ -301,13 +310,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByCar" parameterType="com.VO.CarPictureTypeBrandVO" resultMap="car_picture_type_brand_map">
-    select distinct
-    c.`id`, c.`name`, c.`price`, c.`releaseTime`, c.`brand`, c.`type`, c.`count`,
-    p.`id` pid, p.`url`,
-    t.`name` tname,
-    b.`name` bname, b.`picture`
-    from car c join picture p join type t join brand b
-    on c.id = p.car_id and c.type = t.id and c.brand = b.id
+    <include refid="car_picture_type_brand_sql"/>
     <where>
       <if test="pricemax != null">
         and #{pricemax} >= c.price
@@ -325,5 +328,9 @@
       </if>
     </where>
     limit 0,6
+  </select>
+  <select id="selectVoByKey" parameterType="java.lang.Integer" resultMap="car_picture_type_brand_map">
+    <include refid="car_picture_type_brand_sql" />
+    where c.id = #{id}
   </select>
 </mapper>

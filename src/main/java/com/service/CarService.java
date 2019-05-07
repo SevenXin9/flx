@@ -46,4 +46,11 @@ public interface CarService {
      * @return
      */
     public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
+
+    /**
+     * 根据车ID查询汽车信息
+     * @param id 汽车ID
+     * @return
+     */
+    public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id);
 }
