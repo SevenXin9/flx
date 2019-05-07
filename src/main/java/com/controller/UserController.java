@@ -4,6 +4,8 @@ import com.VO.CarPictureVO;
 import com.bean.Address;
 import com.bean.User;
 import com.service.CarService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bean.Address;
 import com.bean.Address;
@@ -39,6 +41,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
@@ -51,6 +55,7 @@ public class UserController {
 
     @RequestMapping("/index")
     public String index(Model model){
+        logger.debug("s");
         // 获取省级城市信息
         List<Address> addresses = addressService.getAddressesByParentId(-1);
         // 获取新车发行的车
@@ -94,11 +99,15 @@ public class UserController {
         session.setAttribute("verify",value);//保存验证码
     }
 
-    @RequestMapping(value = "/regest")
-    @ResponseBody
     /**
      * 注册
+     * @param user
+     * @param verify2
+     * @param session
+     * @return
      */
+    @RequestMapping(value = "/regest")
+    @ResponseBody
     public String regest(User user,@RequestParam("name") String verify2,HttpSession session){
         System.out.println(user.getEmail()+"          "+user.getPassword());
         if (session.getAttribute("verify").equals(verify2)){//比较验证码
