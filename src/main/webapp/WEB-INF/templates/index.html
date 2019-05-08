@@ -90,7 +90,7 @@
 								<div class="login-bottom">
 									<ul>
 										<li>
-											<a href="#">忘记密码?</a>
+											<button type="button" class="btn btn-link openne">忘记密码？</button>
 										</li>
 										<li>
 												<input type="submit" value="登录"/>
@@ -167,10 +167,10 @@
 			       <form action="#" method="post">
 					<div class="search-two">
 					<select id="country12" onchange="change_country(this.value)" class="frm-field required" >
-						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
-							<option th:each="brand:${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}">ABT</option>
-					</select>
-				</div>
+                        <option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
+                        <option th:each="brand:${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}">ABT</option>
+                    </select>
+                    </div>
 				<div class="section_room">
 					<select id="country11" onchange="change_country(this.value)" class="frm-field required">
 						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
@@ -264,7 +264,7 @@
 									<div class="login-bottom one">
 									<ul>
 										<li>
-											<input type="button"  id="em"  value="发送验证码">
+											<button type="button" class="btn btn-info em">发送验证码</button>
 										</li>
 										<li>
 										  <input type="submit" class="regist" onclick="upLoad()" value="用户注册">
@@ -674,7 +674,6 @@
 					  <div class="caption">
 							<h3><a href="single.html">[[${car5.name}]]</a></h3>
 							<span>展示区</span>
-							
 						</div>
 					 </a>
 					
@@ -743,7 +742,7 @@
 <script type="text/javascript">
 	var t1;
     $(function () {
-		$("#em").click(function () {
+		$(".em").click(function () {
             var email = $.trim($('.verify').val());
             var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
             if(email == ""){
@@ -752,9 +751,8 @@
             else if(!(isEmail.test(email))){
                 alert("邮箱格式错误");
             }else{
-                $.get("/user/Verify",{"email":email},function () {//发送验证码
-					alert("验证码已发出！");
-					$("#em").attr({"disabled":"disabled"});
+                $.post("/user/Verify",{"email":email},function () {//发送验证码
+					$(".em").attr({"disabled":"disabled"});
 					t1=setInterval(mywait, 1000);
                 })
 			}
@@ -770,17 +768,17 @@
 			if (time==0) {
 				clearInterval(t1);
 				time=60;
-				$("#em").attr('disabled',false);
-				$("#em").val("发送验证码");
+				$(".em").attr('disabled',false);
+				$(".em").val("发送验证码");
 				return;
 			}
-			$("#em").val("重新发送(" + (time--) + ")");
+			$(".em").text("重新发送(" + (time--) + ")");
 		}
        function upLoad(){
            var email= $(".verify").val();
            var password = $(".regPassword").val();
            var reg = $(".regActive").val();
-           $.get("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
+           $.post("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
 			   if (date=="ok"){
 			       alert("注册成功");
 			   }else{
@@ -789,9 +787,13 @@
            })
 		   return false;
 	   }
-
 	</script>
-					<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
+<script type="text/javascript">
+		$(".openne").click(function () {
+            window.open ('/user/open','newwindow','height=400,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+        });
+</script>
+<script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
 <script th:src="@{/static/js/bootstrap.js}"></script>
  
 

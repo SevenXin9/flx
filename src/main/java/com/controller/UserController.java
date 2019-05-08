@@ -71,9 +71,7 @@ public class UserController {
     @RequestMapping(value = "/Verify",method = RequestMethod.POST)
     @ResponseBody
     public void getVerify(@RequestParam("email") String email, HttpSession session){
-        System.out.println("shuchu "+email);
         String value=userService.getVerify(email)+"";
-        System.out.println("验证码是："+value+"==================================");
         session.setAttribute("verify",value);//保存验证码
     }
 
@@ -87,7 +85,6 @@ public class UserController {
     @RequestMapping(value = "/regest",method = RequestMethod.POST)
     @ResponseBody
     public String regest(User user,@RequestParam("name") String verify2,HttpSession session){
-        System.out.println(user.getEmail()+"          "+user.getPassword());
         if (session.getAttribute("verify").equals(verify2)){//比较验证码
             session.removeAttribute("verify");
             userService.insertUser(user);//添加用户
@@ -105,5 +102,19 @@ public class UserController {
         //清除session
         session.removeAttribute("user");
         return "redirect:index";
+    }
+
+    /**
+     * 修改密码
+     * @return 是否修改成功
+     */
+    @RequestMapping(value = "/forgetPassword",method = RequestMethod.PUT)
+    @ResponseBody
+    public Boolean forgetPassword(User user,@RequestParam("verify") String verify2,HttpSession session){
+        if (session.getAttribute("verify").equals(verify2)){//比较验证码
+            session.removeAttribute("verify");
+            userService.updatePassByEmail(user);
+            return true;
+        }return false;
     }
 }
