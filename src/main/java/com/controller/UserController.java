@@ -1,17 +1,14 @@
 package com.controller;
 
 import com.VO.CarPictureVO;
-import com.bean.Address;
-import com.bean.User;
-import com.service.CarService;
+import com.bean.*;
+import com.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bean.Address;
 import com.bean.Address;
-import com.service.AddressService;
 import com.service.CarService;
-import com.service.UserService;
 import com.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -46,35 +43,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private CarService carService;
-
-    @Autowired
-    private AddressService addressService;
-
-
-    @RequestMapping("/index")
-    public String index(Model model){
-        logger.debug("s");
-        // 获取省级城市信息
-        List<Address> addresses = addressService.getAddressesByParentId(-1);
-        // 获取新车发行的车
-        List<CarPictureVO> Cars1=carService.selectCarPicture1();
-        //流行车
-        List<CarPictureVO> Cars2=carService.selectCarPicture2();
-        //新车上市
-        List<CarPictureVO> Cars3=carService.selectCarPicture3();
-        //轮播图展示车
-        List<CarPictureVO> Cars4=carService.selectCarPicture4();
-        System.out.println(Cars1.size()+"            "+Cars2.get(2).getUrl()+"                 "+Cars2.size());
-        model.addAttribute("addresses", addresses);
-        model.addAttribute("Cars",Cars1);
-        model.addAttribute("Cars2",Cars2);
-        model.addAttribute("Cars3",Cars3);
-        model.addAttribute("Cars4",Cars4);
-        return "index";
-    }
-
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
@@ -90,7 +58,7 @@ public class UserController {
 
 
     //传输注册验证码
-    @RequestMapping(value = "/Verify")
+    @RequestMapping(value = "/Verify",method = RequestMethod.POST)
     @ResponseBody
     public void getVerify(@RequestParam("email") String email, HttpSession session){
         System.out.println("shuchu "+email);
@@ -106,7 +74,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/regest")
+    @RequestMapping(value = "/regest",method = RequestMethod.POST)
     @ResponseBody
     public String regest(User user,@RequestParam("name") String verify2,HttpSession session){
         System.out.println(user.getEmail()+"          "+user.getPassword());
