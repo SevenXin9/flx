@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Search cars</title>
 <!-- for-mobile-apps -->
@@ -9,18 +9,18 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../../moban1394/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/zoomslider.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/component.css" />
-<link rel="stylesheet" type="text/css" href="../../moban1394/css/jquery-ui1.css">
-			<link href="../../moban1394/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+<link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/zoomslider.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/component.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/jquery-ui1.css}">
+			<link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
 
-<script type="text/javascript" src="../../moban1394/js/modernizr-2.6.2.min.js"></script>
+<script type="text/javascript" th:src="@{/static/js/modernizr-2.6.2.min.js}"></script>
 <!--/web-fonts-->
-	<link href='http://fonts.useso.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
 <!--//web-fonts-->
 </head>
 <body>
@@ -103,8 +103,8 @@
 							</form>
 						</div>
 						<!-- search-scripts -->
-						<script src="../../moban1394/js/classie.js"></script>
-						<script src="../../moban1394/js/uisearch.js"></script>
+						<script th:src="@{/static/js/classie.js}"></script>
+						<script th:src="@{/static/js/uisearch.js}"></script>
 							<script>
 								new UISearch( document.getElementById( 'sb-search' ) );
 							</script>
@@ -133,7 +133,7 @@
 										</li>
 										<li>
 											<form action="#" method="post">
-												<input type="submit" value="LOGIN"/>
+												<input type="submit" value="登录"/>
 											</form>
 										</li>
 									</ul>
@@ -143,7 +143,7 @@
 													
 							</div>
 							<div class="social-icons">
-							<ul> 
+							<ul>
 								<li><a href="#"><span class="icons"></span><span class="text">Facebook</span></a></li>
 								<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
 								<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
@@ -152,7 +152,7 @@
 							</div> 
 							</nav>
 						</div> 
-					<script src="../../moban1394/js/classie2.js"></script>
+					<script th:src="@{/static/js/classie2.js}"></script>
 						<script>
 							var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 								showRight = document.getElementById( 'showRight' ),
@@ -347,9 +347,9 @@
 									<input type="text" name="email" class="email" placeholder="Email" required="">
 									<input type="password" name="password" class="password" placeholder="Password" required="">		
 									<input type="submit" value="Submit">
+								 </form>
 								</div>	
-								</form>
-								
+
 							</div>
 						
 							
@@ -367,34 +367,27 @@
 						<div class="modal-header one">
 							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
 								<div class="discount one">
-									<h3>To Find more cars...</h3>
+									<h3>详细信息</h3>
 									
 								</div>							
 						</div>
 						 <div class="modal-body about">
-								<div class="login-top cars sign-top one">
+								<div id="showCar" class="login-top cars sign-top one">
 		                            <h4>FORD MUSTANG</h4>
 								   <h5>$36000</h5>
 								  
-			                        <img src="../../moban1394/images/4.jpg" alt="Catchy Carz">
+			                        <img th:src="@{/static/images/4.jpg}" alt="Catchy Carz">
 									<div class="car-form-pop">
-										<p>Starts from <span>$36000</span></p>
-										<div class="location">
-											<h3>Car Location: <span>Dallas</span></h3>
-										</div>
+										<p>价格： <span th:name="price">$36000</span></p>
+										<p>品牌： <span th:name="brand">奔驰</span></p>
+										<p>类型： <span th:name="type">跑车</span></p>
+										<p>上架时间： <span th:name="time">2012-01-28</span></p>
 										<form action="#" method="post">
-									
-									<input type="text" class="email" placeholder="Email" required="">
-									<input type="password" class="password" placeholder="Password" required="">		
-									<input type="checkbox" id="brand2" value="">
-									<label for="brand2"><span></span>Get updates on email</label>
+
 										<div class="send-button">
-											<input type="submit" value="GET SELLER DETAILS">
+											<input type="submit" value="购买">
 										</div>
 									</form>
-								
-										<a href="#">Ask dealer a question</a>
-										<h6>Your contact details are safe with us.</h6>
 									</div>
 							    </div>
 							
@@ -438,7 +431,7 @@
 								<ul class="dropdown-menu6">
 									<li>
 									                
-										<div id="slider-range"></div>							
+										<div id="slider-range"></div>
 											<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 									</li>			
 									</ul>
@@ -579,26 +572,21 @@
 								</div>
 							</div>
 							<div id="products" class="row list-group">
-								<div class="item  col-xs-4 col-lg-4">
+								<!-- 循环 -->
+								<div class="item  col-xs-4 col-lg-4" th:each="carPictureTypeVO:${carPictureTypeVOs}">
 									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f2.jpg" alt="Catchy Carz"></a>
+										 <a href="#" data-toggle="modal" th:onclick="|showCar(${carPictureTypeVO.getCar().getId()})|" data-target="#myModal6"><img class="group list-group-image" th:src="@{${carPictureTypeVO.getPicture().getUrl()}}" th:alt="${carPictureTypeVO.getCar().getName()}"></a>
 		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Audi A4 2.0 TDI</span></a></h4>
+                                                                <h4 ><span class="spancarname" th:text="${carPictureTypeVO.getCar().getName()}" /></h4>
                                                                 <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$30,000</span> 
-                                                                    </a>
+                                                                        <span class="rupee-lac" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />
                                                                 </p>
                                                                 <div class="other-details">
-                                                                    <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 30,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P London</span></p>
+                                                                      <span class="rupee-lac slprice" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />
+																<div class="clearfix"></div>
+                                                                        <p class="listing-item-kms"><span th:text="${#dates.format(carPictureTypeVO.getCar().getReleasetime(), 'yyyy-MM-dd')}" /></p>
+                                                                        <p class="listing-item-area"><span class="cityname" th:text="${carPictureTypeVO.getBrand().getName()}" /></p>
                                                                         <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
                                                                 </div>
          
                                                                <div class="clearfix"></div>
@@ -608,199 +596,49 @@
 																	     <input type="text" class="phone" placeholder="Phone" required="">
 																	   </form>
 																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
+																	<div class="get-one"><a href="used_cars.html">  购 买  </a><a href="used_cars.html"></a></div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                
                                                             </div>
-										
+
 									</div>
+
 								</div>
-								<div class="item  col-xs-4 col-lg-4">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f3.jpg" alt="Catchy Carz"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ford Mustang GT 500</span></a></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$34,000</span> 
-                                                                    </a>
-                                                                </p>
-                                                                <div class="other-details">
-                                                                    <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 34,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P Parries</span></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
-										
-									</div>
-								</div>
-								<div class="item  col-xs-4 col-lg-4">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f1.jpg" alt="Catchy Carz"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Mercedes-Benz C250 CDI</span></a></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$ 36,000</span> 
-                                                                    </a>
-                                                                </p>
-                                                                <div class="other-details">
-                                                                     <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 36,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P New York</span></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
-										
-														</div>
-								</div>
-								<div class="item  col-xs-4 col-lg-4">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f4.jpg" alt="Catchy Carz"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ford Mustang GT 350</span></a></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$ 35,000</span> 
-                                                                    </a>
-                                                                </p>
-                                                                <div class="other-details">
-                                                                    <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 35,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P Netherlands</span></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
-										
-														</div>
-								</div>
-								<div class="item  col-xs-4 col-lg-4">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f5.jpeg" alt="Catchy Carz"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">Ferrari F430</span></a></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$37,000</span> 
-                                                                    </a>
-                                                                </p>
-                                                                <div class="other-details">
-                                                                    <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 30,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P France</span></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
-										
-														</div>
-								</div>
-								<div class="item  col-xs-4 col-lg-4">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" data-target="#myModal6"><img class="group list-group-image" src="../../moban1394/images/f8.jpg" alt="Catchy Carz"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><a href="used_cars.html" title="Maruti Suzuki 800 AC" class="click-search"><span class="spancarname">BMW X4 M Sport</span></a></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                    <a href="used_cars.html">
-                                                                        <span class="rupee-lac">$ 38,000</span> 
-                                                                    </a>
-                                                                </p>
-                                                                <div class="other-details">
-                                                                    <a href="used_cars.html">
-                                                                      <span class="rupee-lac slprice"> $ 38,000</span> 
-                                                                    </a>  
-																<div class="clearfix"></div>																	
-                                                                    <a href="used_cars.html">
-                                                                        <p class="listing-item-kms"><span class="slkms">35,000&nbsp;km</span><span class="margin-left5 margin-right5">|</span><span class="fuel">Petrol</span><span class="margin-left5 margin-right5">|</span><span>2016</span></p>
-                                                                        <p class="listing-item-area"><span class="cityname">G.O.P Switzerland</span></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                    </a>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">GET SELLER DETAILS<a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
-									 	
-									                  </div>
-								</div>
+								<nav>
+									<ul class="pagination">
+										<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+										<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+									</ul>
+								</nav>
+								<script type="text/javascript">
+									// 展示车的详细信息
+                                    function showCar(id) {
+                                        $.ajax({
+											url:"/user/findCarId",
+											method:"get",
+											async:false,
+											data:"id="+id,
+											success:function (data) {
+                                                $("#showCar h4").text(data.car.name);
+                                                $("#showCar h5").text('$ '+data.car.price);
+                                                $("#showCar img").attr("src", data.picture.url);
+                                                $("#showCar div[class=car-form-pop] span[name=price]").text('$ '+data.car.price);
+                                                $("#showCar div[class=car-form-pop] span[name=brand]").text(data.brand.name);
+                                                $("#showCar div[class=car-form-pop] span[name=type]").text(data.type.name);
+                                                $("#showCar div[class=car-form-pop] span[name=time]").text(data.car.releasetime);
+                                            },
+											error:function () {
+												alert("系统异常")
+                                            }
+										})
+                                    }
+								</script>
 							</div>
 						 </div>
 				            
@@ -831,31 +669,31 @@
 				<div class="col-md-3 footer-grid">
 					<h3>Flickr Posts</h3>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/14.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/14.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/16.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/16.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/14.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/14.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/16.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/16.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="footer-grid-left">
-						<a href="single.html"><img src="../../moban1394/images/13.jpg" alt=" " class="img-responsive" /></a>
+						<a href="single.html"><img th:src="@{/static/images/13.jpg}" alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -863,7 +701,7 @@
 					<h3>Blog Posts</h3>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/11.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/11.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">culpa qui officia deserunt</a></h4>
@@ -873,7 +711,7 @@
 					</div>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/10.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/10.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">Quis autem vel eum iure</a></h4>
@@ -883,7 +721,7 @@
 					</div>
 					<div class="footer-grid-sub-grids">
 						<div class="footer-grid-sub-grid-left">
-							<a href="single.html"><img src="../../moban1394/images/15.jpg" alt=" " class="img-responsive" /></a>
+							<a href="single.html"><img th:src="@{/static/images/15.jpg}" alt=" " class="img-responsive" /></a>
 						</div>
 						<div class="footer-grid-sub-grid-right">
 							<h4><a href="single.html">Quis autem vel eum iure</a></h4>
@@ -904,10 +742,10 @@
 	</div>
 
 
-<script type="text/javascript" src="../../moban1394/js/jquery.min.js"></script>
-<script src="../../moban1394/js/bootstrap.js"></script>
+<script type="text/javascript" th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.js}"></script>
 					<!---->
-							<script type="text/javascript" src="../../moban1394/js/jquery-ui.js"></script>
+							<script type="text/javascript" th:src="@{/static/js/jquery-ui.js}"></script>
 							<script type='text/javascript'>//<![CDATA[ 
 							$(window).load(function(){
 							 $( "#slider-range" ).slider({
@@ -920,8 +758,7 @@
 							 });
 							$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-							});//]]>  
-
+							});
 							</script>
 <script>
   $(document).ready(function() {

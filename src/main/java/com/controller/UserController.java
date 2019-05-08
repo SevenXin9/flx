@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bean.Address;
 import com.bean.Address;
-import com.service.CarService;
 import com.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -106,4 +105,5 @@ public class UserController {
         session.removeAttribute("user");
         return "redirect:index";
     }
+
 }
