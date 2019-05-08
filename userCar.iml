@@ -15,6 +15,7 @@
       <configuration />
     </facet>
   </component>
+<<<<<<< HEAD
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -86,4 +87,6 @@
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.9" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.5" level="project" />
   </component>
+=======
+>>>>>>> 17cfd4853d3f20e86de409a0f39dc8fd0cddf847
 </module>
