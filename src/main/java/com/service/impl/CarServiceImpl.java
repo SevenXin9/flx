@@ -3,6 +3,7 @@ package com.service.impl;
 import com.VO.CarPictureVO;
 import com.mapper.CarMapper;
 import com.service.CarService;
+import com.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class CarServiceImpl implements CarService {
     /**
      * 即将发行
      */
-    public List<CarPictureVO> selectCarPicture1() {
+    public List<CarPictureVO> selectCarPicture1(){
         return carMapper.selectCarPicture1();
     }
 
@@ -48,7 +49,8 @@ public class CarServiceImpl implements CarService {
      * @return
      */
     @Override
-    public List<CarPictureVO> selectCarPicture4() {
-        return carMapper.selectCarPicture4();
+    public List<CarPictureVO> selectCarPicture4(Integer id) {
+        return carMapper.selectCarPicture4(id);
     }
+
 }

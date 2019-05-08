@@ -60,20 +60,22 @@ public class UserController {
         //新车上市
         List<CarPictureVO> Cars3=carService.selectCarPicture3();
         //轮播图展示车
-        List<CarPictureVO> Cars4=carService.selectCarPicture4();
-        System.out.println(Cars1.size()+"            "+Cars2.get(2).getUrl()+"                 "+Cars2.size());
+        List<CarPictureVO> Cars4=carService.selectCarPicture4(5);
+        //查询首页底部轮播展示车
+        List<CarPictureVO> Cars5=carService.selectCarPicture4(1);
         model.addAttribute("addresses", addresses);
         model.addAttribute("Cars",Cars1);
         model.addAttribute("Cars2",Cars2);
         model.addAttribute("Cars3",Cars3);
         model.addAttribute("Cars4",Cars4);
+        model.addAttribute("Cars5",Cars5);
         return "index";
     }
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public boolean userLogin(User user, HttpSession session){
+    public boolean userLogin(User user, HttpSession session){//登录
         user.setPassword(MD5Utils.MD5(user.getEmail(),user.getPassword()));
         User us = userService.loginVerify(user);
         if(us!=null){
@@ -100,6 +102,7 @@ public class UserController {
      * 注册
      */
     public String regest(User user,@RequestParam("name") String verify2,HttpSession session){
+
         System.out.println(user.getEmail()+"          "+user.getPassword());
         if (session.getAttribute("verify").equals(verify2)){//比较验证码
             session.removeAttribute("verify");

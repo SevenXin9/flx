@@ -31,5 +31,6 @@ public interface CarService {
      * 轮播图展示车
      * @return
      */
-    public List<CarPictureVO> selectCarPicture4();
+    public List<CarPictureVO> selectCarPicture4(Integer id);
+
 }
