@@ -1,7 +1,5 @@
 package com.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class Car {
@@ -11,7 +9,6 @@ public class Car {
 
     private Double price;
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date releasetime;
 
     private Integer brand;
@@ -74,18 +71,5 @@ public class Car {
 
     public void setCount(Integer count) {
         this.count = count;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", releasetime=" + releasetime +
-                ", brand=" + brand +
-                ", type=" + type +
-                ", count=" + count +
-                '}';
     }
 }

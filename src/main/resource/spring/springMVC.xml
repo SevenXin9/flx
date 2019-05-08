@@ -15,13 +15,12 @@
 
     <!--<mvc:default-servlet-handler/>-->
 
-    <!-- 定义转换器 -->
+    <!-- 定义日期转换器 -->
     <bean id="MyConverter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <!-- 日期转换器 -->
-                <bean class="com.converter.DateConverter"/>
-             </set>
+                <bean class="com.utils.DateConventer"/>
+            </set>
         </property>
     </bean>
 
