@@ -44,15 +44,25 @@ public class UserController {
     private UserService userService;
 
 
+    /**
+     * 登录
+     * @param user 客户端输入的用户密码
+     * @param session 获得HttpSession
+     * @return 登录成功返回true，登录失败返回false
+     */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean userLogin(User user, HttpSession session){
+        //将前台输入的密码加密已便于与正确密码比对
         user.setPassword(MD5Utils.MD5(user.getEmail(),user.getPassword()));
+        //调用业务层验证账号密码是否正确
         User us = userService.loginVerify(user);
         if(us!=null){
+            //账号密码正确，添加至session
             session.setAttribute("user",us);
             return true;
         }
+        //账号密码错误，返回false
         return false;
     }
 
@@ -86,4 +96,14 @@ public class UserController {
         return "no";
     }
 
+    /**
+     * 退出登录
+     * @return 客户端跳转至首页
+     */
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(HttpSession session){
+        //清除session
+        session.removeAttribute("user");
+        return "redirect:index";
+    }
 }
