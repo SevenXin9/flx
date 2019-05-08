@@ -90,7 +90,7 @@
 								<div class="login-bottom">
 									<ul>
 										<li>
-											<a href="#">忘记密码?</a>
+											<a href="#" data-toggle="modal" data-target="#errorPwd">忘记密码?</a>
 										</li>
 										<li>
 												<input type="submit" value="登录"/>
@@ -281,6 +281,44 @@
 
 							
 						 </div>
+
+					</div>
+				</div>
+			</div>
+				<!-- 忘记密码 -->
+				<div class="modal ab fade" id="errorPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog sign" role="document">
+					<div class="modal-content about">
+						<div class="modal-header one">
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<div class="discount one">
+								<h3>忘记密码</h3>
+
+							</div>
+						</div>
+						<div class="modal-body about">
+							<div class="login-top sign-top one">
+								<form action="#" method="post" onsubmit="return false;">
+									<input type="text" name="email "class="email verify" placeholder="邮箱" required="">
+									<input type="password" name="password" class="password regPassword" placeholder="密码" required="">
+									<input type="text" name="name" class="name active regActive" placeholder="验证码" required="">
+									<input type="checkbox" id="brand1" value="">
+									<div class="login-bottom one">
+										<ul>
+											<li>
+												<input type="submit" class="regist"  id="em"  value="发送验证码">
+											</li>
+											<li>
+												<input type="submit" class="regist" onclick="upLoad()" value="用户注册">
+											</li>
+											<div class="clearfix"></div>
+										</ul>
+									</div>
+								</form>
+							</div>
+
+
+						</div>
 
 					</div>
 				</div>
