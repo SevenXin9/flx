@@ -76,7 +76,7 @@
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 			
 							<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
-                                <button id="out" class="navig" th:if="${session.user}!=null">退出　</button>
+                                <button id="out" class="navig" th:if="${session.user}!=null" onclick="logout1()">退出　</button>
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>登录</h3>
@@ -128,6 +128,9 @@
 					});
                     return false;
                 }
+                function logout1() {
+					window.location.href='/user/logout';
+				}
             </script>
 							</div> 
 							</nav>
@@ -161,38 +164,39 @@
 					<div class="clearfix"></div>
 		    <!--banner-info-->
 			<div class="banner-info">
-	<!--		  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>-->
-			    <h2><span>快来围观</span> <span>这些精品吧！</span></h2>
+				<!--		  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>-->
+				<h2><span>快来围观</span> <span>这些精品吧！</span></h2>
 				<p>看中它 – 试着 – 买吧!</p>
-			       <form action="#" method="post">
+				<form action="/user/findCar" method="get">
 					<div class="search-two">
-					<select id="country12" onchange="change_country(this.value)" class="frm-field required" >
-						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
-							<option th:each="brand:${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}">ABT</option>
-					</select>
-				</div>
-				<div class="section_room">
-					<select id="country11" onchange="change_country(this.value)" class="frm-field required">
-						<option value="null"><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
-						<option value="null">0</option>     
-						<option value="AX">10,000</option>
-						<option value="AX">20,000</option>
-						<option value="AX">30,000</option>
-						<option value="AX">40,000</option>
-						<option value="AX">50,000</option>
-						<option value="AX">60,000</option>
-						<option value="AX">80,000</option>
-					    <option value="AX">10,000</option>
-						<option value="AX">15,000</option>
-						<option value="AX">20,000</option>
-						<option value="AX">30,000</option>
-						<option value="AX">40,000</option>
-						<option value="AX">50,000</option>
-					</select>
-				</div>
-
+						<select id="country12" name="car.brand" class="frm-field required" >
+							<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
+							<option th:value="${brand.id}" th:text="${brand.name}" th:each="brand:${brands}" />
+						</select>
+					</div>
+					<div class="section_room">
+						<select id="country11" name="pricemax" class="frm-field required">
+							<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
+							<option value="10000">10,000</option>
+							<option value="20000">20,000</option>
+							<option value="30000">30,000</option>
+							<option value="40000">40,000</option>
+							<option value="50000">50,000</option>
+							<option value="60000">60,000</option>
+							<option value="80000">80,000</option>
+							<option value="100000">100,000</option>
+							<option value="150000">150,000</option>
+							<option value="200000">200,000</option>
+							<option value="300000">300,000</option>
+							<option value="400000">400,000</option>
+							<option value="500000">500,000</option>
+							<option value="">∞</option>
+						</select>
+					</div>
 					<input type="submit" value="Find Car">
 					<div class="clearfix"></div>
+				</form>
+			</div>
 				</form>
 			</div>
 				<!--//banner-info-->	
@@ -264,7 +268,7 @@
 									<div class="login-bottom one">
 									<ul>
 										<li>
-											<input type="button"  id="em"  value="发送验证码">
+											<input type="submit" class="regist"  id="em"  value="发送验证码">
 										</li>
 										<li>
 										  <input type="submit" class="regist" onclick="upLoad()" value="用户注册">
@@ -805,11 +809,10 @@
             else if(!(isEmail.test(email))){
                 alert("邮箱格式错误");
             }else{
-                $.get("/user/Verify",{"email":email},function () {//发送验证码
-					alert("验证码已发出！");
-					$("#em").attr({"disabled":"disabled"});
-					t1=setInterval(mywait, 1000);
+                $.post("/user/Verify",{"email":email},function () {//发送验证码
                 })
+				$("#em").attr({"disabled":"disabled"});
+				t1=setInterval(mywait, 1000);
 			}
         });
     });
@@ -833,7 +836,7 @@
            var email= $(".verify").val();
            var password = $(".regPassword").val();
            var reg = $(".regActive").val();
-           $.get("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
+           $.post("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送验证码
 			   if (date=="ok"){
 			       alert("注册成功");
 			   }else{
