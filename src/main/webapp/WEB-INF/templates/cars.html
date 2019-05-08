@@ -627,10 +627,10 @@
                                                 $("#showCar h4").text(data.car.name);
                                                 $("#showCar h5").text('$ '+data.car.price);
                                                 $("#showCar img").attr("src", data.picture.url);
-                                                $("#showCar div[class=car-form-pop] span[class=price]").text('$ '+data.car.price);
-                                                $("#showCar div[class=car-form-pop] span[class=brand]").text(data.brand.name);
-                                                $("#showCar div[class=car-form-pop] span[class=type]").text(data.type.name);
-                                                $("#showCar div[class=car-form-pop] span[class=time]").text(data.car.releasetime.toDateString());
+                                                $("#showCar div[class=car-form-pop] span[name=price]").text('$ '+data.car.price);
+                                                $("#showCar div[class=car-form-pop] span[name=brand]").text(data.brand.name);
+                                                $("#showCar div[class=car-form-pop] span[name=type]").text(data.type.name);
+                                                $("#showCar div[class=car-form-pop] span[name=time]").text(data.car.releasetime);
                                             },
 											error:function () {
 												alert("系统异常")
