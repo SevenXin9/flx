@@ -44,7 +44,6 @@ public class AdminController {
         }catch (UnknownAccountException e) {
             return false;
         }
-        //subject.getSession().setAttribute("admin","");
         return true;
     }
 
