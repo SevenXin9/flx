@@ -3,8 +3,10 @@ package com.service.impl;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Type;
 import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
+import com.mapper.TypeMapper;
 import com.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
     @Autowired
     private BrandMapper brandMapper;
+    @Autowired
+    private TypeMapper typeMapper;
 
     // 即将发行
     @Override
@@ -62,5 +66,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {
         return carMapper.selectVoByKey(id);
+    }
+
+    // 查询所有汽车类型
+    @Override
+    public List<Type> getTypes() {
+        return typeMapper.selectByExample(null);
     }
 }
