@@ -22,7 +22,7 @@ public interface UserMapper {
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
-    int updatePassByEmail(User user);
+    void updatePassByEmail(User user);
 
     User selectByEamil(String eamil);
 }

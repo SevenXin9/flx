@@ -127,7 +127,9 @@
     </if>
   </select>
   <update id="updatePassByEmail" parameterType="com.bean.User">
-        UPDATE USER SET password=#{password} WHERE email=#{eamil}
+        UPDATE user SET
+         password = #{password,jdbcType=VARCHAR}
+          WHERE email = #{email,jdbcType=VARCHAR}
   </update>
   <update id="updateByExampleSelective" parameterType="map" >
     update user

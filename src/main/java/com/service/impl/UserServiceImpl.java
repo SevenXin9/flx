@@ -31,8 +31,10 @@ public class UserServiceImpl implements UserService {
 
     //修改密码
     public int updatePassByEmail(User user) {
-        user.setPassword(MD5Utils.MD5(user.getEmail(),user.getPassword()));
-        return userMapper.updatePassByEmail(user);
+        String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
+        user.setPassword(pwd);
+        userMapper.updatePassByEmail(user);
+        return 1;
     }
 
     //获取验证码
