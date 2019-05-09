@@ -32,7 +32,7 @@ public interface CarService {
      * 轮播图展示车
      * @return
      */
-    public List<CarPictureVO> selectCarPicture4();
+    public List<CarPictureVO> selectCarPicture4(Integer id);
 
     /**
      * 获取车所有品牌信息

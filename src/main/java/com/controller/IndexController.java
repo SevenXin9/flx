@@ -46,7 +46,9 @@ public class IndexController {
         //新车上市
         List<CarPictureVO> Cars3=carService.selectCarPicture3();
         //轮播图展示车
-        List<CarPictureVO> Cars4=carService.selectCarPicture4();
+        List<CarPictureVO> Cars4=carService.selectCarPicture4(5);
+        //展示车
+        List<CarPictureVO> Cars5=carService.selectCarPicture4(1);
         //获得所有品牌信息
         List<Brand> brands = brandService.selectBrands();
         model.addAttribute("addresses", addresses);
@@ -54,7 +56,17 @@ public class IndexController {
         model.addAttribute("Cars2",Cars2);
         model.addAttribute("Cars3",Cars3);
         model.addAttribute("Cars4",Cars4);
+        model.addAttribute("Cars5",Cars5);
         model.addAttribute("brands",brands);
         return "index";
+    }
+
+    /**
+     * 忘记密码页面
+     * @return
+     */
+    @RequestMapping(value = "/open",method = RequestMethod.GET)
+    public String open(){
+        return "forgetPassword";
     }
 }

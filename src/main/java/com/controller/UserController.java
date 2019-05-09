@@ -106,4 +106,17 @@ public class UserController {
         return "redirect:index";
     }
 
+    /**
+     * 修改密码
+     * @return 是否修改成功
+     */
+    @RequestMapping(value = "/forgetPassword",method = RequestMethod.PUT)
+    @ResponseBody
+    public Boolean forgetPassword(User user,@RequestParam("verify") String verify2,HttpSession session){
+        if (session.getAttribute("verify").equals(verify2)){//比较验证码
+            session.removeAttribute("verify");
+            userService.updatePassByEmail(user);
+            return true;
+        }return false;
+    }
 }

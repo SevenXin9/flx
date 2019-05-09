@@ -81,6 +81,9 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByEamil" parameterType="java.lang.String" resultType="com.bean.User">
+    select <include refid="Base_Column_List"/> from user where email=#{eamil}
+  </select>
   <delete id="deleteByExample" parameterType="com.bean.UserExample" >
     delete from user
     <if test="_parameter != null" >
@@ -123,6 +126,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <update id="updatePassByEmail" parameterType="com.bean.User">
+        UPDATE USER SET password=#{password} WHERE email=#{eamil}
+  </update>
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >
@@ -149,7 +155,5 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <select id="selectByEamil" parameterType="java.lang.String" resultType="com.bean.User">
-    select <include refid="Base_Column_List"/> from user where email=#{eamil}
-  </select>
+
 </mapper>

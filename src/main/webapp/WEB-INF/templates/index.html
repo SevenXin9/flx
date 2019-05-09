@@ -90,7 +90,7 @@
 								<div class="login-bottom">
 									<ul>
 										<li>
-											<a href="#">忘记密码?</a>
+											<a href="#" data-toggle="modal" data-target="#errorPwd">忘记密码?</a>
 										</li>
 										<li>
 												<input type="submit" value="登录"/>
@@ -199,7 +199,7 @@
 			</div>
 				</form>
 			</div>
-				<!--//banner-info-->	
+				<!--//banner-info-->
 		</div>
 </div>
 <!-- discounts-->
@@ -281,6 +281,44 @@
 
 							
 						 </div>
+
+					</div>
+				</div>
+			</div>
+				<!-- 忘记密码 -->
+				<div class="modal ab fade" id="errorPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog sign" role="document">
+					<div class="modal-content about">
+						<div class="modal-header one">
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<div class="discount one">
+								<h3>忘记密码</h3>
+
+							</div>
+						</div>
+						<div class="modal-body about">
+							<div class="login-top sign-top one">
+								<form action="#" method="post" onsubmit="return false;">
+									<input type="text" name="email "class="email verify" placeholder="邮箱" required="">
+									<input type="password" name="password" class="password regPassword" placeholder="密码" required="">
+									<input type="text" name="name" class="name active regActive" placeholder="验证码" required="">
+									<input type="checkbox" id="brand1" value="">
+									<div class="login-bottom one">
+										<ul>
+											<li>
+												<input type="submit" class="regist"  id="em"  value="发送验证码">
+											</li>
+											<li>
+												<input type="submit" class="regist" onclick="upLoad()" value="用户注册">
+											</li>
+											<div class="clearfix"></div>
+										</ul>
+									</div>
+								</form>
+							</div>
+
+
+						</div>
 
 					</div>
 				</div>
@@ -397,7 +435,7 @@
 														 <h4><a href="single.html"><!--<span th:text="${car.name}"></span>-->[[${car.name}]]</a></h4>
 														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">Mar [[${car.releasetime}]]</div>
+														 <div class="date" th:text="${#dates.format(car.releasetime,'yyyy-MM-dd')}"></div>
 														 <p>Expected Launch</p>
 														</div>
 
@@ -453,7 +491,7 @@
 														 <h4><a href="single.html"> [[${car2.name}]]</a></h4>
 														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car2.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">[[${car2.releasetime}]]</div>
+														 <div class="date" th:text="${#dates.format(car2.releasetime,'yyyy-MM-dd')}"></div>
 														 <p>Expected Launch</p>
 														</div>
 
@@ -514,7 +552,7 @@
 														 <h4><a href="single.html">[[${car3.name}]]</a></h4>
 														 <div class="price"><span class="fa fa-rupee"></span><span class="font25">$ [[${car3.price}]]</span></div>
 														 <p>Estimated Price</p>
-														 <div class="date">[[${car3.releasetime}]]</div>
+														 <div class="date" th:text="${#dates.format(car3.releasetime,'yyyy-MM-dd')}"></div>
 														 <p>Expected Launch</p>
 														</div>
 												
@@ -673,68 +711,14 @@
 			<div class="slider1">
 		<div class="arrival-grids">			 
 			 <ul id="flexiselDemo1"><!-- 轮播图 -->
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f1.jpg}" alt=""/>
+				 <li th:each="car5 : ${Cars5}">
+					 <a href="single.html"><img th:src="@{{url}(url=${car5.url})}" alt=""/>
 					  <div class="caption">
-							<h3><a href="single.html">Mercedes-Benz C250 CDI</a></h3>
-							<span>Catchy Carz</span>
-							
+							<h3><a href="single.html">[[${car5.name}]]</a></h3>
+							<span>展示区</span>
 						</div>
 					 </a>
-					
-				 </li>
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f2.jpg}" alt=""/>
-					 <div class="caption">
-							<h3><a href="single.html">Audi A4 2.0 TDI</a></h3>
-							<span>Catchy Carz</span>
-							
-						</div>
-					 </a>
-				 </li>
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f3.jpg}" alt=""/>
-					  <div class="caption">
-							<h3><a href="single.html">Ford Mustang GT 500</a></h3>
-							<span>Catchy Carz</span>
-							
-						</div>
-					 </a>
-				 </li>
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f4.jpg}" alt=""/>
-					    <div class="caption">
-							<h3><a href="single.html">Ford Mustang GT 350</a></h3>
-						<span>Catchy Carz</span>
-							
-						</div>
-					 </a>
-				 </li>
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f7.jpg}" alt=""/>
-					    <div class="caption">
-							<h3><a href="single.html">BMW M4</a></h3>
-							<span>Catchy Carz</span>
-							
-						</div>
-					 </a>
-				 </li>
-				 <li>
-					 <a href="single.html"><img th:src="@{/static/images/f5.jpeg}" alt=""/>
-					 <div class="caption">
-							<h3><a href="single.html">Ferrari F430</a></h3>
-							<span>Catchy Carz</span>
-							
-						</div>
-					 </a>
-				 </li>
-				  <li>
-					 <a href="single.html"><img th:src="@{/static/images/f8.jpg}" alt=""/>
-					    <div class="caption">
-							<h3><a href="single.html">BMW X4 M Sport</a></h3>
-							<span>Catchy Carz</span>
-					    </div>
-					 </a>
+
 				 </li>
 				</ul>
 		  </div>
