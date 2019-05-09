@@ -4,6 +4,9 @@ import com.bean.Brand;
 import com.bean.Car;
 import com.bean.Picture;
 import com.bean.Type;
+import com.controller.IndexController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public class CarPictureTypeBrandVO {
 
@@ -20,6 +23,46 @@ public class CarPictureTypeBrandVO {
     private Double pricemax;
 
     private Double pricemin;
+
+    private Integer limit;
+
+    private Integer page;
+
+    private Integer start;
+
+    private Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getStart() {
+        return start;
+    }
+
+    public void setStart(Integer start) {
+        this.start = start;
+    }
 
     public Integer getId() {
         return id;

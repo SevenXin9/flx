@@ -98,41 +98,41 @@
 												</ul>
 												<div class="clearfix"></div>
 
-											</div>
-										</form>
-										<div class="clearfix"></div>
-
-									</div>
-									<script>
-                                        //登录
-                                        function login1(){
-                                            $.ajax({
-                                                url: "/user/login"
-                                                , method: "post"
-                                                , async: true
-                                                , data: {
-                                                    "email":$(".email").val(),
-                                                    "password":$("#password").val()
-                                                }
-                                                , success: function (data) {
-                                                    if(data==true){
-                                                        alert("登录成功");
-                                                        window.location.href="/user/index";
-                                                    }else {
-                                                        alert("账号或密码错误");
-                                                    }
-                                                }
-                                                , error: function () {
-                                                    alert("系统异常");
-                                                }
-                                            });
-                                            return false;
-                                        }
-                                        function logout1() {
-                                            window.location.href='/user/logout';
-                                        }
-									</script>
 								</div>
+                                 </form>
+								<div class="clearfix"></div>
+													
+							</div>
+            <script>
+				//登录
+                function login1(){
+					$.ajax({
+						url: "/user/login"
+						, method: "post"
+						, async: true
+						, data: {
+							"email":$("#email").val(),
+							"password":$("#password").val()
+						}
+						, success: function (data) {
+							if(data==true){
+								alert("登录成功");
+								window.location.href="/user/index";
+							}else {
+								alert("账号或密码错误");
+							}
+						}
+						, error: function () {
+							alert("系统异常");
+						}
+					});
+                    return false;
+                }
+                function logout1() {
+					window.location.href='/user/logout';
+				}
+            </script>
+							</div> 
 							</nav>
 						</div>
 						<script th:src="@{/static/js/classie2.js}"></script>
@@ -154,53 +154,53 @@
                             }
 						</script>
 						<!--Navigation from Right To Left-->
-					</li>
-				</ul>
-
+						    </li>
+						</ul>
+						
+					</div>
+				
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+		    <!--banner-info-->
+			<div class="banner-info">
+				<!--		  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>-->
+				<h2><span>快来围观</span> <span>这些精品吧！</span></h2>
+				<p>看中它 – 试着 – 买吧!</p>
+				<form action="/user/toCars" method="get">
+					<div class="search-two">
+						<select id="country12" name="car.brand" class="frm-field required" >
+							<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
+							<option th:value="${brand.id}" th:text="${brand.name}" th:each="brand:${brands}" />
+						</select>
+					</div>
+					<div class="section_room">
+						<select id="country11" name="pricemax" class="frm-field required">
+							<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
+							<option value="10000">10,000</option>
+							<option value="20000">20,000</option>
+							<option value="30000">30,000</option>
+							<option value="40000">40,000</option>
+							<option value="50000">50,000</option>
+							<option value="60000">60,000</option>
+							<option value="80000">80,000</option>
+							<option value="100000">100,000</option>
+							<option value="150000">150,000</option>
+							<option value="200000">200,000</option>
+							<option value="300000">300,000</option>
+							<option value="400000">400,000</option>
+							<option value="500000">500,000</option>
+							<option value="">∞</option>
+						</select>
+					</div>
+					<input type="submit" value="Find Car">
+					<div class="clearfix"></div>
+				</form>
 			</div>
-
-			<div class="clearfix"></div>
+				</form>
+			</div>
+				<!--//banner-info-->
 		</div>
-		<div class="clearfix"></div>
-		<!--banner-info-->
-		<div class="banner-info">
-			<!--		  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>-->
-			<h2><span>快来围观</span> <span>这些精品吧！</span></h2>
-			<p>看中它 – 试着 – 买吧!</p>
-			<form action="/user/findCar" method="get">
-				<div class="search-two">
-					<select id="country12" name="car.brand" class="frm-field required" >
-						<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" />品牌</option>
-						<option th:value="${brand.id}" th:text="${brand.name}" th:each="brand:${brands}" />
-					</select>
-				</div>
-				<div class="section_room">
-					<select id="country11" name="pricemax" class="frm-field required">
-						<option value=""><img th:src="@{/static/images/rupee.png}" alt=" " class="img-responsive" /> 预算</option>
-						<option value="10000">10,000</option>
-						<option value="20000">20,000</option>
-						<option value="30000">30,000</option>
-						<option value="40000">40,000</option>
-						<option value="50000">50,000</option>
-						<option value="60000">60,000</option>
-						<option value="80000">80,000</option>
-						<option value="100000">100,000</option>
-						<option value="150000">150,000</option>
-						<option value="200000">200,000</option>
-						<option value="300000">300,000</option>
-						<option value="400000">400,000</option>
-						<option value="500000">500,000</option>
-						<option value="">∞</option>
-					</select>
-				</div>
-				<input type="submit" value="Find Car">
-				<div class="clearfix"></div>
-			</form>
-		</div>
-		</form>
-	</div>
-	<!--//banner-info-->
-</div>
 </div>
 <!-- discounts-->
 <div class="modal ab fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -235,7 +235,7 @@
 						<div class="d-c">
 														<span class="checkbox1">
 															<label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>I agree to Terms and Conditions.</label>
-														</span>
+														</span>													
 
 						</div>
 						<input type="submit" value="Find Offers">
@@ -317,114 +317,114 @@
 				</div>
 			</div>
 
-		</div>
-	</div>
-</div>
-<!-- //sign-up-->
-<!-- /location-->
-<div class="modal ab fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog sign" role="document">
-		<div class="modal-content about">
-			<div class="modal-header one">
-				<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<div class="discount one">
-					<h3>请选择您的城市</h3>
-
+					</div>
 				</div>
 			</div>
-			<div class="modal-body about">
-				<div class="login-top sign-top location">
-					<form action="#" method="post">
-						<select id="province" onchange="getCounty(this.value)" class="frm-field required">
-							<option value="">请选择</option>
-							<option th:value="${address.id}" th:text="${address.addressname}" th:each="address:${addresses}"></option>
-						</select>
+			<!-- //sign-up-->
+				<!-- /location-->
+				<div class="modal ab fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog sign" role="document">
+					<div class="modal-content about">
+						<div class="modal-header one">
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+								<div class="discount one">
+									<h3>请选择您的城市</h3>
+									
+								</div>							
+						</div>
+						 <div class="modal-body about">
+								<div class="login-top sign-top location">
+								 <form action="#" method="post">
+				                      <select id="province" onchange="getCounty(this.value)" class="frm-field required">
+										  	<option value="">请选择</option>
+											<option th:value="${address.id}" th:text="${address.addressname}" th:each="address:${addresses}"></option>
+									  </select>
 
-						<select id="county" onchange="intocounty()" class="frm-field required">
-							<option>请选择省级城市</option>
-						</select>
-					</form>
-					<div class="login-top sign-top location" style="height: 230px" id="container"></div>
+									  <select id="county" onchange="intocounty()" class="frm-field required">
+										  <option>请选择省级城市</option>
+									  </select>
+								</form>
+									<div class="login-top sign-top location" style="height: 230px" id="container"></div>
+							     </div>
+						 </div>
+
+						<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FF8Sl8uGGFKbZReYuGxA87owTrGiWyMm"></script>
+							<script type="text/javascript">
+								function getCounty(id) {
+									$.ajax({
+										url:"/user/getCounty"
+										,method:"get"
+										,async:true
+										,data:"parentid="+id
+                                        ,traditional:true
+										,success:function (data) {
+                                            var option = "";
+										    if(data.length <= 0){
+                                                option = "<option value=''>请选择省级城市</option>"
+											}
+
+										    $("#county").html("");
+										    for (var i = 0; i < data.length; i++){
+										        option += "<option value='"+data[i].id+"'>"+data[i].addressname+"</option>"
+											}
+                                            $("#county").html(option);
+										    intocounty();
+                                        }
+                                        ,error:function () {
+											alert("系统异常");
+                                        }
+									})
+
+                                }
+                                // 创建地图实例
+                                var map = new BMap.Map("container");
+                                // 初始化地图，设置中心点坐标和地图级别
+                                map.centerAndZoom("江西省南昌市", 12);
+                                //开启鼠标滚轮缩放
+                                map.enableScrollWheelZoom(true);
+
+                                function intocounty(){
+                                    var cityName = $("#province option:selected").text() + $("#county option:selected").text();
+                                    var id = $("#province").val();
+                                    if(id != null || id != ""){
+                                        // 创建地址解析器实例
+                                        var myGeo = new BMap.Geocoder();
+                                        // 将地址解析结果显示在地图上,并调整地图视野
+                                        myGeo.getPoint(cityName, function(point){
+                                            if (point) {
+                                                map.centerAndZoom(point, 12);
+                                                map.addOverlay(new BMap.Marker(point));
+                                            }else{
+                                                alert("您选择地址没有解析到结果!");
+                                            }
+                                        });
+									}
+                                }
+							</script>
+
+					</div>
 				</div>
 			</div>
-
-			<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FF8Sl8uGGFKbZReYuGxA87owTrGiWyMm"></script>
-			<script type="text/javascript">
-                function getCounty(id) {
-                    $.ajax({
-                        url:"/user/getCounty"
-                        ,method:"get"
-                        ,async:true
-                        ,data:"parentid="+id
-                        ,traditional:true
-                        ,success:function (data) {
-                            var option = "";
-                            if(data.length <= 0){
-                                option = "<option value=''>请选择省级城市</option>"
-                            }
-
-                            $("#county").html("");
-                            for (var i = 0; i < data.length; i++){
-                                option += "<option value='"+data[i].id+"'>"+data[i].addressname+"</option>"
-                            }
-                            $("#county").html(option);
-                            intocounty();
-                        }
-                        ,error:function () {
-                            alert("系统异常");
-                        }
-                    })
-
-                }
-                // 创建地图实例
-                var map = new BMap.Map("container");
-                // 初始化地图，设置中心点坐标和地图级别
-                map.centerAndZoom("江西省南昌市", 12);
-                //开启鼠标滚轮缩放
-                map.enableScrollWheelZoom(true);
-
-                function intocounty(){
-                    var cityName = $("#province option:selected").text() + $("#county option:selected").text();
-                    var id = $("#province").val();
-                    if(id != null || id != ""){
-                        // 创建地址解析器实例
-                        var myGeo = new BMap.Geocoder();
-                        // 将地址解析结果显示在地图上,并调整地图视野
-                        myGeo.getPoint(cityName, function(point){
-                            if (point) {
-                                map.centerAndZoom(point, 12);
-                                map.addOverlay(new BMap.Marker(point));
-                            }else{
-                                alert("您选择地址没有解析到结果!");
-                            }
-                        });
-                    }
-                }
-			</script>
-
-		</div>
-	</div>
-</div>
-<!-- //location-->
+			<!-- //location-->
 <!--//banner-section-->
-<!--/featured_section-->
-<div class="featured_section_w3l">
-	<div class="container">
-		<h3 class="tittle">特色车</h3>
-		<div class="inner_tabs">
-			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-				<ul id="myTab" class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">即将发行</a></li>
-					<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">流行车</a></li>
-					<li role="presentation"><a href="#tree"  role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
-
-				</ul>
-				<div id="myTabContent" class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
-						<div class="section__content clearfix">
-							<!-- /card1 -->
-							<div class="card effect__hover" th:each="car : ${Cars}">
-								<div class="card__front">
+	<!--/featured_section-->
+	<div class="featured_section_w3l">
+		<div class="container">
+		      <h3 class="tittle">特色车</h3>
+	               <div class="inner_tabs">
+		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						<ul id="myTab" class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">即将发行</a></li>
+							<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">流行车</a></li>
+							<li role="presentation"><a href="#tree"  role="tab" id="tree-tab" data-toggle="tab" aria-controls="tree">新车上市</a></li>
+							
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+							   <div class="section__content clearfix">
+							   <!-- /card1 -->
+								  <div class="card effect__hover" th:each="car : ${Cars}">
+									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
 													<img th:src="@{{url}(url=${car.url})}" alt="Catchy Carz">
@@ -438,8 +438,8 @@
 
 													</div>
 									  </span>
-								</div>
-								<div class="card__back">
+									</div>
+									<div class="card__back">
 									  <span class="card__text">
 									     	 <div class="login-inner2">
 												<h4>Be the first to know</h4>
@@ -472,15 +472,15 @@
 											 </div>
 													</div>
 									  </span>
-								</div>
+									</div>
+								  </div>
+								 </div>
 							</div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
-						<div class="section__content clearfix">
-							<!-- /card1 -->
-							<div class="card effect__hover" th:each="car2 : ${Cars2}">
-								<div class="card__front">
+							<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
+								   <div class="section__content clearfix">
+							   <!-- /card1 -->
+								  <div class="card effect__hover" th:each="car2 : ${Cars2}">
+									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
 													<img th:src="@{{url}(url=${car2.url})}" alt="Catchy Carz">
@@ -494,8 +494,8 @@
 
 													</div>
 									  </span>
-								</div>
-								<div class="card__back">
+									</div>
+									<div class="card__back">
 									  <span class="card__text">
 									     	 <div class="login-inner2">
 												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz"> Check On-Road Price</h4>
@@ -531,17 +531,17 @@
 
 													</div>
 									  </span>
-								</div>
+									</div>
+								  </div>
+								 </div>
+								
 							</div>
-						</div>
-
-					</div>
-					<div role="tabpanel" class="tab-pane fade" id="tree" aria-labelledby="tree-tab">
-
-						<div class="section__content clearfix">
-							<!-- /card1 -->
-							<div class="card effect__hover" th:each="car3 : ${Cars3}">
-								<div class="card__front">
+							<div role="tabpanel" class="tab-pane fade" id="tree" aria-labelledby="tree-tab">
+								
+								<div class="section__content clearfix">
+							   <!-- /card1 -->
+								  <div class="card effect__hover" th:each="car3 : ${Cars3}">
+									<div class="card__front">
 									  <span class="card__text">
 									       <div class="img-grid">
 													<img th:src="@{{url}(url=${car3.url})}" alt="Catchy Carz">
@@ -552,11 +552,11 @@
 														 <div class="date" th:text="${#dates.format(car3.releasetime,'yyyy-MM-dd')}"></div>
 														 <p>Expected Launch</p>
 														</div>
-
+												
 													</div>
 									  </span>
-								</div>
-								<div class="card__back">
+									</div>
+									<div class="card__back">
 									  <span class="card__text">
 									     	 <div class="login-inner2">
 												<h4><img th:src="@{/static/images/rupee.png}" alt="Catchy Carz"> Check On-Road Price</h4>
@@ -582,94 +582,94 @@
 														<option value="city">Others...</option>
 													</select>
 													</div>
-													<input type="password" name="password" class="password" placeholder="Password" required=""/>
+													<input type="password" name="password" class="password" placeholder="Password" required=""/>		
 													<input type="submit" value="Check Now">
-
-
+													
+													
 												</form>
 											</div>
 										</div>
 									  </span>
-								</div>
+									</div>
+								  </div>
+								 </div>
+								
 							</div>
 						</div>
-
 					</div>
 				</div>
+					
 			</div>
 		</div>
+	<!--//featured_section-->
+	<!--/select-cars-agile-->
+	<div class="select-cars-agile">
+	   <div class="container">
+	         <div class="grid cars-main">
+			  <div class="col-md-7 slide-show-w3l">
+			     <!--//screen-gallery-->
+				 <h3 class="tittle top">新品上市</h3>
+				 <h6 class="sub">实惠的价格，超炫的汽车，全面的服务</h6>
+							<div class="car-view-slider">
+					          <ul id="flexiselDemo">
+							 <li th:each="car4 : ${Cars4}">
+								 <a href="upcoming.html"><img th:src="@{{url}(url=${car4.url})}" alt=""/>
+								  <div class="caption">
+										<h3><a href="upcoming.html">[[${car4.name}]]</a></h3>
+										<span>展示车</span>
+										
+									</div>
+								 </a>
+								
+							 </li>
+							</ul>
+						</div>
+						<!--//screen-gallery-->
 
+					</div>
+					<div class="col-md-5 new-car-used">
+					  <h3 class="tittle top">即将发布</h3>
+					  <h6 class="sub">性能极佳</h6>
+					  <div class="used-one">
+					     <figure class="effect-zoe">
+							 <a href="used.html"><img th:src="@{/static/images/used_car.jpg}" alt="Used Car"></a>
+							<figcaption>
+								<h4>CATCHY <span>CARZ</span></h4>
+								<p class="icon-links">
+									<a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a>
+									<a href="#"><i class="glyphicon glyphicon-eye-open"></i></a>
+									<a href="#"><i class="glyphicon glyphicon-paperclip"></i></a>
+								</p>
+							</figcaption>			
+						</figure>
+					  </div>
+					  <div class="clearfix"> </div>
+					   <div class="used-one second">
+					     <figure class="effect-zoe">
+							<a href="used.html"><img th:src="@{/static/images/used_car1.jpg}" alt="Used Car"></a>
+							<figcaption>
+								<h4>CATCHY <span>CARZ</span></h4>
+								<p class="icon-links">
+									<a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a>
+									<a href="#"><i class="glyphicon glyphicon-eye-open"></i></a>
+									<a href="#"><i class="glyphicon glyphicon-paperclip"></i></a>
+								</p>
+							</figcaption>			
+						</figure>
+					  </div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+	   </div>
 	</div>
-</div>
-<!--//featured_section-->
-<!--/select-cars-agile-->
-<div class="select-cars-agile">
-	<div class="container">
-		<div class="grid cars-main">
-			<div class="col-md-7 slide-show-w3l">
-				<!--//screen-gallery-->
-				<h3 class="tittle top">新品上市</h3>
-				<h6 class="sub">实惠的价格，超炫的汽车，全面的服务</h6>
-				<div class="car-view-slider">
-					<ul id="flexiselDemo">
-						<li th:each="car4 : ${Cars4}">
-							<a href="upcoming.html"><img th:src="@{{url}(url=${car4.url})}" alt=""/>
-								<div class="caption">
-									<h3><a href="upcoming.html">[[${car4.name}]]</a></h3>
-									<span>展示车</span>
-
-								</div>
-							</a>
-
-						</li>
-					</ul>
-				</div>
-				<!--//screen-gallery-->
-
-			</div>
-			<div class="col-md-5 new-car-used">
-				<h3 class="tittle top">即将发布</h3>
-				<h6 class="sub">性能极佳</h6>
-				<div class="used-one">
-					<figure class="effect-zoe">
-						<a href="used.html"><img th:src="@{/static/images/used_car.jpg}" alt="Used Car"></a>
-						<figcaption>
-							<h4>CATCHY <span>CARZ</span></h4>
-							<p class="icon-links">
-								<a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a>
-								<a href="#"><i class="glyphicon glyphicon-eye-open"></i></a>
-								<a href="#"><i class="glyphicon glyphicon-paperclip"></i></a>
-							</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="clearfix"> </div>
-				<div class="used-one second">
-					<figure class="effect-zoe">
-						<a href="used.html"><img th:src="@{/static/images/used_car1.jpg}" alt="Used Car"></a>
-						<figcaption>
-							<h4>CATCHY <span>CARZ</span></h4>
-							<p class="icon-links">
-								<a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a>
-								<a href="#"><i class="glyphicon glyphicon-eye-open"></i></a>
-								<a href="#"><i class="glyphicon glyphicon-paperclip"></i></a>
-							</p>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-</div>
-<!-- /bottom-banner -->
-<div class="banner-bottom">
-	<div class="container">
-		<div class="bottom-form">
+	<!-- /bottom-banner -->
+	<div class="banner-bottom">
+	   <div class="container">
+          <div class="bottom-form">
 			<div class="inner-text">
-
-				<form action="#" method="post">
-					<h3>选择您看好的车</h3>
+				
+			 <form action="#" method="post">
+				<h3>选择您看好的车</h3>
 					<div class="best-hot">
 						<h5>姓名</h5>
 						<input type="text" class="name active" placeholder="Name" required="">
@@ -679,48 +679,48 @@
 						<input type="text" class="email" placeholder="Email" required="">
 					</div>
 					<div class="section_drop2">
-						<h5>所在地</h5>
+					<h5>所在地</h5>
 						<select id="country14" onchange="change_country(this.value)" class="frm-field required">
-							<option value="null"> City</option>
-							<option value="city">Amsterdam</option>
-							<option value="city">Bahrain</option>
-							<option value="city">Cannes</option>
-							<option value="city">Dublin</option>
-							<option value="city">Edinburgh</option>
-							<option value="city">Florence</option>
-							<option value="city">Georgia</option>
-							<option value="city">Hungary</option>
-							<option value="city">Hong Kong</option>
-							<option value="city">Johannesburg</option>
-							<option value="city">Kiev</option>
-							<option value="city">London</option>
-							<option value="city">Others...</option>
-						</select>
-					</div>
+														<option value="null"> City</option>
+														<option value="city">Amsterdam</option>
+														<option value="city">Bahrain</option>
+														<option value="city">Cannes</option>
+														<option value="city">Dublin</option>
+														<option value="city">Edinburgh</option>
+														<option value="city">Florence</option>
+														<option value="city">Georgia</option>
+														<option value="city">Hungary</option>
+														<option value="city">Hong Kong</option>
+														<option value="city">Johannesburg</option>
+														<option value="city">Kiev</option>
+														<option value="city">London</option>
+														<option value="city">Others...</option>
+													</select>
+												   </div>
 					<input type="submit" value="立即预定">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- //bottom-banner -->
-<!-- /slider1 -->
-<div class="slider1">
-	<div class="arrival-grids">
-		<ul id="flexiselDemo1"><!-- 轮播图 -->
-			<li th:each="car5 : ${Cars5}">
-				<a href="single.html"><img th:src="@{{url}(url=${car5.url})}" alt=""/>
-					<div class="caption">
-						<h3><a href="single.html">[[${car5.name}]]</a></h3>
-						<span>展示区</span>
-					</div>
-				</a>
+	<!-- //bottom-banner -->
+	<!-- /slider1 -->
+			<div class="slider1">
+		<div class="arrival-grids">			 
+			 <ul id="flexiselDemo1"><!-- 轮播图 -->
+				 <li th:each="car5 : ${Cars5}">
+					 <a href="single.html"><img th:src="@{{url}(url=${car5.url})}" alt=""/>
+					  <div class="caption">
+							<h3><a href="single.html">[[${car5.name}]]</a></h3>
+							<span>展示区</span>
+						</div>
+					 </a>
 
-			</li>
-		</ul>
-	</div>
-</div>
-<!-- //slider -->
+				 </li>
+				</ul>
+		  </div>
+	  </div>
+	<!-- //slider -->
 
 </div>
 
@@ -879,7 +879,7 @@
 
 <script type="text/javascript" th:src="@{/static/js/jquery.flexisel.js}"></script>
 <script th:src="@{/static/js/bootstrap.js}"></script>
-
+ 
 
 </body>
 </html>

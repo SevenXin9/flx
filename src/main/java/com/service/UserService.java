@@ -3,7 +3,6 @@ package com.service;
 import com.bean.User;
 
 /**
- * 封颖鹏
  * @create 2019/5/3
  */
 public interface UserService {

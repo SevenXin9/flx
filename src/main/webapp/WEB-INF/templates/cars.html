@@ -573,73 +573,41 @@
 							</div>
 							<div id="products" class="row list-group">
 								<!-- 循环 -->
-								<div class="item  col-xs-4 col-lg-4" th:each="carPictureTypeVO:${carPictureTypeVOs}">
-									<div class="thumbnail">
-										 <a href="#" data-toggle="modal" th:onclick="|showCar(${carPictureTypeVO.getCar().getId()})|" data-target="#myModal6"><img class="group list-group-image" th:src="@{${carPictureTypeVO.getPicture().getUrl()}}" th:alt="${carPictureTypeVO.getCar().getName()}"></a>
-		                                       <div class="table-text">
-                                                                <h4 ><span class="spancarname" th:text="${carPictureTypeVO.getCar().getName()}" /></h4>
-                                                                <p class="gridViewPrice hide">
-                                                                        <span class="rupee-lac" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />
-                                                                </p>
-                                                                <div class="other-details">
-                                                                      <span class="rupee-lac slprice" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />
-																<div class="clearfix"></div>
-                                                                        <p class="listing-item-kms"><span th:text="${#dates.format(carPictureTypeVO.getCar().getReleasetime(), 'yyyy-MM-dd')}" /></p>
-                                                                        <p class="listing-item-area"><span class="cityname" th:text="${carPictureTypeVO.getBrand().getName()}" /></p>
-                                                                        <p class="text-light-grey deliverytext"></p>
-                                                                </div>
-         
-                                                               <div class="clearfix"></div>
-                                                                <div class="list-form">
-                                                                    <div class="phone-info">
-																	   <form action="used_cars.html" method="post">
-																	     <input type="text" class="phone" placeholder="Phone" required="">
-																	   </form>
-																	</div>
-																	<div class="get-one"><a href="used_cars.html">  购 买  </a><a href="used_cars.html"></a></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                               
-                                                            </div>
+								<!--<div class="item  col-xs-4 col-lg-4" th:each="carPictureTypeVO:${carPictureTypeVOs}">-->
+									<!--<div class="thumbnail">-->
+										 <!--<a href="#" data-toggle="modal" th:onclick="|showCar(${carPictureTypeVO.getCar().getId()})|" data-target="#myModal6"><img class="group list-group-image" th:src="@{${carPictureTypeVO.getPicture().getUrl()}}" th:alt="${carPictureTypeVO.getCar().getName()}"></a>-->
+		                                       <!--<div class="table-text">-->
+                                                                <!--<h4 ><span class="spancarname" th:text="${carPictureTypeVO.getCar().getName()}" /></h4>-->
+                                                                <!--<p class="gridViewPrice hide">-->
+                                                                        <!--<span class="rupee-lac" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />-->
+                                                                <!--</p>-->
+                                                                <!--<div class="other-details">-->
+                                                                      <!--<span class="rupee-lac slprice" th:text="|$ ${carPictureTypeVO.getCar().getPrice()}|" />-->
+																<!--<div class="clearfix"></div>-->
+                                                                        <!--<p class="listing-item-kms"><span th:text="${#dates.format(carPictureTypeVO.getCar().getReleasetime(), 'yyyy-MM-dd')}" /></p>-->
+                                                                        <!--<p class="listing-item-area"><span class="cityname" th:text="${carPictureTypeVO.getBrand().getName()}" /></p>-->
+                                                                        <!--<p class="text-light-grey deliverytext"></p>-->
+                                                                <!--</div>-->
 
-									</div>
+                                                               <!--<div class="clearfix"></div>-->
+                                                                <!--<div class="list-form">-->
+                                                                    <!--<div class="phone-info">-->
+																	   <!--<form action="used_cars.html" method="post">-->
+																	     <!--<input type="text" class="phone" placeholder="Phone" required="">-->
+																	   <!--</form>-->
+																	<!--</div>-->
+																	<!--<div class="get-one"><a href="used_cars.html">  购 买  </a><a href="used_cars.html"></a></div>-->
+                                                                    <!--<div class="clearfix"></div>-->
+                                                                <!--</div>-->
+                                                           		<!--</div>-->
 
-								</div>
-								<nav>
-									<ul class="pagination">
-										<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-										<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-									</ul>
-								</nav>
-								<script type="text/javascript">
-									// 展示车的详细信息
-                                    function showCar(id) {
-                                        $.ajax({
-											url:"/user/findCarId",
-											method:"get",
-											async:false,
-											data:"id="+id,
-											success:function (data) {
-                                                $("#showCar h4").text(data.car.name);
-                                                $("#showCar h5").text('$ '+data.car.price);
-                                                $("#showCar img").attr("src", data.picture.url);
-                                                $("#showCar div[class=car-form-pop] span[name=price]").text('$ '+data.car.price);
-                                                $("#showCar div[class=car-form-pop] span[name=brand]").text(data.brand.name);
-                                                $("#showCar div[class=car-form-pop] span[name=type]").text(data.type.name);
-                                                $("#showCar div[class=car-form-pop] span[name=time]").text(data.car.releasetime);
-                                            },
-											error:function () {
-												alert("系统异常")
-                                            }
-										})
-                                    }
-								</script>
+									<!--</div>-->
+
+								<!--</div>-->
+
+
 							</div>
+							<nav><ul class="pagination" id="lim"></ul></nav>
 						 </div>
 				            
 						<!--//search-car-right-text -->
@@ -648,6 +616,30 @@
 				 <!--//search-car-inner -->
 			</div>
 		</div>
+
+<script type="text/javascript">
+	// 展示车的详细信息
+	function showCar(id) {
+		$.ajax({
+			url:"/user/findCarId",
+			method:"get",
+			async:false,
+			data:"id="+id,
+			success:function (data) {
+				$("#showCar h4").text(data.car.name);
+				$("#showCar h5").text('$ '+data.car.price);
+				$("#showCar img").attr("src", data.picture.url);
+				$("#showCar div[class=car-form-pop] span[name=price]").text('$ '+data.car.price);
+				$("#showCar div[class=car-form-pop] span[name=brand]").text(data.brand.name);
+				$("#showCar div[class=car-form-pop] span[name=type]").text(data.type.name);
+				$("#showCar div[class=car-form-pop] span[name=time]").text(data.car.releasetime);
+			},
+			error:function () {
+				alert("系统异常");
+			}
+		})
+	}
+</script>
 		 <!--//search-car -->
 	<!-- footer -->
 	<div class="footer w3-agile">
@@ -760,11 +752,93 @@
 
 							});
 							</script>
-<script>
+<script th:inline="javascript">
   $(document).ready(function() {
+  	pageutil(0);
     $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-});
+  });
+
+  //分页
+  function pageutil(page) {
+	  $("#products").html("");
+	  $("#lim").html("");
+	  $.ajax({
+		  url: "/user/findCar"
+		  , method: "GET"
+		  , async: true
+		  , data: {
+		  	page:page
+		  }
+		  , success: function (data) {
+		  	 for (var i=0;i<data.length;i++) {
+		  	 	var h = data[i].picture.url;
+		  	 	var imgLoc = 'http://localhost:8080/'+h;
+				var ht= '<div class="item  col-xs-4 col-lg-4">' +
+				'<div class="thumbnail">' +
+				'<a href="#" data-toggle="modal" onclick="showCar('+data[i].car.id+')" data-target="#myModal6"><img class="group list-group-image" style="height: 300px;width: 400px;" src="'+imgLoc+'"></a>' +
+				'<div class="table-text">' +
+				'<h4 ><span class="spancarname"/>'+data[i].car.name+'</h4>' +
+				'<p class="gridViewPrice hide">' +
+				'<span class="rupee-lac" />' +
+				'</p>'+
+				'<div class="other-details">' +
+				'<span class="rupee-lac slprice">' +data[i].car.price+'</span>'+
+				'<div class="clearfix"></div>' +
+				'<div class="clearfix"></div>' +
+				'<p class="listing-item-kms"><span>'+data[i].car.releasetime+'</span></p>' +
+				'<p class="listing-item-area"><span class="cityname">'+data[i].brand.name+'</span></p>' +
+				'<p class="text-light-grey deliverytext"></p>' +
+				'</div>' +
+				'<div class="clearfix"></div>' +
+				'<div class="list-form">' +
+				'<div class="phone-info">' +
+				'<form action="used_cars.html" method="post">' +
+				'<input type="text" class="phone" placeholder="Phone" required="">' +
+				'</form>' +
+				'</div>' +
+				'<div class="get-one"><a href="used_cars.html">  购 买  </a><a href="used_cars.html"></a></div>' +
+				'<div class="clearfix"></div>' +
+				'</div>' +
+				'</div>' +
+				'</div>'+
+				'</div>';
+				 $("#products").prepend(ht);
+			}
+
+		  }
+		  , error: function () {
+			  alert("系统异常");
+		  }
+	  });
+      $.ajax({
+          url: "/user/findCarCount"
+          , method: "GET"
+          , async: true
+          , data: {
+
+          }
+          , success: function (data) {
+			  if(page<=1){
+				page=1;
+			  }
+          	var li = '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>'
+          	for (var i=1;i<=data;i++){
+				if(page==i){
+					li+='<li class="active"><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
+				}else {
+					li+='<li><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
+				}
+			}
+          	li+='<li><a href="javascript:;" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+          	$("#lim").append(li);
+          }
+          , error: function () {
+              alert("系统异常");
+          }
+      });
+
+  }
 </script>
 
 
