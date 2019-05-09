@@ -24,9 +24,26 @@ public class CarController {
 
     // 条件查询车信息
     @RequestMapping(value = "/findCar", method = RequestMethod.GET)
-    public String findCar(Model model, CarPictureTypeBrandVO carPictureTypeBrandVO){
+    @ResponseBody
+    public List<CarPictureTypeBrandVO> findCar(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        if (carPictureTypeBrandVO.getPage()==null||carPictureTypeBrandVO.getPage()<=0){
+            carPictureTypeBrandVO.setPage(1);
+        }
+        carPictureTypeBrandVO.setLimit(6);
+        carPictureTypeBrandVO.setStart((carPictureTypeBrandVO.getPage()-1)*carPictureTypeBrandVO.getLimit());
         List<CarPictureTypeBrandVO> carPictureTypeBrandVOS = carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
-        model.addAttribute("carPictureTypeVOs", carPictureTypeBrandVOS);
+        //model.addAttribute("carPictureTypeVOs", carPictureTypeBrandVOS);
+        return carPictureTypeBrandVOS;
+    }
+
+    @RequestMapping(value = "/findCarCount", method = RequestMethod.GET)
+    @ResponseBody
+    public Integer findCarCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        Integer count = carService.getCarPictureTypeVOsCount(carPictureTypeBrandVO);
+        return (count + 6 - 1) /6;
+    }
+    @RequestMapping(value = "/toCars", method = RequestMethod.GET)
+    public String toCars(){
         return "cars";
     }
 

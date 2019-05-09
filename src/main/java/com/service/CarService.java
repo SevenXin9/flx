@@ -48,6 +48,13 @@ public interface CarService {
     public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
 
     /**
+     * 条件查询汽车数量
+     * @param id
+     * @return
+     */
+    public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO);
+
+    /**
      * 根据车ID查询汽车信息
      * @param id 汽车ID
      * @return

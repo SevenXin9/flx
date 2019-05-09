@@ -109,6 +109,12 @@
     from car c join picture p join type t join brand b
     on c.id = p.car_id and c.type = t.id and c.brand = b.id
   </sql>
+  <sql id="car_picture_type_brand_sql_count">
+    select distinct
+    count(*)
+    from car c join picture p join type t join brand b
+    on c.id = p.car_id and c.type = t.id and c.brand = b.id
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.CarExample" >
     select
     <if test="distinct" >
@@ -327,7 +333,26 @@
         </if>
       </if>
     </where>
-    limit 0,6
+    limit #{start},#{limit}
+  </select>
+  <select id="selectByCarCount" parameterType="com.VO.CarPictureTypeBrandVO" resultType="java.lang.Integer">
+    <include refid="car_picture_type_brand_sql_count"/>
+    <where>
+      <if test="pricemax != null">
+        and #{pricemax} >= c.price
+      </if>
+      <if test="pricemin != null">
+        and c.price >= #{pricemin}
+      </if>
+      <if test="car != null">
+        <if test="car.brand != null">
+          and c.brand = #{car.brand}
+        </if>
+        <if test="car.type != null">
+          and c.type = #{car.type}
+        </if>
+      </if>
+    </where>
   </select>
   <select id="selectVoByKey" parameterType="java.lang.Integer" resultMap="car_picture_type_brand_map">
     <include refid="car_picture_type_brand_sql" />

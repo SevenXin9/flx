@@ -57,7 +57,11 @@ public class CarServiceImpl implements CarService {
     public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
         return carMapper.selectByCar(carPictureTypeBrandVO);
     }
-
+    //条件查询汽车数量
+    @Override
+    public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        return carMapper.selectByCarCount(carPictureTypeBrandVO);
+    }
     // 根据车ID查询汽车信息
     @Override
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {
