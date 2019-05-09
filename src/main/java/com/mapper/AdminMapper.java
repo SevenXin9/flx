@@ -33,4 +33,6 @@ public interface AdminMapper {
     int updateByPrimaryKeyWithBLOBs(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    Admin selectByNamePass(String name);
 }

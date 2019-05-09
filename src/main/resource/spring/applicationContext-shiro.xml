@@ -35,7 +35,14 @@
     <!-- Used by the SecurityManager to access security data (users, roles, etc).
          Many other realm implementations can be used too (PropertiesRealm,
          LdapRealm, etc. -->
-    <bean id="jdbcRealm" class="com.realm.ShiroRealm"></bean>
+    <bean id="jdbcRealm" class="com.realm.ShiroRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <property name="hashIterations" value="1024"></property>
+            </bean>
+        </property>
+    </bean>
 
     <!-- =========================================================
          Shiro Spring-specific integration
@@ -84,9 +91,6 @@
 
         <property name="filterChainDefinitions">
             <value>
-                /login.jsp=anon
-                /index.html=anon
-                /static/**=anon
                  /** = anon
             </value>
         </property>
