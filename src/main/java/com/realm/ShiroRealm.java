@@ -11,6 +11,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +26,7 @@ public class ShiroRealm extends AuthorizingRealm {
     private AdminService adminService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        Subject subject = SecurityUtils.getSubject();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 //        Collection<String> collection = new ArrayList<String>();
 //        collection.add("index");

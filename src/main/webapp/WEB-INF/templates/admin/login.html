@@ -103,7 +103,11 @@
             var name = $(".name").val();
             var pass = $(".password").val();
             $.post("/admin/login",{"name":name,"password":pass},function (data) {
-                alert(data);
+                if(data==true){
+                    window.location.href="/admin/index";
+                }else {
+                    alert("账号或密码错误");
+                }
             });
             return false;
     }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 
 /**
  * @create 2019/5/9
@@ -42,11 +44,13 @@ public class AdminController {
         }catch (UnknownAccountException e) {
             return false;
         }
+        //subject.getSession().setAttribute("admin","");
         return true;
     }
 
     @RequestMapping(value = "index",method = RequestMethod.GET)
-    public String index(){
+    public String index(HttpSession session){
+        System.out.println(session.getAttribute("admin"));
         return "admin/index";
     }
 }
