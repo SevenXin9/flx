@@ -49,6 +49,8 @@
     <mvc:resources mapping="/lay" location="/lay" />
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
     <!---->
+
+
     <mvc:resources mapping="/static/**" location="classpath:static/" />
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -69,4 +71,5 @@
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
+    <!--<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>-->
 </beans>

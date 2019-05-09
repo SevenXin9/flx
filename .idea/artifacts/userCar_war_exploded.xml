@@ -61,6 +61,7 @@
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:2.4.6" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi:3.9" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.5" />
+          <element id="library" level="project" name="Maven: org.webjars:layui:2.3.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
