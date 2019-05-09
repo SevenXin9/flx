@@ -33,7 +33,7 @@ public interface CarService {
      * 轮播图展示车
      * @return
      */
-    public List<CarPictureVO> selectCarPicture4();
+    public List<CarPictureVO> selectCarPicture4(Integer id);
 
     /**
      * 获取车所有品牌信息
@@ -47,6 +47,13 @@ public interface CarService {
      * @return
      */
     public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
+
+    /**
+     * 条件查询汽车数量
+     * @param id
+     * @return
+     */
+    public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO);
 
     /**
      * 根据车ID查询汽车信息

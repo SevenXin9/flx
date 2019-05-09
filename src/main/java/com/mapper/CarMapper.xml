@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mapper.CarMapper" >
+  <cache eviction="LRU" flushInterval="100000" size="1024" readOnly="true"/>
+  <!--
+  eviction：缓存回收策略
+- LRU：最少使用原则，移除最长时间不使用的对象
+- FIFO：先进先出原则，按照对象进入缓存顺序进行回收
+- SOFT：软引用，移除基于垃圾回收器状态和软引用规则的对象
+- WEAK：弱引用，更积极的移除移除基于垃圾回收器状态和弱引用规则的对象
+flushInterval：刷新时间间隔，单位为毫秒，这里配置的100毫秒。如果不配置，那么只有在进行数据库修改操作才会被动刷新缓存区
+size：引用额数目，代表缓存最多可以存储的对象个数
+readOnly：是否只读，如果为true，则所有相同的sql语句返回的是同一个对象（有助于提高性能，但并发操作同一条数据时，可能不安全），如果设置为false，则相同的sql，后面访问的是cache的clone副本。
+  -->
+
   <resultMap id="BaseResultMap" type="com.bean.Car" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -109,6 +121,12 @@
     from car c join picture p join type t join brand b
     on c.id = p.car_id and c.type = t.id and c.brand = b.id
   </sql>
+  <sql id="car_picture_type_brand_sql_count">
+    select distinct
+    count(*)
+    from car c join picture p join type t join brand b
+    on c.id = p.car_id and c.type = t.id and c.brand = b.id
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.CarExample" >
     select
     <if test="distinct" >
@@ -154,10 +172,10 @@
     FROM car NATURAL JOIN picture limit 6,3;
   </select>
   <!-- 轮播图展示车 -->
-  <select id="selectCarPicture4" resultType="com.VO.CarPictureVO">
+  <select id="selectCarPicture4" resultType="com.VO.CarPictureVO" parameterType="java.lang.Integer">
     SELECT
     <include refid="BaseCar_Column_List" />
-    FROM car NATURAL JOIN picture WHERE type = 5;
+    FROM car NATURAL JOIN picture WHERE type = #{id};
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -327,7 +345,26 @@
         </if>
       </if>
     </where>
-    limit 0,6
+    limit #{start},#{limit}
+  </select>
+  <select id="selectByCarCount" parameterType="com.VO.CarPictureTypeBrandVO" resultType="java.lang.Integer">
+    <include refid="car_picture_type_brand_sql_count"/>
+    <where>
+      <if test="pricemax != null">
+        and #{pricemax} >= c.price
+      </if>
+      <if test="pricemin != null">
+        and c.price >= #{pricemin}
+      </if>
+      <if test="car != null">
+        <if test="car.brand != null">
+          and c.brand = #{car.brand}
+        </if>
+        <if test="car.type != null">
+          and c.type = #{car.type}
+        </if>
+      </if>
+    </where>
   </select>
   <select id="selectVoByKey" parameterType="java.lang.Integer" resultMap="car_picture_type_brand_map">
     <include refid="car_picture_type_brand_sql" />

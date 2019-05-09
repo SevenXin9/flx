@@ -8,6 +8,7 @@ import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
 import com.mapper.TypeMapper;
 import com.service.CarService;
+import com.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,26 +29,38 @@ public class CarServiceImpl implements CarService {
 
     // 即将发行
     @Override
-    public List<CarPictureVO> selectCarPicture1() {
+    /**
+     * 即将发行
+     */
+    public List<CarPictureVO> selectCarPicture1(){
         return carMapper.selectCarPicture1();
     }
 
-    // 流行车
+    /**
+     * 流行车
+     * @return
+     */
     @Override
     public List<CarPictureVO> selectCarPicture2() {
         return carMapper.selectCarPicture2();
     }
 
-    // 新车上市
+    /**
+     * 新车上市
+     * @return
+     */
     @Override
     public List<CarPictureVO> selectCarPicture3() {
         return carMapper.selectCarPicture3();
     }
 
-    // 轮播图展示车
+    /**
+     * 轮播图展示车
+     * @return
+     */
     @Override
-    public List<CarPictureVO> selectCarPicture4() {
-        return carMapper.selectCarPicture4();
+    public List<CarPictureVO> selectCarPicture4(Integer id) {
+        return carMapper.selectCarPicture4(id);
     }
 
     // 获取车所有品牌信息
@@ -61,7 +74,11 @@ public class CarServiceImpl implements CarService {
     public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
         return carMapper.selectByCar(carPictureTypeBrandVO);
     }
-
+    //条件查询汽车数量
+    @Override
+    public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        return carMapper.selectByCarCount(carPictureTypeBrandVO);
+    }
     // 根据车ID查询汽车信息
     @Override
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {

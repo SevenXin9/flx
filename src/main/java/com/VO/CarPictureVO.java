@@ -2,12 +2,13 @@ package com.VO;
 
 import com.bean.Car;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @create 2019/5/5
  */
-public class CarPictureVO {
+public class CarPictureVO implements Serializable{
     private Integer id;
 
     private String name;

@@ -9,12 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 封颖鹏
  * @create 2019/5/3
  */
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,7 +19,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginVerify(User user) {
-        System.out.println("aaa");
         User us = userMapper.selectByEamil(user.getEmail());
         if (us != null) {
             if (user.getPassword().equals(us.getPassword())) {
@@ -33,6 +28,12 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    //修改密码
+    public int updatePassByEmail(User user) {
+        user.setPassword(MD5Utils.MD5(user.getEmail(),user.getPassword()));
+        return userMapper.updatePassByEmail(user);
+    }
+
     //获取验证码
     public int getVerify(String email){
        return EmailUtil.eamil(email);
@@ -40,9 +41,8 @@ public class UserServiceImpl implements UserService {
 
     //添加用户
     public void insertUser(User user){
-        System.out.println("进来了");
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
-        System.out.println(userMapper.insertSelective(user));
+        userMapper.insertSelective(user);
     }
 }

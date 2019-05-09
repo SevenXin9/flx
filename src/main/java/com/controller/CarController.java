@@ -26,14 +26,26 @@ public class CarController {
 
     // 条件查询车信息进入cars界面
     @RequestMapping(value = "/findCar", method = RequestMethod.GET)
-    public String findCar(Model model, CarPictureTypeBrandVO carPictureTypeBrandVO){
+    @ResponseBody
+    public List<CarPictureTypeBrandVO> findCar(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        if (carPictureTypeBrandVO.getPage()==null||carPictureTypeBrandVO.getPage()<=0){
+            carPictureTypeBrandVO.setPage(1);
+        }
+        carPictureTypeBrandVO.setLimit(6);
+        carPictureTypeBrandVO.setStart((carPictureTypeBrandVO.getPage()-1)*carPictureTypeBrandVO.getLimit());
         List<CarPictureTypeBrandVO> carPictureTypeBrandVOS = carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
-        List<Brand> brands = carService.getBrands();
-        List<Type> types = carService.getTypes();
-        model.addAttribute("carPictureTypeVOs", carPictureTypeBrandVOS);
-        model.addAttribute("brands", brands);
-        model.addAttribute("types", types);
-        model.addAttribute("carPictureTypeBrandVO", carPictureTypeBrandVO);
+        //model.addAttribute("carPictureTypeVOs", carPictureTypeBrandVOS);
+        return carPictureTypeBrandVOS;
+    }
+
+    @RequestMapping(value = "/findCarCount", method = RequestMethod.GET)
+    @ResponseBody
+    public Integer findCarCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        Integer count = carService.getCarPictureTypeVOsCount(carPictureTypeBrandVO);
+        return (count + 6 - 1) /6;
+    }
+    @RequestMapping(value = "/toCars", method = RequestMethod.GET)
+    public String toCars(){
         return "cars";
     }
 
@@ -42,12 +54,5 @@ public class CarController {
     @ResponseBody
     public CarPictureTypeBrandVO findCarId(@RequestParam(value = "id", defaultValue = "-1")Integer id){
         return carService.getCarPictureTypeVO(id);
-    }
-
-    // 根据条件查询车信息
-    @RequestMapping(value = "findCars", method = RequestMethod.GET)
-    @ResponseBody
-    public List<CarPictureTypeBrandVO> findCars(CarPictureTypeBrandVO carPictureTypeBrandVO){
-        return carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
     }
 }

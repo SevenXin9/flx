@@ -3,13 +3,20 @@ package com.service;
 import com.bean.User;
 
 /**
- * 封颖鹏
  * @create 2019/5/3
  */
 public interface UserService {
-    //获取验证码
+    /**
+     * Email发送验证码
+     * @param email
+     * @return 验证码
+     */
     public int getVerify(String email);
-    //添加用户
+
+    /**
+     * 添加用户
+     * @param user 前台传过来的邮箱，密码
+     */
     public void insertUser(User user);
 
     /**
@@ -18,4 +25,11 @@ public interface UserService {
      * @return 是否通过验证,通过返回User对象，不通过返回null
      */
     User loginVerify(User user);
+
+    /**
+     * 修改密码
+     * @param user 前台传过来的邮箱，密码
+     * @return 是否通过执行,通过返回User对象，不通过返回null
+     */
+    public int updatePassByEmail(User user);
 }
