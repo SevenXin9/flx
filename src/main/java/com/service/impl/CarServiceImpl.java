@@ -1,6 +1,9 @@
 package com.service.impl;
 
+import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
+import com.bean.Brand;
+import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
 import com.service.CarService;
 import com.utils.DateUtil;
@@ -17,7 +20,10 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarMapper carMapper;
+    @Autowired
+    private BrandMapper brandMapper;
 
+    // 即将发行
     @Override
     /**
      * 即将发行
@@ -53,4 +59,21 @@ public class CarServiceImpl implements CarService {
         return carMapper.selectCarPicture4(id);
     }
 
+    // 获取车所有品牌信息
+    @Override
+    public List<Brand> getBrands() {
+        return brandMapper.selectByExample(null);
+    }
+
+    // 条件查询汽车信息
+    @Override
+    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
+        return carMapper.selectByCar(carPictureTypeBrandVO);
+    }
+
+    // 根据车ID查询汽车信息
+    @Override
+    public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {
+        return carMapper.selectVoByKey(id);
+    }
 }
