@@ -17,7 +17,7 @@ public class AdminServiceImpl implements AdminService {
    private AdminMapper adminMapper;
 
     @Override//通过name获取admin
-    public boolean selectByNamePass(Admin admin1) {
-      return false;
+    public Admin selectByName(String name) {
+      return adminMapper.selectByNamePass(name);
     }
 }

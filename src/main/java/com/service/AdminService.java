@@ -8,9 +8,9 @@ import com.bean.Admin;
 public interface AdminService {
 
     /**
-     * 通过用户名名获取admin对象
-     * @param  admin1 用户名
+     * 通过用户名获取admin对象
+     * @param  name 用户名
      * @return admin对象
      */
-    boolean selectByNamePass(Admin admin1);
+    Admin selectByName(String name);
 }
