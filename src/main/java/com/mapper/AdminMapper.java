@@ -16,6 +16,8 @@ public interface AdminMapper {
 
     int insertSelective(Admin record);
 
+    Admin selectByNamePass(String name);
+
     List<Admin> selectByExampleWithBLOBs(AdminExample example);
 
     List<Admin> selectByExample(AdminExample example);
@@ -33,6 +35,4 @@ public interface AdminMapper {
     int updateByPrimaryKeyWithBLOBs(Admin record);
 
     int updateByPrimaryKey(Admin record);
-
-    Admin selectByNamePass(String name);
 }

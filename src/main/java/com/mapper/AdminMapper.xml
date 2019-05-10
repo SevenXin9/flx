@@ -73,6 +73,16 @@
   <sql id="Blob_Column_List" >
     authority
   </sql>
+
+  <select id="selectByNamePass" resultType="com.bean.Admin" parameterType="java.lang.String">
+    SELECT
+        <include refid="Base_Column_List" />
+         ,
+         <include refid="Blob_Column_List" />
+         from admin
+    WHERE name = #{name};
+  </select>
+
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bean.AdminExample" >
     select
     <if test="distinct" >
@@ -231,12 +241,4 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByNamePass" resultType="com.bean.Admin" parameterType="java.lang.String">
-    SELECT
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from admin
-    WHERE name = #{name};
-  </select>
 </mapper>

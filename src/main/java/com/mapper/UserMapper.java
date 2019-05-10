@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.UserVo;
 import com.bean.User;
 import com.bean.UserExample;
 import java.util.List;
@@ -11,6 +12,8 @@ public interface UserMapper {
     int countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
+
+    int deleteByPrimary(Integer id);
 
     int insert(User record);
 
@@ -25,4 +28,6 @@ public interface UserMapper {
     void updatePassByEmail(User user);
 
     User selectByEamil(String eamil);
+
+    List<User> selectUsers(UserVo userVo);
 }
