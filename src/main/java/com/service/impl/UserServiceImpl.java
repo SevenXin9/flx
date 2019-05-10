@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    //修改密码
+    @Override//修改密码
     public int updatePassByEmail(User user) {
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
@@ -36,15 +36,20 @@ public class UserServiceImpl implements UserService {
         return 1;
     }
 
-    //获取验证码
+    @Override//获取验证码
     public int getVerify(String email){
        return EmailUtil.eamil(email);
     }
 
-    //添加用户
+    @Override//添加用户
     public void insertUser(User user){
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
         userMapper.insertSelective(user);
+    }
+
+    @Override//删除用户
+    public int deleteByPrimary(Integer id) {
+        return userMapper.deleteByPrimary(id);
     }
 }

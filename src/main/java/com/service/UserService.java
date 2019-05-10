@@ -32,4 +32,10 @@ public interface UserService {
      * @return 是否通过执行,通过返回User对象，不通过返回null
      */
     public int updatePassByEmail(User user);
+
+    /**
+     * 删除用户
+     * @param id 通过id删除用户
+     */
+    int deleteByPrimary(Integer id);
 }

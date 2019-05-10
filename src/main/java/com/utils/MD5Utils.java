@@ -1,5 +1,4 @@
 package com.utils;
-
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**

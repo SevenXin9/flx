@@ -12,6 +12,8 @@ public interface UserMapper {
 
     int deleteByExample(UserExample example);
 
+    int deleteByPrimary(Integer id);
+
     int insert(User record);
 
     int insertSelective(User record);

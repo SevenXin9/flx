@@ -41,7 +41,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if(admin==null){
             return null;
         }
-        ByteSource credentialsSalt = ByteSource.Util.bytes(admin.getName());
-        return new SimpleAuthenticationInfo(admin,admin.getPassword(),credentialsSalt,getName());
+        ByteSource credentialsSalt = ByteSource.Util.bytes(admin.getName());//盐值加密
+        return new SimpleAuthenticationInfo(admin,admin.getPassword(),credentialsSalt,getName());//验证密码
     }
 }
