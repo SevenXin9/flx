@@ -50,6 +50,22 @@
         <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
         <!-- 配置别名包扫描 -->
         <property name="typeAliasesPackage" value="com.bean"/>
+
+        <!-- 分页插件 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            rowBoundsWithCount=true
+                            pageSizeZero=true
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 动态代理Dao开发，第二种方式 -包扫码 -->

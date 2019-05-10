@@ -34,7 +34,7 @@
 		    <!-- /header-left -->
 		          <div class="header-left">
 				  <!-- /sidebar -->
-				        <div id="sidebar"> 
+				        <div id="sidebar">
 						     <h4 class="menu">Menu</h4>
 						          <ul>
 							    <li><a href="upcoming.html">New Cars <i class="glyphicon glyphicon-triangle-bottom"> </i> </a>
@@ -55,7 +55,7 @@
 									 <li><a href="cars.html"><span>Search Used Cars</span></a></li>
 									 <li class="last"><a href="valuation.html"><span>Used Car Valuation</span></a></li>
 									 <li><a href="dealer.html"><span>Locate Dealer</span></a></li>
-									
+
 								  </ul>
 							   </li>
 							   <li><a href="sell.html">Sell Your Car</a></li>
@@ -86,7 +86,7 @@
 									var sidebar = document.getElementById('sidebar');
 								   sidebarbtn.addEventListener('click', function () {
 								  if(sidebar.classList.contains('visible')){
-										sidebar.classList.remove('visible'); 
+										sidebar.classList.remove('visible');
 								   }else {
 										sidebar.className = 'visible';
 									}
@@ -113,10 +113,10 @@
 							</script>
 						<!-- //search-scripts -->
 					    <ul>
-							
+
 							<li>
 							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Select Your Location</a></li>
-			
+
 							<li><button id="showRight" class="navig">Login </button>
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
@@ -125,7 +125,7 @@
 								<div class="login-top">
 								 <form action="#" method="post">
 									<input type="text" name="email" class="email" placeholder="Email" required=""/>
-									<input type="password" name="password" class="password" placeholder="Password" required=""/>	
+									<input type="password" name="password" class="password" placeholder="Password" required=""/>
 									<input type="checkbox" id="brand" value="">
 									<label for="brand"><span></span> Remember me</label>
 								</form>
@@ -143,30 +143,30 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="clearfix"></div>
-													
+
 							</div>
 							<div class="social-icons">
 							<ul>
 								<li><a href="#"><span class="icons"></span><span class="text">Facebook</span></a></li>
 								<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
 								<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
-							</ul> 
-						</div>		
-							</div> 
+							</ul>
+						</div>
+							</div>
 							</nav>
-						</div> 
+						</div>
 					<script th:src="@{/static/js/classie2.js}"></script>
 						<script>
 							var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 								showRight = document.getElementById( 'showRight' ),
 								body = document.body;
-				
+
 							showRight.onclick = function() {
 								classie.toggle( this, 'active' );
 								classie.toggle( menuRight, 'cbp-spmenu-open' );
 								disableOther( 'showRight' );
 							};
-				
+
 							function disableOther( button ) {
 								if( button !== 'showRight' ) {
 									classie.toggle( showRight, 'disabled' );
@@ -176,10 +176,10 @@
 						<!--Navigation from Right To Left-->
 						    </li>
 						</ul>
-						
+
 					</div>
-				   
-						
+
+
 					</div>
 					<div class="clearfix"></div>
 		    <!--banner-info-->
@@ -187,9 +187,9 @@
 			  <h1><a href="index.html">Catchy <span class="logo-sub">Carz</span> </a></h1>
 			    <h2><span>COME LOOK </span> <span>AT THE SELECTION! </span></h2>
 				<p>Eye it – try it – buy it!</p>
-			     
+
 			</div>
-		<!--//banner-info-->	
+		<!--//banner-info-->
 		</div>
 	 </div>
 <!-- discounts-->
@@ -197,7 +197,7 @@
 				<div class="modal-dialog about" role="document">
 					<div class="modal-content about">
 						<div class="modal-header">
-							<button type="button" class="close ab" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<button type="button" class="close ab" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<div class="discount">
 									<h3>Get Offers & Discount of</h3>
 									<p>Catchy Carz Brand VL in New York</p>
@@ -212,24 +212,24 @@
 											</select>
 											<input type="text" class="Pin code" placeholder="Pin code" required="">
 										</form>
-								</div>							
+								</div>
 						</div>
 						 <div class="modal-body about">
-								
+
 								<div class="dis-contact">
 								  <h4>Contact Information</h4>
 												<form action="#" method="post">
 													<input type="text" name="name" class="name active" placeholder="Name" required="">
 													<input type="text" name="email" class="email" placeholder="Email" required="">
 													<input type="text" name="phone" class="phone" placeholder="Phone" required="">
-													<div class="d-c">	
+													<div class="d-c">
 														<span class="checkbox1">
 															<label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>I agree to Terms and Conditions.</label>
-														</span>													
+														</span>
 
 													</div>
 													<input type="submit" value="Find Offers">
-													
+
 													</form>
 								</div>
 						 </div>
@@ -242,18 +242,18 @@
 				<div class="modal-dialog sign" role="document">
 					<div class="modal-content about">
 						<div class="modal-header one">
-							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<div class="discount one">
 									<h3>Sign Up</h3>
-									
-								</div>							
+
+								</div>
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top one">
 							 <form action="#" method="post">
 									<input type="text" name="name" class="name active" placeholder="Your Name" required="">
 									<input type="text" name="email" class="email" placeholder="Email" required="">
-									<input type="password" name="password" class="password" placeholder="Password" required="">		
+									<input type="password" name="password" class="password" placeholder="Password" required="">
 									<input type="checkbox" id="brand1" value="">
 									<label for="brand1"><span></span> Remember me</label>
 									<div class="login-bottom one">
@@ -262,26 +262,26 @@
 											<a href="#">Forgot password?</a>
 										</li>
 										<li>
-										
+
 										  <input type="submit" value="SIGN UP">
-										
+
 										</li>
 									<div class="clearfix"></div>
 								</ul>
-								</div>	
+								</div>
 								</form>
 							</div>
-							
-							
+
+
 						 </div>
 						 <div class="social-icons">
-									<ul> 
+									<ul>
 										<li><a href="#"><span class="icons"></span><span class="text">Facebook</span></a></li>
 										<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
 										<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
-									</ul> 
+									</ul>
 									</div>
-								
+
 					</div>
 				</div>
 			</div>
@@ -291,11 +291,11 @@
 				<div class="modal-dialog sign" role="document">
 					<div class="modal-content about">
 						<div class="modal-header one">
-							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<div class="discount one">
 									<h3>Please Tell Us Your City</h3>
-									
-								</div>							
+
+								</div>
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top location">
@@ -322,7 +322,7 @@
 
 						 </div>
 
-								
+
 					</div>
 				</div>
 			</div>
@@ -332,11 +332,11 @@
 				<div class="modal-dialog sign" role="document">
 					<div class="modal-content about">
 						<div class="modal-header one">
-							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<div class="discount one">
 									<h3>Make car insurance buying easier</h3>
-									
-								</div>							
+
+								</div>
 						</div>
 						 <div class="modal-body about">
 								<div class="login-top sign-top get">
@@ -346,18 +346,18 @@
 									   <li><i class="fa fa-gavel" aria-hidden="true"></i><h6> Hydro-static <br> cover-lock</h6></li>
 								     </ul>
 							     <form action="#" method="post">
-									 
+
 									<input type="text" name="email" class="email" placeholder="Email" required="">
-									<input type="password" name="password" class="password" placeholder="Password" required="">		
+									<input type="password" name="password" class="password" placeholder="Password" required="">
 									<input type="submit" value="Submit">
 								 </form>
-								</div>	
+								</div>
 
 							</div>
-						
-							
+
+
 						 </div>
-								
+
 					</div>
 				</div>
 			</div>
@@ -368,17 +368,17 @@
 				<div class="modal-dialog sign" role="document">
 					<div class="modal-content about">
 						<div class="modal-header one">
-							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+							<button type="button" class="close sg" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<div class="discount one">
 									<h3>详细信息</h3>
-									
-								</div>							
+
+								</div>
 						</div>
 						 <div class="modal-body about">
 								<div id="showCar" class="login-top cars sign-top one">
 		                            <h4>FORD MUSTANG</h4>
 								   <h5>$36000</h5>
-								  
+
 			                        <img th:src="@{/static/images/4.jpg}" alt="Catchy Carz">
 									<div class="car-form-pop">
 										<p>价格： <span th:name="price">$36000</span></p>
@@ -393,11 +393,11 @@
 									</form>
 									</div>
 							    </div>
-							
-							
+
+
 						 </div>
 
-								
+
 					</div>
 				</div>
 			</div>
@@ -430,16 +430,16 @@
 						   <section class="sky-form">
 							   <h4>价格区间</h4>
 							 <div class="range">
-					
+
 								<ul class="dropdown-menu6">
 									<li>
-									                
+
 										<div id="slider-range"></div>
 											<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-									</li>			
+									</li>
 									</ul>
-		
-							
+
+
 								</div>
 								 </section>
 										<div class="w_nav1 two">
@@ -462,12 +462,12 @@
 												<option value="">∞</option>
 											</select>
 									</div>
-									
+
 									<h3>其他条件</h3>
 									<section class="sky-form">
 												<h4>汽车品牌</h4>
 													<div class="scrollbar" id="findBrand">
-														
+
 												      <div class="form-inner">
 														    <label class="radio"><input type="radio" th:text="全部" th:attr="checked=${carPictureTypeBrandVO.getCar().getBrand()==null?true:false}" th:name="brandId" value=""><i></i></label>
 															<label class="radio" th:each="brand:${brands}"><input type="radio" th:text="${brand.getName()}" th:attr="checked=${carPictureTypeBrandVO.getCar().getBrand()==brand.getId()?true:false}" th:name="brandId" th:value="${brand.getId()}"><i></i></label>
@@ -477,31 +477,29 @@
 									 </section>
 									<section class="sky-form">
 												<h4>汽车类型</h4>
-													
+
 													<div class="scrollbar" id="findType">
-														
+
 												        <div class="form-inner">
 															<label class="radio"><input type="radio" th:text="全部" th:attr="checked=${carPictureTypeBrandVO.getCar().getType()==null?true:false}" th:name="typeId" value=""><i></i></label>
 															<label class="radio" th:each="type:${types}"><input type="radio" th:text="${type.getName()}" name="typeId" th:value="${type.getId()}"><i></i></label>
 														</div>
 													</div>
-										
-													
+
+
 									</section>
 									<script type="text/javascript">
-										function findCars() {
-										    
-                                                /*alert($("#interval input[name=brandId]:checked").val())*/
-                                        }
                                         $(document).ready(function () {
 											$("#interval input").change(function () {
-                                                var brandId = $("#interval input[name=brandId]:checked").val();
-												var typeId = $("#interval input[name=typeId]:checked").val();
+                                                pageutil(0);
+                                            })
+											$("#country11").change(function () {
+                                                pageutil(0);
                                             })
                                         })
 									</script>
-							
-								<!---->	
+
+								<!---->
 						</div>
 						<!--//search-car-left-nav -->
 						<!--/search-car-right-text -->
@@ -552,7 +550,7 @@
 							</div>
 							<nav><ul class="pagination" id="lim"></ul></nav>
 						 </div>
-				            
+
 						<!--//search-car-right-text -->
 						<div class="clearfix"></div>
 					</div>
@@ -590,7 +588,7 @@
 			<div class="footer-grids">
 				<div class="col-md-3 footer-grid">
 					<h3>About Us</h3>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse.<span>Excepteur sint occaecat cupidatat 
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse.<span>Excepteur sint occaecat cupidatat
 						non proident, sunt in culpa qui officia deserunt mollit.</span></p>
 				</div>
 				<div class="col-md-3 footer-grid">
@@ -676,7 +674,7 @@
 		</div>
 	</div>
 
-							<script type='text/javascript'>//<![CDATA[ 
+							<script type='text/javascript'>//<![CDATA[
 							$(window).load(function(){
 							 $( "#slider-range" ).slider({
 										range: true,
@@ -696,9 +694,11 @@
     $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
   });
-
   //分页
   function pageutil(page) {
+      var pricemax = $("#country11").val();
+      var brandId = $("#interval input[name=brandId]:checked").val();
+      var typeId = $("#interval input[name=typeId]:checked").val();
 	  $("#products").html("");
 	  $("#lim").html("");
 	  $.ajax({
@@ -706,7 +706,10 @@
 		  , method: "GET"
 		  , async: true
 		  , data: {
-		  	page:page
+                "page":page,
+				"car.brand":brandId,
+				"pricemax":pricemax,
+			  	"car.type":typeId
 		  }
 		  , success: function (data) {
 		  	 for (var i=0;i<data.length;i++) {
@@ -754,13 +757,15 @@
           , method: "GET"
           , async: true
           , data: {
-
+              "car.brand":brandId,
+              "pricemax":pricemax,
+              "car.type":typeId
           }
           , success: function (data) {
-			  if(page<=1){
+			  if(page<1){
 				page=1;
 			  }
-          	var li = '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>'
+          	var li = ''
           	for (var i=1;i<=data;i++){
 				if(page==i){
 					li+='<li class="active"><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
@@ -768,7 +773,6 @@
 					li+='<li><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
 				}
 			}
-          	li+='<li><a href="javascript:;" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
           	$("#lim").append(li);
           }
           , error: function () {

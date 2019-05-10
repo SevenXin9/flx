@@ -50,7 +50,6 @@ public interface CarService {
 
     /**
      * 条件查询汽车数量
-     * @param id
      * @return
      */
     public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO);

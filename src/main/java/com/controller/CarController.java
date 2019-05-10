@@ -24,7 +24,7 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    // 条件查询车信息进入cars界面
+    // 条件查询车信息
     @RequestMapping(value = "/findCar", method = RequestMethod.GET)
     @ResponseBody
     public List<CarPictureTypeBrandVO> findCar(CarPictureTypeBrandVO carPictureTypeBrandVO){
@@ -38,14 +38,20 @@ public class CarController {
         return carPictureTypeBrandVOS;
     }
 
+    // 查询总页数
     @RequestMapping(value = "/findCarCount", method = RequestMethod.GET)
     @ResponseBody
     public Integer findCarCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
         Integer count = carService.getCarPictureTypeVOsCount(carPictureTypeBrandVO);
         return (count + 6 - 1) /6;
     }
+
+    // 进入cars页面
     @RequestMapping(value = "/toCars", method = RequestMethod.GET)
-    public String toCars(){
+    public String toCars(Model model, CarPictureTypeBrandVO carPictureTypeBrandVO){
+        model.addAttribute("carPictureTypeBrandVO", carPictureTypeBrandVO);
+        model.addAttribute("brands", carService.getBrands());
+        model.addAttribute("types", carService.getTypes());
         return "cars";
     }
 

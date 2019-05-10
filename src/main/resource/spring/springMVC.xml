@@ -50,6 +50,7 @@
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
     <!---->
     <mvc:resources mapping="/static/**" location="classpath:static/" />
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
