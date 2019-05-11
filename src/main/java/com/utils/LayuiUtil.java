@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LayuiUtil extends HashMap<String, Object> {
 
-    public static LayuiUtil data(Integer count, List<?> data){
+    public static LayuiUtil data(Long count, List<?> data){
         LayuiUtil r = new LayuiUtil();
         r.put("msg", "");
         r.put("code", 0);

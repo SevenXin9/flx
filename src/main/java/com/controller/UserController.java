@@ -32,12 +32,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private UserService userService;
@@ -59,9 +60,11 @@ public class UserController {
         if(us!=null){
             //账号密码正确，添加至session
             session.setAttribute("user",us);
+            logger.info("用户"+user.getEmail()+"成功登录");
             return true;
         }
         //账号密码错误，返回false
+        logger.info("用户"+user.getEmail()+"登陆失败");
         return false;
     }
 
@@ -90,8 +93,10 @@ public class UserController {
         if (session.getAttribute("verify").equals(verify2)){//比较验证码
             session.removeAttribute("verify");
             userService.insertUser(user);//添加用户
+            logger.info("用户"+user.getEmail()+"成功注册");
             return "ok";
         }
+        logger.info("用户"+user.getEmail()+"注册失败");
         return "no";
     }
 
@@ -101,8 +106,10 @@ public class UserController {
      */
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpSession session){
+        User user = (User) session.getAttribute("user");
         //清除session
         session.removeAttribute("user");
+        logger.info("用户"+user.getEmail()+"退出登录了");
         return "redirect:index";
     }
 
@@ -116,7 +123,12 @@ public class UserController {
         if (session.getAttribute("verify").equals(verify2)){//比较验证码
             session.removeAttribute("verify");
             userService.updatePassByEmail(user);
+            logger.info("成功修改了email为:"+user.getEmail()+"用户的密码");
             return true;
-        }return false;
+        }
+        logger.info("修改email为:"+user.getEmail()+"用户的密码失败");
+        return false;
     }
+
+
 }

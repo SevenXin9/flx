@@ -50,7 +50,6 @@
         <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
         <!-- 配置别名包扫描 -->
         <property name="typeAliasesPackage" value="com.bean"/>
-
         <!-- 分页插件 -->
         <property name="plugins">
             <array>
@@ -58,9 +57,7 @@
                     <property name="properties">
                         <!--使用下面的方式配置参数，一行配置一个 -->
                         <value>
-                            rowBoundsWithCount=true
-                            pageSizeZero=true
-                            reasonable=true
+                            helperDialect=mysql
                         </value>
                     </property>
                 </bean>

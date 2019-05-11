@@ -90,6 +90,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <delete id="deleteByPrimary" parameterType="java.lang.Integer">
+      delete from user
+        where id = #{id}
+  </delete>
   <insert id="insert" parameterType="com.bean.User" >
     insert into user (email, password )
     values ( #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
@@ -127,7 +131,9 @@
     </if>
   </select>
   <update id="updatePassByEmail" parameterType="com.bean.User">
-        UPDATE USER SET password=#{password} WHERE email=#{eamil}
+        UPDATE user SET
+         password = #{password,jdbcType=VARCHAR}
+          WHERE email = #{email,jdbcType=VARCHAR}
   </update>
   <update id="updateByExampleSelective" parameterType="map" >
     update user
@@ -155,5 +161,14 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
+    <select id="selectUsers" parameterType="com.VO.UserVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        FROM user
+        <where>
+            <if test="user.email!=null">
+                email like '%${user.email}%'
+            </if>
+        </where>
+    </select>
 </mapper>

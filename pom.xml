@@ -279,6 +279,7 @@
         <artifactId>jquery</artifactId>
         <version>3.1.1</version>
       </dependency>-->
+
     <!-- layui -->
     <dependency>
       <groupId>org.webjars</groupId>
