@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>修改密码</title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
+</head>
+<body>
+<form class="layui-form" action="" style="padding-top: 50px; padding-bottom: 20px;">
+    <div align="center">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" id="username" readonly autocomplete="off" class="layui-input" th:value="${session.admin.name}">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">原密码:</label>
+            <div class="layui-input-inline">
+                <input type="password" required lay-verify="required" class="layui-input" id="oldpassword">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">新密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" required lay-verify="required" class="layui-input" id="newpassword">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">确认新密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" required lay-verify="required" class="layui-input" id="newpassword1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" data-type="save">
+                <i class="layui-icon layui-icon-ok-circle"></i> 保存
+            </button>
+        </div>
+    </div>
+    </div>
+</form>
+</body>
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+
+<script type="text/javascript">
+    layui.use(['table', 'layer', 'form', 'laypage', 'laydate'], function() {
+        var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+
+            if($("#newpassword").val() == $("#newpassword1").val()){
+                $.ajax({
+                    url:"/verifyUserPWD.action",
+                    type:"post",
+                    data:{
+                        "userid":[[${session.admin.id}]]
+                        ,"username":$("#username").val()
+                        ,"password":$("#oldpassword").val()
+                    },
+                    async:true,
+                    success:function(data){
+                        if(data == 1){
+                            $.ajax({
+                                url:"/updateUserPWD.action",
+                                type:"post",
+                                data:{
+                                    "userid":[[${session.admin.id}]]
+                                    ,"username":$("#username").val()
+                                    ,"password":$("#newpassword").val()
+                                },
+                                async:true,
+                                success:function(data){
+                                    if(data == 1){
+                                        var index = parent.layer.getFrameIndex(window.name)
+                                        layer.alert("修改成功",{title:"成功"})
+                                        parent.layer.close(index);
+                                    }else{
+                                        layer.alert("修改失败",{title:"失败"})
+                                    }
+                                },
+                                error:function(){
+                                    alert("系统异常");
+                                }
+                            })
+                        }else{
+                            layer.alert("原密码错误",{title:"失败"})
+                            $("#oldpassword").val("");
+                            $("#oldpassword").focus();
+                        }
+                    },
+                    error:function(){
+                        alert("系统异常");
+                    }
+                })
+            }else{
+                layer.alert("两次密码输入不一致",{title:"错误"})
+            }
+            return false;
+        });
+    })
+</script>
+</html>
