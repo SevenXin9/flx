@@ -50,8 +50,9 @@
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
     <!---->
 
-
+    <!-- 对静态资源文件的访问 -->
     <mvc:resources mapping="/static/**" location="classpath:static/" />
+    <!-- 访问webjars -->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -71,6 +72,4 @@
         <property name="templateEngine" ref="templateEngine" />
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
-
-    <!--<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>-->
 </beans>
