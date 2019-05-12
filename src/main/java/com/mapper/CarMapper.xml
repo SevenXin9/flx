@@ -177,10 +177,10 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
     <include refid="BaseCar_Column_List" />
     FROM car NATURAL JOIN picture WHERE type = #{id};
   </select>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<!-- 删除车辆 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from car
-    where id = #{id,jdbcType=INTEGER}
+    where id in (${value})
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.CarExample" >
     delete from car
@@ -188,7 +188,7 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bean.Car" >
+  <insert id="insert" parameterType="com.VO.CarPictureVO" >
     insert into car (id, name, price,
       releaseTime, brand, type,
       count)
@@ -196,7 +196,7 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
       #{releasetime,jdbcType=DATE}, #{brand,jdbcType=INTEGER}, #{type,jdbcType=INTEGER},
       #{count,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.bean.Car" >
+  <insert id="insertSelective" parameterType="com.VO.CarPictureVO" useGeneratedKeys="true" keyProperty="id">
     insert into car
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
