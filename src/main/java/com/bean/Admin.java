@@ -7,7 +7,7 @@ public class Admin {
 
     private String password;
 
-    private String authority;
+    private Integer role;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,11 @@ public class Admin {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getAuthority() {
-        return authority;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority == null ? null : authority.trim();
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }
