@@ -772,7 +772,7 @@
 		  }
 		  , success: function (result) {
 		  	 for (var i=0;i<result.data.length;i++) {
-		  	 	var h = result.data[i].picture.url;
+		  	 	var h = result.data[i].picture.url;    //查询图片url
 		  	 	var imgLoc = 'http://localhost:8080/'+h;
 				var ht= '<div class="item  col-xs-4 col-lg-4">' +
 				'<div class="thumbnail">' +
@@ -824,20 +824,6 @@
 			  alert("系统异常");
 		  }
 	  });
-      // $.ajax({
-      //     url: "/user/findCarCount"
-      //     , method: "GET"
-      //     , async: true
-      //     , data: {
-	  //
-      //     }
-      //     , success: function (data) {
-		//
-      //     }
-      //     , error: function () {
-      //         alert("系统异常");
-      //     }
-      // });
 
   }
 </script>

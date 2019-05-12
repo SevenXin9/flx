@@ -121,9 +121,9 @@
     from admin
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from admin
-    where id = #{id,jdbcType=INTEGER}
+    where id in (${value})
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.AdminExample" >
     delete from admin

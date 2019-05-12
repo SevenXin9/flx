@@ -20,4 +20,9 @@ public class AdminServiceImpl implements AdminService {
     public Admin selectByName(String name) {
       return adminMapper.selectByNamePass(name);
     }
+
+    @Override//通过ids删除管理员
+    public int deleteByPrimaryKey(String manageIds) {
+        return adminMapper.deleteByPrimaryKey(manageIds);
+    }
 }

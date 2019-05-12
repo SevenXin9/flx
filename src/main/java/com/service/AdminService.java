@@ -13,4 +13,11 @@ public interface AdminService {
      * @return admin对象
      */
     Admin selectByName(String name);
+
+    /**
+     * 删除管理员
+     * @param manageIds 管理员的ids
+     * @return
+     */
+    int deleteByPrimaryKey(String manageIds);
 }

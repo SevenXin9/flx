@@ -9,10 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.*;
 
 /**
  * @create 2019/5/11
@@ -53,10 +52,12 @@ public class CarManaController {
      */
     @RequestMapping(value = "/car",method = RequestMethod.POST)
     @ResponseBody
-    public boolean addCar(CarPictureVO carPictureVO, @RequestParam("file") MultipartFile file) throws IOException {
+    public boolean addCar(HttpSession session, CarPictureVO carPictureVO, @RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();//获取文件的输入流
         String fileName = file.getOriginalFilename(); //获取文件的名字和后缀
-        OutputStream outputStream = new FileOutputStream(""); //指定上传位置
+        String path=this.getClass().getProtectionDomain().getCodeSource().getLocation().toString()+"static"+ File.separator+"images"+File.separator+file.getOriginalFilename();
+        path = path.substring(6);//项目发布路径
+        OutputStream outputStream = new FileOutputStream(path); //指定上传位置
         byte bs[] = new byte[1024];
         int len=-1;
         while ((len=inputStream.read(bs))!=-1){
@@ -64,6 +65,8 @@ public class CarManaController {
         }
         inputStream.close();
         outputStream.close();
+        carPictureVO.setUrl(File.separator+"static"+ File.separator+"images"+File.separator+file.getOriginalFilename());
+        carService.insert(carPictureVO);
         return true;
 
     }

@@ -30,12 +30,7 @@ public class CarController {
         return carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
     }
 
-    @RequestMapping(value = "/findCarCount", method = RequestMethod.GET)
-    @ResponseBody
-    public Integer findCarCount(CarPictureTypeBrandVO carPictureTypeBrandVO){
-        Integer count = carService.getCarPictureTypeVOsCount(carPictureTypeBrandVO);
-        return (count + 6 - 1) /6;
-    }
+    //查看车子页面
     @RequestMapping(value = "/toCars", method = RequestMethod.GET)
     public String toCars(){
         return "cars";
