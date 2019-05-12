@@ -43,5 +43,10 @@ public interface UserService {
      */
     int deleteByPrimary(Integer id);
 
+    /**
+     * 条件查询所有用户
+     * @param userVo
+     * @return
+     */
     Map<String,Object> findUsers(UserVo userVo);
 }

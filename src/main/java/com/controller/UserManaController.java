@@ -40,6 +40,11 @@ public class UserManaController {
         return false;
     }
 
+    /**
+     * 条件查询用户
+     * @param userVo 查询条件
+     * @return
+     */
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> users(UserVo userVo){

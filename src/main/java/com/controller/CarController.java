@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -25,15 +26,8 @@ public class CarController {
     // 条件查询车信息
     @RequestMapping(value = "/findCar", method = RequestMethod.GET)
     @ResponseBody
-    public List<CarPictureTypeBrandVO> findCar(CarPictureTypeBrandVO carPictureTypeBrandVO){
-        if (carPictureTypeBrandVO.getPage()==null||carPictureTypeBrandVO.getPage()<=0){
-            carPictureTypeBrandVO.setPage(1);
-        }
-        carPictureTypeBrandVO.setLimit(6);
-        carPictureTypeBrandVO.setStart((carPictureTypeBrandVO.getPage()-1)*carPictureTypeBrandVO.getLimit());
-        List<CarPictureTypeBrandVO> carPictureTypeBrandVOS = carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
-        //model.addAttribute("carPictureTypeVOs", carPictureTypeBrandVOS);
-        return carPictureTypeBrandVOS;
+    public Map<String,Object> findCar(CarPictureTypeBrandVO carPictureTypeBrandVO){
+        return carService.getCarPictureTypeVOs(carPictureTypeBrandVO);
     }
 
     @RequestMapping(value = "/findCarCount", method = RequestMethod.GET)

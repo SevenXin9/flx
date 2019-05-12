@@ -28,8 +28,6 @@ public class CarPictureTypeBrandVO {
 
     private Integer page;
 
-    private Integer start;
-
     private Integer count;
 
     public Integer getCount() {
@@ -54,14 +52,6 @@ public class CarPictureTypeBrandVO {
 
     public void setPage(Integer page) {
         this.page = page;
-    }
-
-    public Integer getStart() {
-        return start;
-    }
-
-    public void setStart(Integer start) {
-        this.start = start;
     }
 
     public Integer getId() {
