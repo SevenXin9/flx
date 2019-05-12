@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.AdminVo;
 import com.bean.Admin;
 import com.bean.AdminExample;
 import org.apache.ibatis.annotations.Param;
@@ -31,4 +32,5 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
 
+    List<AdminVo> selectAdmin(AdminVo adminVo);
 }
