@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>添加角色信息</title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
 </head>
 <body>
-$END$
+<div class="layui-body">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">角色名称：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rolename" id="rolename" required  lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-inline">
+                <textarea placeholder="请输入内容" id="roledescription" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+<script>
+    //Demo
+    layui.use(['form','layer'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        var $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url:"/addRole.action",
+                type:"post",
+                data:{
+                    "rolename":$("#rolename").val()
+                    ,"roledescription":$("#roledescription").val()
+                },
+                async:true,
+                success:function(data){
+                    if(data == 1){
+                        var index = parent.layer.getFrameIndex(window.name)
+                        layer.alert("添加成功",{title:"添加成功"});
+                        parent.layer.close(index);
+                        parent.layui.table.reload("list");
+                    }else{
+                        layer.alert("角色名称已存在",{title:"添加失败"})
+                        $("#rolename").val("");
+                        $("#rolename").focus();
+                    }
+                },
+                error:function(){
+                    alert("系统异常");
+                }
+            })
+            return false;
+        });
+    });
+</script>
 </html>

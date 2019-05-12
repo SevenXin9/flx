@@ -38,8 +38,6 @@ public class AdminController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean login(Admin admin){
-        System.out.println(admin.getName());
-        System.out.println(admin.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(new UsernamePasswordToken(admin.getName(),admin.getPassword()));
@@ -55,7 +53,6 @@ public class AdminController {
     // 进入首页
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(HttpSession session){
-        System.out.println(session.getAttribute("admin"));
         return "/admin/index";
     }
 
@@ -63,5 +60,17 @@ public class AdminController {
     @RequestMapping(value = "intoUpdateUserPWD",method = RequestMethod.GET)
     public String intoUpdateUserPWD(){
         return "/admin/editPWD/editPWD";
+    }
+
+    // 进入角色管理界面
+    @RequestMapping(value = "intoRoleMana", method = RequestMethod.GET)
+    public String intoRoleMana(){
+        return "/admin/roleMana/roleMana";
+    }
+
+    // 进入角色添加界面
+    @RequestMapping(value = "intoAddRole", method = RequestMethod.GET)
+    public String intoAddRole(){
+        return "/admin/roleMana/addRole";
     }
 }
