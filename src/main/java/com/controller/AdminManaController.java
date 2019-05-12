@@ -17,6 +17,11 @@ public class AdminManaController {
     @Autowired
     AdminService adminService;
 
+    /**
+     * 条件查询管理员信息
+     * @param adminVo
+     * @return
+     */
     @RequestMapping(value = "/adminMana",method = RequestMethod.GET)
     @ResponseBody
     public List<AdminVo> admin(AdminVo adminVo){

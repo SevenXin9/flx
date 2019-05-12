@@ -216,9 +216,18 @@
 
   <select id="selectAdmin" parameterType="com.VO.AdminVo" resultMap="BaseResultMap_role">
     SELECT admin.id,admin.`name`,admin.role,role.rolename FROM admin,role
-    WHERE admin.id=role.id
     <where>
-
+        admin.id=role.id
+        <if test="admin!=null">
+          <if test="admin.name!=null">
+          AND admin.name like '%${admin.name}%'
+          </if>
+        </if>
+        <if test="role!=null">
+        <if test="role.id!=null">
+          AND role.id =#{role.id}
+        </if>
+        </if>
     </where>
   </select>
 </mapper>

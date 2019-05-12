@@ -32,5 +32,10 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
 
+    /**
+     * 条件查询管理员
+     * @param adminVo
+     * @return
+     */
     List<AdminVo> selectAdmin(AdminVo adminVo);
 }
