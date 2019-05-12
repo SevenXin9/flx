@@ -6,6 +6,7 @@ import com.bean.Brand;
 import com.bean.Type;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/5
@@ -46,10 +47,11 @@ public interface CarService {
      * @param carPictureTypeBrandVO
      * @return
      */
-    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
+    public Map<String,Object> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
 
     /**
      * 条件查询汽车数量
+     * @param carPictureTypeBrandVO
      * @return
      */
     public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO);
@@ -66,4 +68,18 @@ public interface CarService {
      * @return
      */
     public List<Type> getTypes();
+
+    /**
+     * 根据id删除车辆信息
+     * @param carIds
+     * @return
+     */
+    public int DelCar(String carIds);
+
+    /**
+     * 添加车辆信息
+     * @param carPictureVO
+     * @return
+     */
+    public int insert(CarPictureVO carPictureVO);
 }

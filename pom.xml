@@ -273,14 +273,22 @@
       <artifactId>mail</artifactId>
       <version>1.4.5</version>
     </dependency>
+
+    <!-- layui的包 -->
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>layui</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+
     <!-- jq的包 -->
-    <!--  <dependency>
+    <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>
-        <version>3.1.1</version>
-      </dependency>-->
-
-    <!-- layui -->
+        <version>3.0.0</version>
+      </dependency>
+    <!-- https://mvnrepository.com/artifact/org.webjars/layui -->
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>layui</artifactId>
@@ -292,11 +300,13 @@
       <version>4.12</version>
       <scope>compile</scope>
     </dependency>
-    <!-- 分页插件 -->
+
+    <!-- mybaits分页工具包 -->
     <dependency>
       <groupId>com.github.pagehelper</groupId>
       <artifactId>pagehelper</artifactId>
       <version>5.0.0</version>
     </dependency>
+
   </dependencies>
 </project>

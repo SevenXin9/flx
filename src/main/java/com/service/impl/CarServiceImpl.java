@@ -4,15 +4,21 @@ import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
 import com.bean.Type;
+import com.bean.Picture;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
 import com.mapper.TypeMapper;
+import com.mapper.PictureMapper;
 import com.service.CarService;
 import com.utils.DateUtil;
+import com.utils.LayuiUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/5
@@ -26,6 +32,8 @@ public class CarServiceImpl implements CarService {
     private BrandMapper brandMapper;
     @Autowired
     private TypeMapper typeMapper;
+    @Autowired
+    private PictureMapper pictureMapper;
 
     // 即将发行
     @Override
@@ -71,8 +79,9 @@ public class CarServiceImpl implements CarService {
 
     // 条件查询汽车信息
     @Override
-    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
-        return carMapper.selectByCar(carPictureTypeBrandVO);
+    public Map<String,Object> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO) {
+        PageInfo<CarPictureTypeBrandVO> pageInfo = PageHelper.startPage(carPictureTypeBrandVO.getPage(), carPictureTypeBrandVO.getLimit()).doSelectPageInfo(() -> carMapper.selectByCar(carPictureTypeBrandVO));
+        return LayuiUtil.data(pageInfo.getTotal(),pageInfo.getList());
     }
     //条件查询汽车数量
     @Override
@@ -89,5 +98,19 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Type> getTypes() {
         return typeMapper.selectByExample(null);
+    }
+
+    @Override//根据id删除车信息
+    public int DelCar(String carIds) {
+        return carMapper.deleteByPrimaryKey(carIds);
+    }
+
+    @Override//添加车信息
+    public int insert(CarPictureVO carPictureVO) {
+        int id=carMapper.insertSelective(carPictureVO);//添加车的信息  id为次车辆的主键
+        Picture picture =new Picture();
+        picture.setUrl(carPictureVO.getUrl());
+        picture.setCarId(id);
+        return pictureMapper.insertSelective(picture);  //添加车的图片地址
     }
 }
