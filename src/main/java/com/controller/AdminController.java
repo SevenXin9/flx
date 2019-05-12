@@ -34,9 +34,12 @@ public class AdminController {
         return "admin/login";
     }
 
+    // 管理员登录
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean login(Admin admin){
+        System.out.println(admin.getName());
+        System.out.println(admin.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(new UsernamePasswordToken(admin.getName(),admin.getPassword()));
@@ -45,13 +48,20 @@ public class AdminController {
         }catch (UnknownAccountException e) {
             return false;
         }
-        subject.getSession().setAttribute("admin",admin);
+        subject.getSession().setAttribute("admin", admin);
         return true;
     }
 
+    // 进入首页
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(HttpSession session){
         System.out.println(session.getAttribute("admin"));
-        return "admin/index";
+        return "/admin/index";
+    }
+
+    // 进入修改密码界面
+    @RequestMapping(value = "intoUpdateUserPWD",method = RequestMethod.GET)
+    public String intoUpdateUserPWD(){
+        return "/admin/editPWD/editPWD";
     }
 }

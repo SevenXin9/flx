@@ -3,6 +3,7 @@ package com.service;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Type;
 
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,12 @@ public interface CarService {
      * @return
      */
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id);
+
+    /**
+     * 查询所有汽车类型
+     * @return
+     */
+    public List<Type> getTypes();
 
     /**
      * 根据id删除车辆信息
