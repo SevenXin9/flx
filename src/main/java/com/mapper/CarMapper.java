@@ -12,11 +12,11 @@ public interface CarMapper {
 
     int deleteByExample(CarExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String carIds);
 
-    int insert(Car record);
+    int insert(CarPictureVO record);
 
-    int insertSelective(Car record);
+    int insertSelective(CarPictureVO record);//添加车辆信息并返回主键
 
     List<CarPictureVO> selectCarPicture1();//查询即将发行车信息
     List<CarPictureVO> selectCarPicture2();//查询流行车

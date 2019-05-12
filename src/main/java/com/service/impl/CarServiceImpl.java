@@ -3,10 +3,12 @@ package com.service.impl;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Picture;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
+import com.mapper.PictureMapper;
 import com.service.CarService;
 import com.utils.DateUtil;
 import com.utils.LayuiUtil;
@@ -26,6 +28,8 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
     @Autowired
     private BrandMapper brandMapper;
+    @Autowired
+    private PictureMapper pictureMapper;
 
     // 即将发行
     @Override
@@ -84,5 +88,19 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {
         return carMapper.selectVoByKey(id);
+    }
+
+    @Override//根据id删除车信息
+    public int DelCar(String carIds) {
+        return carMapper.deleteByPrimaryKey(carIds);
+    }
+
+    @Override//添加车信息
+    public int insert(CarPictureVO carPictureVO) {
+        int id=carMapper.insertSelective(carPictureVO);//添加车的信息  id为次车辆的主键
+        Picture picture =new Picture();
+        picture.setUrl(carPictureVO.getUrl());
+        picture.setCarId(id);
+        return pictureMapper.insertSelective(picture);  //添加车的图片地址
     }
 }

@@ -50,7 +50,7 @@ public interface CarService {
 
     /**
      * 条件查询汽车数量
-     * @param id
+     * @param carPictureTypeBrandVO
      * @return
      */
     public Integer getCarPictureTypeVOsCount(CarPictureTypeBrandVO carPictureTypeBrandVO);
@@ -61,4 +61,18 @@ public interface CarService {
      * @return
      */
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id);
+
+    /**
+     * 根据id删除车辆信息
+     * @param carIds
+     * @return
+     */
+    public int DelCar(String carIds);
+
+    /**
+     * 添加车辆信息
+     * @param carPictureVO
+     * @return
+     */
+    public int insert(CarPictureVO carPictureVO);
 }
