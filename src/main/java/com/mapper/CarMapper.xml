@@ -345,29 +345,29 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
         </if>
       </if>
     </where>
-    limit #{start},#{limit}
   </select>
-  <select id="selectByCarCount" parameterType="com.VO.CarPictureTypeBrandVO" resultType="java.lang.Integer">
-    <include refid="car_picture_type_brand_sql_count"/>
-    <where>
-      <if test="pricemax != null">
-        and #{pricemax} >= c.price
-      </if>
-      <if test="pricemin != null">
-        and c.price >= #{pricemin}
-      </if>
-      <if test="car != null">
-        <if test="car.brand != null">
-          and c.brand = #{car.brand}
-        </if>
-        <if test="car.type != null">
-          and c.type = #{car.type}
-        </if>
-      </if>
-    </where>
-  </select>
+  <!--<select id="selectByCarCount" parameterType="com.VO.CarPictureTypeBrandVO" resultType="java.lang.Integer">-->
+    <!--<include refid="car_picture_type_brand_sql_count"/>-->
+    <!--<where>-->
+      <!--<if test="pricemax != null">-->
+        <!--and #{pricemax} >= c.price-->
+      <!--</if>-->
+      <!--<if test="pricemin != null">-->
+        <!--and c.price >= #{pricemin}-->
+      <!--</if>-->
+      <!--<if test="car != null">-->
+        <!--<if test="car.brand != null">-->
+          <!--and c.brand = #{car.brand}-->
+        <!--</if>-->
+        <!--<if test="car.type != null">-->
+          <!--and c.type = #{car.type}-->
+        <!--</if>-->
+      <!--</if>-->
+    <!--</where>-->
+  <!--</select>-->
   <select id="selectVoByKey" parameterType="java.lang.Integer" resultMap="car_picture_type_brand_map">
     <include refid="car_picture_type_brand_sql" />
     where c.id = #{id}
   </select>
+
 </mapper>

@@ -768,26 +768,26 @@
 		  , method: "GET"
 		  , async: true
 		  , data: {
-		  	page:page
+		  	page:page, limit:6
 		  }
-		  , success: function (data) {
-		  	 for (var i=0;i<data.length;i++) {
-		  	 	var h = data[i].picture.url;
+		  , success: function (result) {
+		  	 for (var i=0;i<result.data.length;i++) {
+		  	 	var h = result.data[i].picture.url;
 		  	 	var imgLoc = 'http://localhost:8080/'+h;
 				var ht= '<div class="item  col-xs-4 col-lg-4">' +
 				'<div class="thumbnail">' +
-				'<a href="#" data-toggle="modal" onclick="showCar('+data[i].car.id+')" data-target="#myModal6"><img class="group list-group-image" style="height: 300px;width: 400px;" src="'+imgLoc+'"></a>' +
+				'<a href="#" data-toggle="modal" onclick="showCar('+result.data[i].car.id+')" data-target="#myModal6"><img class="group list-group-image" style="height: 300px;width: 400px;" src="'+imgLoc+'"></a>' +
 				'<div class="table-text">' +
-				'<h4 ><span class="spancarname"/>'+data[i].car.name+'</h4>' +
+				'<h4 ><span class="spancarname"/>'+result.data[i].car.name+'</h4>' +
 				'<p class="gridViewPrice hide">' +
 				'<span class="rupee-lac" />' +
 				'</p>'+
 				'<div class="other-details">' +
-				'<span class="rupee-lac slprice">' +data[i].car.price+'</span>'+
+				'<span class="rupee-lac slprice">' +result.data[i].car.price+'</span>'+
 				'<div class="clearfix"></div>' +
 				'<div class="clearfix"></div>' +
-				'<p class="listing-item-kms"><span>'+data[i].car.releasetime+'</span></p>' +
-				'<p class="listing-item-area"><span class="cityname">'+data[i].brand.name+'</span></p>' +
+				'<p class="listing-item-kms"><span>'+result.data[i].car.releasetime+'</span></p>' +
+				'<p class="listing-item-area"><span class="cityname">'+result.data[i].brand.name+'</span></p>' +
 				'<p class="text-light-grey deliverytext"></p>' +
 				'</div>' +
 				'<div class="clearfix"></div>' +
@@ -805,38 +805,39 @@
 				'</div>';
 				 $("#products").prepend(ht);
 			}
-
+			  var page=(result.count+6-1)/6;
+			  if(page<=1){
+				  page=1;
+			  }
+			  var li = '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>'
+			  for (var i=1;i<=page;i++){
+				  if(page==i){
+					  li+='<li class="active"><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
+				  }else {
+					  li+='<li><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
+				  }
+			  }
+			  li+='<li><a href="javascript:;" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+			  $("#lim").append(li);
 		  }
 		  , error: function () {
 			  alert("系统异常");
 		  }
 	  });
-      $.ajax({
-          url: "/user/findCarCount"
-          , method: "GET"
-          , async: true
-          , data: {
-
-          }
-          , success: function (data) {
-			  if(page<=1){
-				page=1;
-			  }
-          	var li = '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>'
-          	for (var i=1;i<=data;i++){
-				if(page==i){
-					li+='<li class="active"><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
-				}else {
-					li+='<li><a href="javascript:;" onclick="pageutil('+i+')">'+i+'</a></li>'
-				}
-			}
-          	li+='<li><a href="javascript:;" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
-          	$("#lim").append(li);
-          }
-          , error: function () {
-              alert("系统异常");
-          }
-      });
+      // $.ajax({
+      //     url: "/user/findCarCount"
+      //     , method: "GET"
+      //     , async: true
+      //     , data: {
+	  //
+      //     }
+      //     , success: function (data) {
+		//
+      //     }
+      //     , error: function () {
+      //         alert("系统异常");
+      //     }
+      // });
 
   }
 </script>

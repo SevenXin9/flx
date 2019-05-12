@@ -5,6 +5,7 @@ import com.VO.CarPictureVO;
 import com.bean.Brand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/5
@@ -45,7 +46,7 @@ public interface CarService {
      * @param carPictureTypeBrandVO
      * @return
      */
-    public List<CarPictureTypeBrandVO> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
+    public Map<String,Object> getCarPictureTypeVOs(CarPictureTypeBrandVO carPictureTypeBrandVO);
 
     /**
      * 条件查询汽车数量
