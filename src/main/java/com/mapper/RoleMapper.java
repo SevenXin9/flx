@@ -12,11 +12,13 @@ public interface RoleMapper {
 
     int deleteByExample(RoleExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Role record);
 
     int insertSelective(Role record);
+
+    Role selectByName(String roleName);
 
     List<Role> selectByExampleWithBLOBs(RoleExample example);
 

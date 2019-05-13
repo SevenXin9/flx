@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.VO.AdminVo;
 import com.bean.Admin;
 import com.mapper.AdminMapper;
 import com.service.AdminService;
@@ -23,8 +24,8 @@ public class AdminServiceImpl implements AdminService {
       return adminMapper.selectByNamePass(name);
     }
 
-    //条件查询管理员信息
-    @Override
+
+    @Override//条件查询管理员信息
     public List<AdminVo> selectAll(AdminVo adminVo){return adminMapper.selectAdmin(adminVo);}
 
     @Override//通过ids删除管理员
