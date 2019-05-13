@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.AdminVo;
 import com.bean.Role;
 import com.bean.RoleExample;
 import org.apache.ibatis.annotations.Param;
@@ -34,4 +35,5 @@ public interface RoleMapper {
     int updateByPrimaryKeyWithBLOBs(Role record);
 
     int updateByPrimaryKey(Role record);
+
 }

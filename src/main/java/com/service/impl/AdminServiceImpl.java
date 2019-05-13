@@ -7,6 +7,8 @@ import com.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @create 2019/5/9
  */
@@ -20,6 +22,10 @@ public class AdminServiceImpl implements AdminService {
     public Admin selectByName(String name) {
       return adminMapper.selectByNamePass(name);
     }
+
+    //条件查询管理员信息
+    @Override
+    public List<AdminVo> selectAll(AdminVo adminVo){return adminMapper.selectAdmin(adminVo);}
 
     @Override//通过ids删除管理员
     public int deleteByPrimaryKey(String manageIds) {

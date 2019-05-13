@@ -1,6 +1,9 @@
 package com.service;
 
+import com.VO.AdminVo;
 import com.bean.Admin;
+
+import java.util.List;
 
 /**
  * @create 2019/5/9
@@ -41,4 +44,11 @@ public interface AdminService {
      * @return
      */
     Admin selectByPrimaryKey(Integer id);
+
+    /**
+     * 条件查询管理员信息
+     * @param adminVo
+     * @return
+     */
+    List<AdminVo> selectAll(AdminVo adminVo);
 }
