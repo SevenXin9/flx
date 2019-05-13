@@ -3,11 +3,13 @@ package com.service.impl;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Type;
 import com.bean.Picture;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.BrandMapper;
 import com.mapper.CarMapper;
+import com.mapper.TypeMapper;
 import com.mapper.PictureMapper;
 import com.service.CarService;
 import com.utils.DateUtil;
@@ -28,6 +30,8 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
     @Autowired
     private BrandMapper brandMapper;
+    @Autowired
+    private TypeMapper typeMapper;
     @Autowired
     private PictureMapper pictureMapper;
 
@@ -88,6 +92,12 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarPictureTypeBrandVO getCarPictureTypeVO(Integer id) {
         return carMapper.selectVoByKey(id);
+    }
+
+    // 查询所有汽车类型
+    @Override
+    public List<Type> getTypes() {
+        return typeMapper.selectByExample(null);
     }
 
     @Override//根据id删除车信息

@@ -50,6 +50,7 @@
         <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
         <!-- 配置别名包扫描 -->
         <property name="typeAliasesPackage" value="com.bean"/>
+        <!-- 分页插件 -->
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">

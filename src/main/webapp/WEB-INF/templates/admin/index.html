@@ -27,10 +27,26 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" layui-bg-cyan lay-shrink="all" lay-filter="test">
                         <li class="layui-nav-item">
-                            <a class="layui-icon ${menu.iconcls} menu" style="font-size: 12px;" data-state="${menu.state}" data-name="${menu.menuname}" href="javascript:;">  aa</a>
+                            <a class="layui-icon layui-icon-set-fill" style="font-size: 12px;" href="javascript:;">  系统管理</a>
                                     <dl class="layui-nav-child">
-                                        <dd><a data-url="${menus.menuurl}" data-id="${status.current}" data-title="${menus.menuname}" class="layui-icon ${menus.iconcls} site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="${menus.menuurl}">  bb</a></dd>
+                                        <dd><a data-url="/user/index" data-id="roleMana" data-title="roleMana" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
+                                        <dd><a data-url="/user/index" data-id="userMana" data-title="userMana" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
                                     </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a class="layui-icon layui-icon-app" style="font-size: 12px;" href="javascript:;">  汽车管理</a>
+                                    <dl class="layui-nav-child">
+                                        <dd><a data-url="/user/index" data-id="carMana" data-title="carMana" class="layui-icon layui-icon-engine site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="carMana">  汽车管理</a></dd>
+                                        <dd><a data-url="/user/index" data-id="reserveMana" data-title="reserveMana" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="reserveMana">  订单管理</a></dd>
+                                        <dd><a data-url="/user/index" data-id="brandMana" data-title="brandMana" class="layui-icon layui-icon-flag site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="brandMana">  品牌管理</a></dd>
+                                        <dd><a data-url="/user/index" data-id="garage" data-title="garage" class="layui-icon layui-icon-log site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="garage">  购车记录</a></dd>
+                                    </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a class="layui-icon layui-icon-password menu" data-name="修改密码" style="font-size: 12px;" href="javascript:;">  修改密码</a>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a class="layui-icon layui-icon-close-fill menu" data-name="安全退出" style="font-size: 12px;" href="javascript:;">  安全退出</a>
                         </li>
             </ul>
         </div>
@@ -88,51 +104,49 @@
         var $ = layui.jquery;
 
         $(".menu").on('click',function () {
-            if($(this).attr("data-state") == "open"){
-                switch ($(this).attr("data-name")) {
-                    case "修改密码":
-                        var that = this;
-                        layer.open({
-                            type: 2 //此处以iframe举例
-                            ,title: '修改密码'
-                            ,area: ['750px', '450px']
-                            ,shade: 0.7
-                            ,shadeClose:true
-                            ,maxmin: true
-                            ,content: '/intoUpdateUserPWD.action'
-                            ,yes: function(){
-                                $(that).click();
-                            }
-                            ,zIndex: layer.zIndex //重点1
-                            ,success: function(layero){
-                                layer.setTop(layero); //重点2
-                            }
-                            ,id: 'editPWD' //设定一个id，防止重复弹出
-                        });break;
-                    case "安全退出":
-                        var that = this;
-                        layer.open({
-                            type: 1 //此处以iframe举例
-                            ,title: '系统提示'
-                            ,shade: 0.7
-                            ,shadeClose:true
-                            ,maxmin: true
-                            ,content: '<div style="padding: 20px 100px;">您确定要退出系统吗？</div>'
-                            ,btn: ['确定', '取消']
-                            ,btnAlign: 'c' //按钮居中
-                            ,yes: function(){
-                                $(that).click();
-                            }
-                            ,zIndex: layer.zIndex //重点1
-                            ,success: function(layero){
-                                var btn = layero.find('.layui-layer-btn');
-                                btn.find('.layui-layer-btn0').attr({
-                                    href: '/exit.action'
-                                });
-                            }
-                            ,id: 'exit' //设定一个id，防止重复弹出
-                        });break;
-                }
+            switch ($(this).attr("data-name")) {
+                case "修改密码":
+                    var that = this;
+                    layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '修改密码'
+                        ,area: ['750px', '450px']
+                        ,shade: 0.7
+                        ,shadeClose:true
+                        ,maxmin: true
+                        ,content: '/admin/intoUpdateUserPWD.action'
+                        ,yes: function(){
+                            $(that).click();
+                        }
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                            layer.setTop(layero); //重点2
+                        }
+                        ,id: 'editPWD' //设定一个id，防止重复弹出
+                    });break;
+                case "安全退出":
+                    var that = this;
+                    layer.open({
+                        type: 1 //此处以iframe举例
+                        ,title: '系统提示'
+                        ,shade: 0.7
+                        ,shadeClose:true
+                        ,maxmin: true
+                        ,content: '<div style="padding: 20px 100px;">您确定要退出系统吗？</div>'
+                        ,btn: ['确定', '取消']
+                        ,btnAlign: 'c' //按钮居中
+                        ,yes: function(){
+                            $(that).click();
+                        }
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                            var btn = layero.find('.layui-layer-btn');
+                            btn.find('.layui-layer-btn0').attr({
+                                href: '/exit.action'
+                            });
+                        }
+                        ,id: 'exit' //设定一个id，防止重复弹出
+                    });break;
             }
         })
 
