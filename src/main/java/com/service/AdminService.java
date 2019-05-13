@@ -1,6 +1,9 @@
 package com.service;
 
+import com.VO.AdminVo;
 import com.bean.Admin;
+
+import java.util.List;
 
 /**
  * @create 2019/5/9
@@ -13,4 +16,39 @@ public interface AdminService {
      * @return admin对象
      */
     Admin selectByName(String name);
+
+    /**
+     * 删除管理员
+     * @param manageIds 管理员的ids
+     * @return
+     */
+    int deleteByPrimaryKey(String manageIds);
+
+    /**
+     * 修改管理员
+     * @param admin
+     * @return
+     */
+    int updateByPrimaryKeySelective(Admin admin);
+
+    /**
+     * 添加管理员
+     * @param admin
+     * @return
+     */
+    int insert(Admin admin);
+
+    /**
+     * 通过id获取管理员
+     * @param id
+     * @return
+     */
+    Admin selectByPrimaryKey(Integer id);
+
+    /**
+     * 条件查询管理员信息
+     * @param adminVo
+     * @return
+     */
+    List<AdminVo> selectAll(AdminVo adminVo);
 }

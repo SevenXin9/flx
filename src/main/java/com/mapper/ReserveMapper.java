@@ -2,8 +2,9 @@ package com.mapper;
 
 import com.bean.Reserve;
 import com.bean.ReserveExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ReserveMapper {
     int countByExample(ReserveExample example);

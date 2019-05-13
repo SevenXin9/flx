@@ -1,20 +1,21 @@
 package com.VO;
 
 import com.bean.Admin;
+import com.bean.Role;
 import com.bean.Authority;
 
 public class AdminVo {
     private Admin admin;
-    private Authority authority;
+    private Role role;
     private Integer page;
     private Integer limit;
-    
-    public Authority getAuthority() {
-        return authority;
+
+    public Role getRole() {
+        return role;
     }
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Admin getAdmin() {

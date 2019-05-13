@@ -23,6 +23,8 @@ public interface CarMapper {
     List<CarPictureVO> selectCarPicture3();//查询新车上市
     List<CarPictureVO> selectCarPicture4(Integer id);//查询轮播图展示车
 
+    List<CarPictureTypeBrandVO> selectByCar(CarPictureTypeBrandVO carPictureTypeBrandVO);// 根据条件查询车的所有信息;
+
     List<Car> selectByExample(CarExample example);
 
     Car selectByPrimaryKey(Integer id);
@@ -34,8 +36,6 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
-
-    List<CarPictureTypeBrandVO> selectByCar(CarPictureTypeBrandVO carPictureTypeBrandVO);// 根据条件查询车的所有信息;
 
     CarPictureTypeBrandVO selectVoByKey(@Param("id") Integer id);
 

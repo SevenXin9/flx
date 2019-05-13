@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="carid" property="carid" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, carid, userid
+    id, carid, userid, time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.ReserveExample" >
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Reserve" >
-    insert into reserve (id, carid, userid
-      )
-    values (#{id,jdbcType=INTEGER}, #{carid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}
-      )
+    insert into reserve (id, carid, userid, 
+      time)
+    values (#{id,jdbcType=INTEGER}, #{carid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Reserve" >
     insert into reserve
@@ -115,6 +116,9 @@
       <if test="userid != null" >
         userid,
       </if>
+      <if test="time != null" >
+        time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -125,6 +129,9 @@
       </if>
       <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.userid != null" >
         userid = #{record.userid,jdbcType=INTEGER},
       </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update reserve
     set id = #{record.id,jdbcType=INTEGER},
       carid = #{record.carid,jdbcType=INTEGER},
-      userid = #{record.userid,jdbcType=INTEGER}
+      userid = #{record.userid,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="userid != null" >
         userid = #{userid,jdbcType=INTEGER},
       </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Reserve" >
     update reserve
     set carid = #{carid,jdbcType=INTEGER},
-      userid = #{userid,jdbcType=INTEGER}
+      userid = #{userid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
