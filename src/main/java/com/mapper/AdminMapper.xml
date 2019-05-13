@@ -111,9 +111,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Admin" >
-    insert into admin (id, name, password, 
+    insert into admin ( name, password,
       role)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{role,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Admin" >

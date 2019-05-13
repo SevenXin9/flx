@@ -20,4 +20,25 @@ public interface AdminService {
      * @return
      */
     int deleteByPrimaryKey(String manageIds);
+
+    /**
+     * 修改管理员
+     * @param admin
+     * @return
+     */
+    int updateByPrimaryKeySelective(Admin admin);
+
+    /**
+     * 添加管理员
+     * @param admin
+     * @return
+     */
+    int insert(Admin admin);
+
+    /**
+     * 通过id获取管理员
+     * @param id
+     * @return
+     */
+    Admin selectByPrimaryKey(Integer id);
 }

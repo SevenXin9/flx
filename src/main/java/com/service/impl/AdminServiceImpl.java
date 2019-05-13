@@ -25,4 +25,25 @@ public class AdminServiceImpl implements AdminService {
     public int deleteByPrimaryKey(String manageIds) {
         return adminMapper.deleteByPrimaryKey(manageIds);
     }
+
+    @Override//修改管理员
+    public int updateByPrimaryKeySelective(Admin admin) {
+        if (adminMapper.selectByNamePass(admin.getName())!=null){//用户名重复
+            return 0;
+        }
+        return adminMapper.updateByPrimaryKeySelective(admin);
+    }
+
+    @Override//添加管理员
+    public int insert(Admin admin) {
+        if (adminMapper.selectByNamePass(admin.getName())!=null){//用户名重复
+            return 0;
+        }
+        return insert(admin);
+    }
+
+    @Override//通过id获取管理员
+    public Admin selectByPrimaryKey(Integer id) {
+        return adminMapper.selectByPrimaryKey(id);
+    }
 }
