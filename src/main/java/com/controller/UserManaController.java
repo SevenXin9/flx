@@ -24,19 +24,31 @@ public class UserManaController {
     @Autowired
     private UserService userService;
 
+    // 进入用户管理界面
+    @RequestMapping(value = "/intoUserMana", method = RequestMethod.GET)
+    public String intoUserMana(){
+        return "/admin/userMana/userMana";
+    }
+
+    // 进入添加用户界面
+    @RequestMapping(value = "/intoAddUser", method = RequestMethod.GET)
+    public String intoAddUser(){
+        return "/admin/userMana/addUser";
+    }
+
     /**
      * 删除用户
      * @return 是否删除成功
      */
-    @RequestMapping(value = "/user/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{ids}",method = RequestMethod.DELETE)
     @ResponseBody
-    public boolean users(@PathVariable("id") Integer id ){
-        int flag=userService.deleteByPrimary(id);
-        if (flag ==1){
-            logger.info("成功删除编号为:"+id+"的用户");
+    public boolean users(@PathVariable("ids") String ids ){
+        int flag=userService.deleteByIds(ids);
+        if (flag > 0){
+            logger.info("成功删除编号为:"+ids+"的用户");
             return true;
         }
-        logger.info("编号为:"+id+"的用户，删除失败");
+        logger.info("编号为:"+ids+"的用户，删除失败");
         return false;
     }
 
@@ -49,5 +61,21 @@ public class UserManaController {
     @ResponseBody
     public Map<String,Object> users(UserVo userVo){
         return userService.findUsers(userVo);
+    }
+
+    /**
+     * 添加用户信息
+     * @param user
+     * @return 0:添加失败  1:添加成功  2:email已存在
+     */
+    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @ResponseBody
+    public int addUser(User user){
+        if(userService.selectByEmail(user.getEmail()) != null){
+            return 2;
+        }else if(userService.insertUser(user)){
+            return 1;
+        }
+        return 0;
     }
 }

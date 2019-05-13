@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>添加角色信息</title>
+    <title>添加用户信息</title>
     <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
 </head>
 <body>
-<div class="layui-body" style="padding-top: 100px;">
+
+<div class="layui-body" style="padding-top: 100px">
     <form class="layui-form" action="">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">角色名称：</label>
+                <label class="layui-form-label">Email：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="rolename" id="rolename" required  lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="email" id="email"  lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" id="password" required  lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -25,8 +35,9 @@
     </form>
 </div>
 </body>
+
 <script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
-<script>
+<script type="text/javascript">
     //Demo
     layui.use(['form','layer'], function(){
         var form = layui.form;
@@ -36,11 +47,11 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             $.ajax({
-                url:"/addRole.action",
+                url:"/admin/addUser",
                 type:"post",
                 data:{
-                    "rolename":$("#rolename").val()
-                    ,"roledescription":$("#roledescription").val()
+                    "email":$("#email").val()
+                    ,"password":$("#password").val()
                 },
                 async:true,
                 success:function(data){
@@ -49,10 +60,12 @@
                         layer.alert("添加成功",{title:"添加成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
+                    }else if(data == 2){
+                        layer.alert("用户名已存在",{title:"添加失败"})
+                        $("#email").val("");
+                        $("#email").focus();
                     }else{
-                        layer.alert("角色名称已存在",{title:"添加失败"})
-                        $("#rolename").val("");
-                        $("#rolename").focus();
+                        layer.alert("系统异常，添加失败",{title:"添加失败"})
                     }
                 },
                 error:function(){

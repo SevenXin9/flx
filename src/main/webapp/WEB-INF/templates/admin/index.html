@@ -15,7 +15,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     欢迎：
-                    <span style="color: red;"></span>
+                    <span style="color: red;" th:text="${session.admin.name}"></span>
                 </a>
             </li>
             <li class="layui-nav-item"><a href="/exit.action">退出</a></li>
@@ -29,8 +29,9 @@
                         <li class="layui-nav-item">
                             <a class="layui-icon layui-icon-set-fill" style="font-size: 12px;" href="javascript:;">  系统管理</a>
                                     <dl class="layui-nav-child">
-                                        <dd><a data-url="/user/index" data-id="roleMana" data-title="roleMana" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
-                                        <dd><a data-url="/user/index" data-id="userMana" data-title="userMana" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
+                                        <dd><a data-url="/admin/intoRoleMana" data-id="roleMana" data-title="角色管理" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
+                                        <dd><a data-url="/admin/intoUserMana" data-id="userMana" data-title="用户管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
+                                        <dd><a data-url="/admin/intoAdminMana" data-id="adminMana" data-title="管理员管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  管理员管理</a></dd>
                                     </dl>
                         </li>
                         <li class="layui-nav-item">
@@ -114,7 +115,7 @@
                         ,shade: 0.7
                         ,shadeClose:true
                         ,maxmin: true
-                        ,content: '/admin/intoUpdateUserPWD.action'
+                        ,content: '/admin/intoEditUserPWD'
                         ,yes: function(){
                             $(that).click();
                         }

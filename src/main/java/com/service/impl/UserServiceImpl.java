@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @Override
+    @Override// 登录
     public User loginVerify(User user) {
         User us = userMapper.selectByEamil(user.getEmail());
         if (us != null) {
@@ -47,10 +47,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override//添加用户
-    public void insertUser(User user){
+    public Boolean insertUser(User user){
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
-        userMapper.insertSelective(user);
+        if(userMapper.insertSelective(user) > 0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override//删除用户
@@ -58,9 +62,19 @@ public class UserServiceImpl implements UserService {
         return userMapper.deleteByPrimary(id);
     }
 
-    @Override
+    @Override// 条件查询
     public Map<String,Object> findUsers(UserVo userVo) {
         PageInfo<User> pageInfo = PageHelper.startPage(userVo.getPage(), userVo.getLimit()).doSelectPageInfo(() -> userMapper.selectUsers(userVo));
         return LayuiUtil.data(pageInfo.getTotal(),pageInfo.getList());
+    }
+
+    @Override// 批量删除
+    public int deleteByIds(String ids) {
+        return userMapper.deleteByIds(ids);
+    }
+
+    @Override// 通过email查询用户信息
+    public User selectByEmail(String email) {
+        return userMapper.selectByEamil(email);
     }
 }

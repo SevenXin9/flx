@@ -40,8 +40,6 @@ public class AdminController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean login(Admin admin){
-        System.out.println(admin.getName());
-        System.out.println(admin.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(new UsernamePasswordToken(admin.getName(),admin.getPassword()));
@@ -57,13 +55,54 @@ public class AdminController {
     // 进入首页
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(HttpSession session){
-        System.out.println(session.getAttribute("admin"));
         return "/admin/index";
     }
 
     // 进入修改密码界面
-    @RequestMapping(value = "intoUpdateUserPWD",method = RequestMethod.GET)
-    public String intoUpdateUserPWD(){
+    @RequestMapping(value = "intoEditUserPWD",method = RequestMethod.GET)
+    public String intoEditUserPWD(){
         return "/admin/editPWD/editPWD";
+    }
+
+    // 进入角色管理界面
+    @RequestMapping(value = "intoRoleMana", method = RequestMethod.GET)
+    public String intoRoleMana(){
+        return "/admin/roleMana/roleMana";
+    }
+
+    // 进入角色添加界面
+    @RequestMapping(value = "intoAddRole", method = RequestMethod.GET)
+    public String intoAddRole(){
+        return "/admin/roleMana/addRole";
+    }
+
+    // 进入修改角色界面
+    @RequestMapping(value = "intoEditRole", method = RequestMethod.GET)
+    public String intoEditRole(){
+        return "/admin/roleMana/editRole";
+    }
+
+    // 进入角色授权界面
+    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
+    public String intoGrantRole(){
+        return "/admin/roleMana/grantRole";
+    }
+
+    // 进入管理员管理界面
+    @RequestMapping(value = "intoAdminMana", method = RequestMethod.GET)
+    public String intoAdmin(){
+        return "/admin/adminMana/adminMana";
+    }
+
+    // 进入添加管理员界面
+    @RequestMapping(value = "intoAddAdmin", method = RequestMethod.GET)
+    public String intoAddAdmin(){
+        return "/admin/adminMana/addAdmin";
+    }
+
+    // 进入修改管理员界面
+    @RequestMapping(value = "intoEditAdmin", method = RequestMethod.GET)
+    public String intoEditAdmin(){
+        return "/admin/adminMana/editAdmin";
     }
 }

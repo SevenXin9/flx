@@ -29,7 +29,6 @@
             margin-left: 410px;
             margin-top: -10px;
         }
-
         .layui-input{
             border-radius: 5px;
             width: 300px;
@@ -62,22 +61,21 @@
         a:hover{
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
-<form class="layui-form" action="" method="post" onsubmit="return adminLogin()">
+<form class="layui-form" action="" method="post" onsubmit="return login()">
     <div class="container" style="background-image: url(/static/images/5.jpg);">
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" id="name" name="title" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input name">
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input name">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密 &nbsp;&nbsp;码</label>
             <div class="layui-input-inline">
-                <input type="password" id="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input password">
+                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input password">
             </div>
         </div>
 
@@ -95,24 +93,20 @@
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
-            ,laydate = layui.laydate,
-            $ = layui.jquery;
-
-        function adminLogin() {
-            var name = $("#name").val();
-            var pass = $("#password").val();
-            $.post("/admin/login",{"name":name,"password":pass},function (data) {
-                if(data==true){
-                    window.location.href="/admin/index";
-                }else {
-                    alert("账号或密码错误");
-                }
-            });
-            return false;
-        }
-
+            ,laydate = layui.laydate;
     });
-
+    function login() {
+        var name = $(".name").val();
+        var pass = $(".password").val();
+        $.post("/admin/login",{"name":name,"password":pass},function (data) {
+            if(data==true){
+                window.location.href="/admin/index";
+            }else {
+                alert("账号或密码错误");
+            }
+        });
+        return false;
+    }
 </script>
 </body>
 </html>
