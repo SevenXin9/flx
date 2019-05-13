@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
+</head>
+<body>
+<div class="layui-collapse" lay-accordion="">
+        <div class="layui-colla-item">
+            授权
+        </div>
+
+    <div class="layui-nav-item sub" align="center">
+        <button class="layui-btn" data-type="submit"><i class="layui-icon"></i>  提交</button>
+    </div>
+</div>
+</body>
+
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+<script>
+    layui.use(['element', 'layer'], function(){
+        var element = layui.element;
+        var layer = layui.layer;
+        var $ = layui.$;
+
+        //监听折叠
+        element.on('collapse(test)', function(data){
+            layer.msg('展开状态：'+ data.show);
+        });
+
+        var chk_value = [];
+        var active = {
+            submit: function(){
+                $('input[name="interest"]:checked').each(function(){
+                    chk_value.push($(this).val());
+                });
+                $.ajax({
+                    url:"/updateRoleOperationIds.action",
+                    type:"post",
+                    data:{
+                        "roleid":[[${role.roleid}]]
+                        ,"operationids":chk_value.toString()
+                    },
+                    traditional: true,
+                    async:true,
+                    success:function(data){
+                        if(data == 1){
+                            var index = parent.layer.getFrameIndex(window.name)
+                            layer.alert("修改成功",{title:"修改成功"});
+                            parent.layer.close(index);
+                            parent.layui.table.reload("list");
+                        }else{
+                            layer.alert("修改失败",{title:"修改失败"})
+                        }
+                    },
+                    error:function(){
+                        alert("系统异常");
+                    }
+                });
+            }
+        };
+
+        //监听按钮
+        $('.sub .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</html>

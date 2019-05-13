@@ -30,4 +30,7 @@ public interface UserMapper {
     User selectByEamil(String eamil);
 
     List<User> selectUsers(UserVo userVo);
+
+    int deleteByIds(@Param("ids") String ids);
+
 }

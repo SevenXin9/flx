@@ -57,8 +57,8 @@ public class AdminController {
     }
 
     // 进入修改密码界面
-    @RequestMapping(value = "intoUpdateUserPWD",method = RequestMethod.GET)
-    public String intoUpdateUserPWD(){
+    @RequestMapping(value = "intoEditUserPWD",method = RequestMethod.GET)
+    public String intoEditUserPWD(){
         return "/admin/editPWD/editPWD";
     }
 
@@ -72,5 +72,35 @@ public class AdminController {
     @RequestMapping(value = "intoAddRole", method = RequestMethod.GET)
     public String intoAddRole(){
         return "/admin/roleMana/addRole";
+    }
+
+    // 进入修改角色界面
+    @RequestMapping(value = "intoEditRole", method = RequestMethod.GET)
+    public String intoEditRole(){
+        return "/admin/roleMana/editRole";
+    }
+
+    // 进入角色授权界面
+    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
+    public String intoGrantRole(){
+        return "/admin/roleMana/grantRole";
+    }
+
+    // 进入管理员管理界面
+    @RequestMapping(value = "intoAdminMana", method = RequestMethod.GET)
+    public String intoAdmin(){
+        return "/admin/adminMana/adminMana";
+    }
+
+    // 进入添加管理员界面
+    @RequestMapping(value = "intoAddAdmin", method = RequestMethod.GET)
+    public String intoAddAdmin(){
+        return "/admin/adminMana/addAdmin";
+    }
+
+    // 进入修改管理员界面
+    @RequestMapping(value = "intoEditAdmin", method = RequestMethod.GET)
+    public String intoEditAdmin(){
+        return "/admin/adminMana/editAdmin";
     }
 }
