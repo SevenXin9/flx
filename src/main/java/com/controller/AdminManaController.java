@@ -2,6 +2,7 @@ package com.controller;
 
 import com.bean.Admin;
 import com.service.AdminService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

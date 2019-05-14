@@ -2,6 +2,7 @@ package com.controller;
 
 import com.VO.CarPictureVO;
 import com.service.CarService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class CarManaController {
      */
     @RequestMapping(value = "/car/{carIds}",method = RequestMethod.DELETE)
     @ResponseBody
+    @RequiresPermissions("car:delete")
     public boolean delCars(@PathVariable("carIds") String carIds){
         int flag= carService.DelCar(carIds);
         if (flag ==1){
@@ -52,6 +54,7 @@ public class CarManaController {
      */
     @RequestMapping(value = "/car",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("car:append")
     public boolean addCar(HttpSession session, CarPictureVO carPictureVO, @RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();//获取文件的输入流
         String fileName = file.getOriginalFilename(); //获取文件的名字和后缀
