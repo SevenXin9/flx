@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.BrandVO;
 import com.bean.Brand;
 import com.bean.BrandExample;
 import java.util.List;
@@ -10,13 +11,19 @@ public interface BrandMapper {
 
     int deleteByExample(BrandExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String brandIds);
 
     int insert(Brand record);
 
     int insertSelective(Brand record);
 
+    Brand selectByName(String  name);
+
+    List<Brand> selectBrand(BrandVO brandVO);
+
     List<Brand> selectByExample(BrandExample example);
+
+    List<Brand> selectByAll();
 
     Brand selectByPrimaryKey(Integer id);
 

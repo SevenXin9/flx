@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>添加用户信息</title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
+</head>
+<body>
+
+<div class="layui-body" style="padding-top: 50px">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" id="name" required  lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+<script type="text/javascript">
+    //Demo
+    layui.use(['form','layer'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        var $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url:"/admin/brand",
+                type:"post",
+                data:{
+                    "name":$("#name").val()
+                },
+                async:true,
+                success:function(data){
+                    if(data){
+                        var index = parent.layer.getFrameIndex(window.name)
+                        layer.alert("添加成功",{title:"添加成功"});
+                        parent.layer.close(index);
+                        parent.layui.table.reload("list");
+                    }else{
+                        layer.alert("用户名已存在",{title:"添加失败"})
+                        $("#name").val("");
+                        $("#name").focus();
+                    }
+                },
+                error:function(){
+                    alert("系统异常");
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</html>

@@ -67,6 +67,11 @@
   <sql id="Base_Column_List" >
     id, name, picture
   </sql>
+  <select id="selectByAll" resultType="com.bean.Brand"><!-- 查询所有汽车品牌 -->
+    select
+         <include refid="Base_Column_List" />
+    from brand
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.BrandExample" >
     select
     <if test="distinct" >
@@ -87,9 +92,9 @@
     from brand
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from brand
-    where id = #{id,jdbcType=INTEGER}
+    where id = (${value})
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.BrandExample" >
     delete from brand
@@ -98,9 +103,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Brand" >
-    insert into brand (id, name, picture
+    insert into brand (name, picture
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}
+    values (#{name,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Brand" >
@@ -133,6 +138,28 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+  </select>
+  <select id="selectBrand" parameterType="com.VO.BrandVO" resultType="com.bean.Brand">
+      SELECT
+          <include refid="Base_Column_List" />
+      from brand
+    <where>
+          1=1
+      <if test="brand!=null">
+      <if test="brand.id!=null">
+        AND brand.id = #{brand.id}
+      </if>
+      <if test="brand.name!=null">
+          AND brand.name like '%${brand.name}%'
+      </if>
+      </if>
+    </where>
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultType="com.bean.Brand">
+    SELECT
+    <include refid="Base_Column_List" />
+    from brand
+    WHERE name like '%${value}%'
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update brand
