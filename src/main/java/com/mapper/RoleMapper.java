@@ -1,11 +1,13 @@
 package com.mapper;
 
 import com.VO.AdminVo;
+import com.VO.RoleVo;
 import com.bean.Role;
 import com.bean.RoleExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RoleMapper {
     int countByExample(RoleExample example);
@@ -36,4 +38,5 @@ public interface RoleMapper {
 
     int updateByPrimaryKey(Role record);
 
+    List<Role> selectRoles(RoleVo roleVo);
 }

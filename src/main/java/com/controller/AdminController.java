@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,9 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    
     @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequiresPermissions(value = "user:create")
     public String tologin(){
         return "admin/login";
     }
@@ -38,8 +41,6 @@ public class AdminController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public boolean login(Admin admin){
-        System.out.println(admin.getName());
-        System.out.println(admin.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try{
             subject.login(new UsernamePasswordToken(admin.getName(),admin.getPassword()));
@@ -63,5 +64,10 @@ public class AdminController {
     @RequestMapping(value = "intoUpdateUserPWD",method = RequestMethod.GET)
     public String intoUpdateUserPWD(){
         return "/admin/editPWD/editPWD";
+    }
+
+    @RequestMapping("error/405")
+    public String error(){
+        return "/error/405";
     }
 }

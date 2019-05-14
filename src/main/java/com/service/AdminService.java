@@ -4,6 +4,7 @@ import com.VO.AdminVo;
 import com.bean.Admin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/9
@@ -22,5 +23,6 @@ public interface AdminService {
      * @param adminVo
      * @return
      */
-    List<AdminVo> selectAll(AdminVo adminVo);
+    Map<String,Object>  selectAll(AdminVo adminVo);
+
 }

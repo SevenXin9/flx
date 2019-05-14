@@ -4,6 +4,7 @@ package com.realm;
 import com.bean.Admin;
 import com.bean.User;
 import com.service.AdminService;
+import com.service.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -24,13 +25,18 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RoleService roleService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         Subject subject = SecurityUtils.getSubject();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        Collection<String> collection = new ArrayList<String>();
-//        collection.add("index");
-        //info.addStringPermissions(collection);
+        Admin admin =  (Admin) principalCollection.getPrimaryPrincipal();
+        System.out.println(admin);
+        Collection<String> collection = new ArrayList<String>();
+        //roleService.findRole("");
+        collection.add("index");
+        info.addStringPermissions(collection);
         return info;
     }
 

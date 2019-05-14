@@ -3,6 +3,7 @@ package com.controller;
 import com.VO.UserVo;
 import com.bean.User;
 import com.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class UserManaController {
      */
     @RequestMapping(value = "/user/{id}",method = RequestMethod.DELETE)
     @ResponseBody
+    @RequiresPermissions("user:delete")
     public boolean users(@PathVariable("id") Integer id ){
         int flag=userService.deleteByPrimary(id);
         if (flag ==1){
@@ -47,6 +49,7 @@ public class UserManaController {
      */
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions("user:select")
     public Map<String,Object> users(UserVo userVo){
         return userService.findUsers(userVo);
     }

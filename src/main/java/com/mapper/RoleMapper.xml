@@ -214,4 +214,14 @@
     set rolename = #{rolename,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectRoles" parameterType="com.VO.RoleVo" resultMap="BaseResultMap">
+    select * from role
+    <where>
+    <if test="role!=null">
+      <if test="role.rolename!=null">
+          rolename like '%${role.rolename}%'
+      </if>
+    </if>
+    </where>
+  </select>
 </mapper>
