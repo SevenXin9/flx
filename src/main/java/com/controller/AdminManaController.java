@@ -79,10 +79,6 @@ public class AdminManaController {
     @RequestMapping(value = "/Manage",method = RequestMethod.PUT)
     @ResponseBody
     public int upManage(Admin admin){
-        System.out.println(admin.getName());
-        System.out.println(admin.getPassword());
-        System.out.println(admin.getId());
-        System.out.println(admin.getRole());
         return adminService.updateByPrimaryKeySelective(admin);
     }
 
