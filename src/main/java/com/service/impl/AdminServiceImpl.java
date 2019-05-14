@@ -53,9 +53,7 @@ public class AdminServiceImpl implements AdminService {
     @Override//修改管理员
     public int updateByPrimaryKeySelective(Admin admin) {
         admin.setPassword(MD5Utils.MD5(admin.getName(), admin.getPassword()));
-        if (adminMapper.selectByNamePass(admin.getName())!=null){//用户名重复
-            return 2;
-        }else if(adminMapper.updateByPrimaryKeySelective(admin) > 0){
+        if(adminMapper.updateByPrimaryKeySelective(admin) > 0){
             logger.info("编号为:"+admin.getId()+"的管理员修改成功");
             return 1;
         }

@@ -15,7 +15,7 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
 
-    @Override//添加权限
+    @Override//添加角色
     public int insert(Role role) {
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
@@ -23,7 +23,7 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.insert(role);
     }
 
-    @Override//修改权限
+    @Override//修改角色
     public int updataRole(Role role) {
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.updateByPrimaryKeyWithBLOBs(role);
     }
 
-    @Override//删除权限
+    @Override//删除角色
     public int delRole(String roleIds) {
         return roleMapper.deleteByPrimaryKey(roleIds);
     }

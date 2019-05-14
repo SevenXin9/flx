@@ -62,14 +62,12 @@
 
         //监听提交
         form.on('submit(formDemo)', function(data){
-            alert($("#id").val());
             $.ajax({
                 url:"/admin/Manage",
                 type:"PUT",
                 data:{
-                    "_method":"PUT"
+                    "_method":"POST"
                     ,"id":$("#id").val()
-                    ,"name":$("#name").val()
                     ,"password":$("#password").val()
                     ,"role":$("#roleid").val()
                 },
@@ -80,10 +78,6 @@
                         layer.alert("成功",{title:"修改成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
-                    }else if(data == 2){
-                        layer.alert("用户名已存在",{title:"修改失败"})
-                        $("#name").val("");
-                        $("#name").focus();
                     }else{
                         layer.alert("系统异常，修改失败",{title:"修改失败"})
                     }
