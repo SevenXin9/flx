@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <title>用户管理</title>
     <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
-    <style type="text/css">
-        .layui-table-cell .layui-form-checkbox[lay-skin="primary"]{
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    </style>
 </head>
 <body>
 
@@ -19,7 +13,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">账号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="email" id="username" autocomplete="off" class="layui-input">
+                    <input type="text" name="name" id="name" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -27,7 +21,7 @@
                 <div class="layui-input-inline">
                     <select id="roleid" name="roleid" lay-filter="aihao">
                         <option value=""></option>
-                        <option value="${role.roleid}">名字</option>
+                        <option value="1">名字</option>
                     </select>
                 </div>
             </div>
@@ -65,22 +59,19 @@
         var $ = layui.$;
         table.render({
             elem: '#test'
-            ,url:'/getUserMana.action'
+            ,url:'/admin/Manage'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
                 {checkbox:true}
-                ,{field:'userid', width:'16%', title: '编号', sort: true}
-                ,{field:'username', width:'16%', title: '账号'}
-                ,{field:'rolename', width:'16%', title: '角色', templet:'<div>{{d.role.rolename}}</div>'}
+                ,{field:'id', title: '编号', sort: true, templet:'<div>{{d.admin.id}}</div>'}
+                ,{field:'name', title: '账号', templet:'<div>{{d.admin.name}}</div>'}
+                ,{field:'role', title: '角色', templet:'<div>{{d.role.rolename}}</div>'}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
             ,page:true
             ,limit:5
             ,limits:[5,10,15]
             ,id:'list'
-            ,where:{
-                roleid:null
-            }
         });
 
         //触发事件
@@ -111,21 +102,16 @@
                     data=checkStatus.data,
                     ids=[];
                 for(var i=0;i<data.length;i++){
-                    ids.push(data[i].userid);
+                    ids.push(data[i].admin.id);
                 }
                 if(ids.length > 0){
                     layer.confirm('确定要删除吗？',function (index) {
                         $.ajax({
-                            url:"/deleteUser.action",
-                            type:"post",
-                            data:{
-                                "ids":ids
-                            },
-                            dataType:"json",
+                            url:"/admin/Manage/"+ids.toString(),
+                            type:"delete",
                             async:true,
-                            traditional:true,
                             success:function(data){
-                                if(data == 1){
+                                if(data){
                                     layer.alert("删除成功",{title:"删除成功"});
                                     table.reload("list");
                                 }else{
@@ -156,7 +142,7 @@
                     ,shade: 0.7
                     ,shadeClose:true
                     ,maxmin: true
-                    ,content: '/admin/intoEditAdmin?userid='+data.userid
+                    ,content: '/admin/toUpManage/'+data.admin.id
                     ,yes: function(){
                         $(that).click();
                     }
@@ -176,8 +162,8 @@
                     curr:1
                 }
                 ,where:{
-                    username:$("#username").val()
-                    ,roleid:$("#roleid").val()
+                    "admin.name":$("#name").val()
+                    ,"role.id":$("#roleid").val()
                 }
             })
             return false;

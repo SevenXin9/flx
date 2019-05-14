@@ -20,8 +20,9 @@ public interface UserService {
     /**
      * 添加用户
      * @param user 前台传过来的邮箱，密码
+     * @return 0:添加失败 1:添加成功 2:用户名已存在
      */
-    public Boolean insertUser(User user);
+    public int insertUser(User user);
 
     /**
      * 登录验证

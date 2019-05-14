@@ -12,7 +12,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">账号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="username" id="username" required  lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="name" id="name" required  lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -30,9 +30,9 @@
             <div class="layui-inline">
                 <label class="layui-form-label">角色：</label>
                 <div class="layui-input-inline">
-                    <select id="roleid" name="rolename" lay-filter="aihao" required  lay-verify="required">
+                    <select id="role" name="role" lay-filter="aihao" required  lay-verify="required">
                         <option value=""></option>
-                            <option value="${role.roleid}">角色名字</option>
+                            <option value="1">角色名字</option>
                     </select>
                 </div>
             </div>
@@ -59,13 +59,12 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             $.ajax({
-                url:"/verifyUserName.action",
+                url:"/admin/Manage",
                 type:"post",
                 data:{
-                    "username":$("#username").val()
+                    "name":$("#name").val()
                     ,"password":$("#password").val()
-                    ,"roleid":$("#roleid").val()
-                    ,"userdescription":$("#userdescription").val()
+                    ,"role":$("#role").val()
                 },
                 async:true,
                 success:function(data){
@@ -74,10 +73,12 @@
                         layer.alert("添加成功",{title:"添加成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
-                    }else{
+                    }else if(data == 2){
                         layer.alert("用户名已存在",{title:"添加失败"})
-                        $("#username").val("");
-                        $("#username").focus();
+                        $("#name").val("");
+                        $("#name").focus();
+                    }else{
+                        layer.alert("系统异常，添加失败",{title:"添加失败"})
                     }
                 },
                 error:function(){

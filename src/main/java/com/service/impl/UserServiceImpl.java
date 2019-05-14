@@ -47,14 +47,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override//添加用户
-    public Boolean insertUser(User user){
+    public int insertUser(User user){
         String pwd = MD5Utils.MD5(user.getEmail(),user.getPassword());
         user.setPassword(pwd);
-        if(userMapper.insertSelective(user) > 0){
-            return true;
-        }else {
-            return false;
+        if(userMapper.selectByEamil(user.getEmail()) != null){
+            return 2;
+        }else if(userMapper.insertSelective(user) > 0) {
+            return 1;
         }
+        return 0;
     }
 
     @Override//删除用户

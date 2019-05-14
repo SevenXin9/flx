@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,20 +34,26 @@ public class AdminManaController {
     //日志
     private final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
+    // 进入管理员管理界面
+    @RequestMapping(value = "intoAdminMana", method = RequestMethod.GET)
+    public String intoAdmin(){
+        return "/admin/adminMana/adminMana";
+    }
+
+    // 进入添加管理员界面
+    @RequestMapping(value = "intoAddAdmin", method = RequestMethod.GET)
+    public String intoAddAdmin(){
+        return "/admin/adminMana/addAdmin";
+    }
+
     /**
      * 删除管理员
      * @return 是否删除成功
      */
-    @RequestMapping(value = "/delManage/{manageIds}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/Manage/{ids}",method = RequestMethod.DELETE)
     @ResponseBody
-    public boolean delMana(@PathVariable("manageIds") String manageIds){
-        int flag= adminService.deleteByPrimaryKey(manageIds);
-        if (flag ==1){
-            logger.info("成功删除编号为:"+manageIds+"里的管理员");
-            return true;
-        }
-        logger.info("管理员删除失败");
-        return false;
+    public boolean delManage(@PathVariable("ids") String manageIds){
+        return adminService.deleteByPrimaryKey(manageIds);
     }
 
 
@@ -56,38 +64,36 @@ public class AdminManaController {
      * @return
      */
     @RequestMapping(value = "/toUpManage/{manageId}",method = RequestMethod.GET)
-    public String toUpMana(@PathVariable("namageId") Integer id, Model model){
+    public String toUpMana(@PathVariable("manageId") Integer id, Model model){
         model.addAttribute("manage",adminService.selectByPrimaryKey(id));
-        return "";
+        return "/admin/adminMana/editAdmin";
     }
 
 
     /**
      * 修改管理员
      * @param admin
-     * @return
+     * @return 0:修改失败 1:修改成功 2:用户名已存在
      */
-    @RequestMapping(value = "/upManage",method = RequestMethod.PUT)
+    @RequestMapping(value = "/Manage",method = RequestMethod.PUT)
     @ResponseBody
-    public boolean upMana(Admin admin){
-            if (adminService.updateByPrimaryKeySelective(admin)==1){
-                return true;
-            }
-            return false;
+    public int upManage(Admin admin){
+        System.out.println(admin.getName());
+        System.out.println(admin.getPassword());
+        System.out.println(admin.getId());
+        System.out.println(admin.getRole());
+        return adminService.updateByPrimaryKeySelective(admin);
     }
 
     /**
      * 添加管理员
      * @param admin
-     * @return
+     * @return 0:添加失败 1:添加成功 2:用户名已存在
      */
-    @RequestMapping(value = "/addManage",method = RequestMethod.POST)
+    @RequestMapping(value = "/Manage",method = RequestMethod.POST)
     @ResponseBody
-    public boolean addMana(Admin admin){
-        if (adminService.insert(admin)==1){
-            return true;
-        }
-        return false;
+    public int addMana(Admin admin){
+        return adminService.insert(admin);
     }
 
     /**
@@ -95,9 +101,9 @@ public class AdminManaController {
      * @param adminVo
      * @return
      */
-    @RequestMapping(value = "/adminMana",method = RequestMethod.GET)
+    @RequestMapping(value = "/Manage",method = RequestMethod.GET)
     @ResponseBody
-    public List<AdminVo> admin(AdminVo adminVo){
+    public Map<String, Object> admin(AdminVo adminVo){
         return adminService.selectAll(adminVo);
     }
 }

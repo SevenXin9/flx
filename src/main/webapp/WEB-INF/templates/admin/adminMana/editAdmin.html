@@ -12,17 +12,17 @@
             <div class="layui-inline">
                 <label class="layui-form-label">账号：</label>
                 <div class="layui-input-inline">
-                    <input hidden type="text" id="userid" value="${user.userid}" />
-                    <input type="text" name="username" id="username" readonly autocomplete="off" class="layui-input" value="${user.username}">
+                    <input hidden type="text" id="id" th:value="${manage.id}" />
+                    <input type="text" name="name" id="name" readonly autocomplete="off" class="layui-input" th:value="${manage.name}">
                 </div>
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">密码：</label>
+                <label class="layui-form-label">新密码：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="password" id="password" required  lay-verify="required" autocomplete="off" class="layui-input" value="${user.password}" />
+                    <input type="text" name="password" id="password" required  lay-verify="required" autocomplete="off" class="layui-input" />
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <div class="layui-input-inline">
                     <select id="roleid" name="rolename" lay-filter="aihao" required  lay-verify="required">
                         <option value=""></option>
-                            <option value="${role.roleid}">名字</option>
+                            <option value="1">名字</option>
                     </select>
                 </div>
             </div>
@@ -62,15 +62,16 @@
 
         //监听提交
         form.on('submit(formDemo)', function(data){
+            alert($("#id").val());
             $.ajax({
-                url:"/updateUser.action",
-                type:"post",
+                url:"/admin/Manage",
+                type:"PUT",
                 data:{
-                    "userid":$("#userid").val()
-                    ,"username":$("#username").val()
+                    "_method":"PUT"
+                    ,"id":$("#id").val()
+                    ,"name":$("#name").val()
                     ,"password":$("#password").val()
-                    ,"roleid":$("#roleid").val()
-                    ,"userdescription":$("#userdescription").val()
+                    ,"role":$("#roleid").val()
                 },
                 async:true,
                 success:function(data){
@@ -79,10 +80,12 @@
                         layer.alert("成功",{title:"修改成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
+                    }else if(data == 2){
+                        layer.alert("用户名已存在",{title:"修改失败"})
+                        $("#name").val("");
+                        $("#name").focus();
                     }else{
-                        layer.alert("失败",{title:"修改失败"})
-                        $("#username").val("");
-                        $("#username").focus();
+                        layer.alert("系统异常，修改失败",{title:"修改失败"})
                     }
                 },
                 error:function(){

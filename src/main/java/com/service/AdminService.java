@@ -4,6 +4,7 @@ import com.VO.AdminVo;
 import com.bean.Admin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/9
@@ -22,19 +23,19 @@ public interface AdminService {
      * @param manageIds 管理员的ids
      * @return
      */
-    int deleteByPrimaryKey(String manageIds);
+    Boolean deleteByPrimaryKey(String manageIds);
 
     /**
      * 修改管理员
      * @param admin
-     * @return
+     * @return 0:修改失败 1:修改成功 2:用户名已存在
      */
     int updateByPrimaryKeySelective(Admin admin);
 
     /**
      * 添加管理员
      * @param admin
-     * @return
+     * @return 0:添加失败 1:添加成功 2:用户名已存在
      */
     int insert(Admin admin);
 
@@ -50,5 +51,5 @@ public interface AdminService {
      * @param adminVo
      * @return
      */
-    List<AdminVo> selectAll(AdminVo adminVo);
+    Map<String, Object> selectAll(AdminVo adminVo);
 }

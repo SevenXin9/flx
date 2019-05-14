@@ -66,16 +66,11 @@ public class UserManaController {
     /**
      * 添加用户信息
      * @param user
-     * @return 0:添加失败  1:添加成功  2:email已存在
+     * @return 0:添加失败 1:添加成功 2:用户名已存在
      */
-    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
     @ResponseBody
     public int addUser(User user){
-        if(userService.selectByEmail(user.getEmail()) != null){
-            return 2;
-        }else if(userService.insertUser(user)){
-            return 1;
-        }
-        return 0;
+        return userService.insertUser(user);
     }
 }

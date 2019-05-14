@@ -217,7 +217,7 @@
   <select id="selectAdmin" parameterType="com.VO.AdminVo" resultMap="BaseResultMap_role">
     SELECT admin.id,admin.`name`,admin.role,role.rolename FROM admin,role
     <where>
-        admin.id=role.id
+        admin.role=role.id
         <if test="admin!=null">
           <if test="admin.name!=null">
           AND admin.name like '%${admin.name}%'
