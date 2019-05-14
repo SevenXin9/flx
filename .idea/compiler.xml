@@ -13,7 +13,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="usedCar" target="1.8" />
-      <module name="userCar" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

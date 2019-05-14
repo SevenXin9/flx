@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>汽车管理</title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
+</head>
+<body>
+
+<div>
+    <form class="layui-form" action="" style="padding-top: 50px; padding-bottom: 20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌：</label>
+                <div class="layui-input-inline">
+                    <select id="roleid" name="roleid" lay-filter="aihao">
+                        <option value=""></option>
+                        <option value="1">名字</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" data-type="reload">
+                    <i class="layui-icon layui-icon-search"></i> 搜索
+                </button>
+            </div>
+        </div>
+    </form>
+    <div id="edit">
+        <button class="layui-btn" data-method="add">
+            <i class="layui-icon layui-icon-add-circle"></i> 添加
+        </button>
+        <button class="layui-btn layui-btn-danger" data-method="delete">
+            <i class="layui-icon layui-icon-delete"></i> 删除
+        </button>
+    </div>
+    <div style="padding-top: 15px;padding-bottom: 15px;">
+        <table class="layui-hide" align="center" id="test" lay-filter="test"></table>
+    </div>
+</div>
+</body>
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+
+<script type="text/javascript" th:inline="none">
+    layui.use(['table', 'layer', 'form', 'laypage', 'laydate'], function(){
+        var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+        var $ = layui.$;
+        table.render({
+            elem: '#test'
+            ,url:'/admin/Manage'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {checkbox:true}
+                ,{field:'id', title: '编号', sort: true, templet:'<div>{{d.admin.id}}</div>'}
+                ,{field:'name', title: '账号', templet:'<div>{{d.admin.name}}</div>'}
+                ,{field:'role', title: '角色', templet:'<div>{{d.role.rolename}}</div>'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+            ,page:true
+            ,limit:5
+            ,limits:[5,10,15]
+            ,id:'list'
+        });
+
+        //触发事件
+        var active = {
+            add: function(){
+                var that = this;
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '添加用户信息'
+                    ,area: ['750px', '450px']
+                    ,shade: 0.7
+                    ,shadeClose:true
+                    ,maxmin: true
+                    ,content: '/admin/intoAddAdmin'
+                    ,yes: function(){
+                        $(that).click();
+                    }
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                    ,id: 'addUser' //设定一个id，防止重复弹出
+                });
+            }
+            ,delete: function(){
+                var that = this;
+                var checkStatus=table.checkStatus('list'),
+                    data=checkStatus.data,
+                    ids=[];
+                for(var i=0;i<data.length;i++){
+                    ids.push(data[i].admin.id);
+                }
+                if(ids.length > 0){
+                    layer.confirm('确定要删除吗？',function (index) {
+                        $.ajax({
+                            url:"/admin/Manage/"+ids.toString(),
+                            type:"delete",
+                            async:true,
+                            success:function(data){
+                                if(data){
+                                    layer.alert("删除成功",{title:"删除成功"});
+                                    table.reload("list");
+                                }else{
+                                    layer.alert("删除失败",{title:"删除失败"})
+                                }
+                            },
+                            error:function(){
+                                layer.msg('系统异常！', {icon: 2});
+                            }
+                        })
+                    })
+                }else{
+                    layer.msg('请先选择要删除的数据行！', {icon: 2});
+                }
+
+            }
+        }
+
+        //监听工具条
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'edit'){
+                var that = this;
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '编辑用户信息'
+                    ,area: ['750px', '450px']
+                    ,shade: 0.7
+                    ,shadeClose:true
+                    ,maxmin: true
+                    ,content: '/admin/toUpManage/'+data.admin.id
+                    ,yes: function(){
+                        $(that).click();
+                    }
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                    ,id: 'updateUser' //设定一个id，防止重复弹出
+                });
+            }
+        });
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            table.reload('list',{
+                page:{
+                    curr:1
+                }
+                ,where:{
+                    "admin.name":$("#name").val()
+                    ,"role.id":$("#roleid").val()
+                }
+            })
+            return false;
+        });
+
+        // 监听按钮
+        $('#edit .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
+</html>
