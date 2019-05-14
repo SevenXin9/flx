@@ -64,9 +64,9 @@
         form.on('submit(formDemo)', function(data){
             $.ajax({
                 url:"/admin/Manage",
-                type:"PUT",
+                type:"POST",
                 data:{
-                    "_method":"POST"
+                    _method:"PUT"
                     ,"id":$("#id").val()
                     ,"password":$("#password").val()
                     ,"role":$("#roleid").val()
