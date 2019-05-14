@@ -13,10 +13,33 @@
             <div class="layui-inline">
                 <label class="layui-form-label">品牌：</label>
                 <div class="layui-input-inline">
-                    <select id="roleid" name="roleid" lay-filter="aihao">
+                    <select id="brand" name="brand">
                         <option value=""></option>
                         <option value="1">名字</option>
                     </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">汽车类型：</label>
+                <div class="layui-input-inline">
+                    <select id="type" name="type">
+                        <option value=""></option>
+                        <option value="1">汽车类型</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">最低价：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pricemin" id="pricemin" autocomplete="off" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">最高价：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pricemax" id="pricemax" autocomplete="off" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -53,13 +76,17 @@
         var $ = layui.$;
         table.render({
             elem: '#test'
-            ,url:'/admin/Manage'
+            ,url:'/user/findCar'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [[
                 {checkbox:true}
-                ,{field:'id', title: '编号', sort: true, templet:'<div>{{d.admin.id}}</div>'}
-                ,{field:'name', title: '账号', templet:'<div>{{d.admin.name}}</div>'}
-                ,{field:'role', title: '角色', templet:'<div>{{d.role.rolename}}</div>'}
+                ,{field:'id', title: '编号', sort: true, templet:'<div>{{d.car.id}}</div>'}
+                ,{field:'name', title: '汽车名称', templet:'<div>{{d.car.name}}</div>'}
+                ,{field:'price', title: '价格', templet:'<div>{{d.car.price}}</div>'}
+                ,{field:'releasetime', title: '上架时间', templet:'<div>{{d.car.releasetime}}</div>'}
+                ,{field:'brandname', title: '品牌', templet:'<div>{{d.brand.name}}</div>'}
+                ,{field:'typename', title: '类型', templet:'<div>{{d.type.name}}</div>'}
+                ,{field:'count', title: '数量', templet:'<div>{{d.car.count}}</div>'}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
             ,page:true
@@ -72,14 +99,14 @@
         var active = {
             add: function(){
                 var that = this;
-                layer.open({
+                var addcar = layer.open({
                     type: 2 //此处以iframe举例
-                    ,title: '添加用户信息'
+                    ,title: '添加汽车信息'
                     ,area: ['750px', '450px']
                     ,shade: 0.7
                     ,shadeClose:true
                     ,maxmin: true
-                    ,content: '/admin/intoAddAdmin'
+                    ,content: '/admin/intoAddCar'
                     ,yes: function(){
                         $(that).click();
                     }
@@ -89,6 +116,7 @@
                     }
                     ,id: 'addUser' //设定一个id，防止重复弹出
                 });
+                layer.full(addcar);
             }
             ,delete: function(){
                 var that = this;
@@ -156,8 +184,10 @@
                     curr:1
                 }
                 ,where:{
-                    "admin.name":$("#name").val()
-                    ,"role.id":$("#roleid").val()
+                    "car.brand":$("#brand").val()
+                    ,"car.type":$("#type").val()
+                    ,"pricemin":$("#pricemin").val()
+                    ,"pricemax":$("#pricemax").val()
                 }
             })
             return false;

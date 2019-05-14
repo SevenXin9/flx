@@ -28,6 +28,18 @@ public class CarManaController {
     @Autowired
     private CarService carService;
 
+    // 进入汽车管理界面
+    @RequestMapping(value = "/intoCarMana", method = RequestMethod.GET)
+    public String intoCarMana(){
+        return "admin/car/carMana";
+    }
+
+    // 进入添加汽车界面
+    @RequestMapping(value = "/intoAddCar", method = RequestMethod.GET)
+    public String intoAddCar(){
+        return "admin/car/addCar";
+    }
+
     /**
      * 删除车辆
      * @return 是否删除成功
@@ -54,7 +66,7 @@ public class CarManaController {
      */
     @RequestMapping(value = "/car",method = RequestMethod.POST)
     @ResponseBody
-    @RequiresPermissions("car:append")
+    /*@RequiresPermissions("car:append")*/
     public boolean addCar(HttpSession session, CarPictureVO carPictureVO, @RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();//获取文件的输入流
         String fileName = file.getOriginalFilename(); //获取文件的名字和后缀
