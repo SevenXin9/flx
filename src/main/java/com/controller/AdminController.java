@@ -32,7 +32,6 @@ public class AdminController {
 
     
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    @RequiresPermissions(value = "user:create")
     public String tologin(){
         return "admin/login";
     }
