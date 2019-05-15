@@ -21,4 +21,38 @@ public interface RoleService {
      * @return
      */
     Role findRole(Integer id);
+
+    /**
+     * 添加权限
+     * @param role
+     * @return
+     */
+    public int insert(Role role);
+
+    /**
+     * 修改权限
+     * @return
+     */
+    public int updataRole(Role role);
+
+    /**
+     * 删除权限(可多删)
+     * @param roleIds
+     * @return
+     */
+    public  int delRole(String roleIds);
+
+    /**
+     * 添加用户权限
+     * @param roleId
+     * @param authority
+     */
+    public void addAuthority(Integer roleId,String authority);
+
+    /**
+     * 删除用户权限
+     * @param roleId
+     * @param authority
+     */
+    public void delAuthority(Integer roleId,String authority);
 }

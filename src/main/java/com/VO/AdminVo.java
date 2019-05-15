@@ -1,8 +1,8 @@
 package com.VO;
 
 import com.bean.Admin;
-import com.bean.Authority;
 import com.bean.Role;
+import com.bean.Authority;
 
 public class AdminVo {
     private Admin admin;

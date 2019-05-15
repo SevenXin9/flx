@@ -81,7 +81,7 @@
         <property name="exceptionMappings">
             <props>
                 <prop key="org.apache.shiro.authz.UnauthorizedException">error/403</prop>
-                <prop key="java.lang.Throwable">admin/error/405</prop>
+                <!--<prop key="java.lang.Throwable">admin/error/405</prop>-->
             </props>
         </property>
     </bean>

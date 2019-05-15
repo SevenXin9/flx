@@ -166,9 +166,15 @@
         <include refid="Base_Column_List"></include>
         FROM user
         <where>
+          <if test="user!=null">
             <if test="user.email!=null">
-                email like '%${user.email}%'
+              email like '%${user.email}%'
             </if>
+          </if>
         </where>
     </select>
+    <delete id="deleteByIds" parameterType="java.lang.String">
+      delete from user
+        where id in (${ids})
+    </delete>
 </mapper>

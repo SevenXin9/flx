@@ -101,9 +101,9 @@
     from admin
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from admin
-    where id = #{id,jdbcType=INTEGER}
+    where id in (${value})
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.AdminExample" >
     delete from admin
@@ -112,9 +112,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Admin" >
-    insert into admin (id, name, password, 
+    insert into admin ( name, password,
       role)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{role,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Admin" >
@@ -217,7 +217,7 @@
   <select id="selectAdmin" parameterType="com.VO.AdminVo" resultMap="BaseResultMap_role">
     SELECT admin.id,admin.`name`,admin.role,role.rolename FROM admin,role
     <where>
-        admin.id=role.id
+        admin.role=role.id
         <if test="admin!=null">
           <if test="admin.name!=null">
           AND admin.name like '%${admin.name}%'

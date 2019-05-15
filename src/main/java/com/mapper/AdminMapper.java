@@ -12,7 +12,7 @@ public interface AdminMapper {
 
     int deleteByExample(AdminExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String manageIds);
 
     int insert(Admin record);
 

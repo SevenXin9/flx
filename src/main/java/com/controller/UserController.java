@@ -130,5 +130,8 @@ public class UserController {
         return false;
     }
 
-
+    @RequestMapping(value = "/userCenter/index",method = RequestMethod.GET)
+    public String userCenter(){
+        return "/userCenter/index";
+    }
 }

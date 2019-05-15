@@ -91,7 +91,7 @@
 
         <property name="filterChainDefinitions">
             <value>
-                /** = anon
+                <!--/** = anon-->
             </value>
         </property>
     </bean>

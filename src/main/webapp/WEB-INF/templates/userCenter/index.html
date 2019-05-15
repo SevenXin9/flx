@@ -3,52 +3,38 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>豪车意淫网后台管理</title>
+    <title>个人中心</title>
     <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-icon layui-icon-app layui-logo">  豪车意淫网后台管理</div>
+        <div class="layui-icon layui-icon-group layui-logo">  个人中心</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     欢迎：
-                    <span style="color: red;" th:text="${session.admin.name}"></span>
+                    <span style="color: red;" th:text="${session.user.email}"></span>
                 </a>
             </li>
-            <li class="layui-nav-item"><a href="/exit.action">退出</a></li>
+            <li class="layui-nav-item"><a th:href="@{/user/index}" class="layui-icon layui-icon-home site-demo-active">返回首页</a></li>
         </ul>
     </div>
 
-    <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
+    <div class="layui-side layui-bg-black" >
+        <div class="layui-side-scroll" >
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" layui-bg-cyan lay-shrink="all" lay-filter="test">
-                        <li class="layui-nav-item">
-                            <a class="layui-icon layui-icon-set-fill" style="font-size: 12px;" href="javascript:;">  系统管理</a>
-                                    <dl class="layui-nav-child">
-                                        <dd><a data-url="/admin/intoRoleMana" data-id="roleMana" data-title="角色管理" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
-                                        <dd><a data-url="/admin/intoUserMana" data-id="userMana" data-title="用户管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
-                                        <dd><a data-url="/admin/intoAdminMana" data-id="adminMana" data-title="管理员管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  管理员管理</a></dd>
-                                    </dl>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a class="layui-icon layui-icon-app" style="font-size: 12px;" href="javascript:;">  汽车管理</a>
-                                    <dl class="layui-nav-child">
-                                        <dd><a data-url="/user/index" data-id="carMana" data-title="carMana" class="layui-icon layui-icon-engine site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="carMana">  汽车管理</a></dd>
-                                        <dd><a data-url="/user/index" data-id="reserveMana" data-title="reserveMana" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="reserveMana">  订单管理</a></dd>
-                                        <dd><a data-url="/user/index" data-id="brandMana" data-title="brandMana" class="layui-icon layui-icon-flag site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="brandMana">  品牌管理</a></dd>
-                                        <dd><a data-url="/user/index" data-id="garage" data-title="garage" class="layui-icon layui-icon-log site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="garage">  购车记录</a></dd>
-                                    </dl>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a class="layui-icon layui-icon-password menu" data-name="修改密码" style="font-size: 12px;" href="javascript:;">  修改密码</a>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a class="layui-icon layui-icon-close-fill menu" data-name="安全退出" style="font-size: 12px;" href="javascript:;">  安全退出</a>
-                        </li>
+            <ul class="layui-nav layui-nav-tree" layui-bg-cyan lay-shrink="all" lay-filter="test" >
+                <li class="layui-nav-item">
+                    <a data-url="/user/index" data-id="carMana" data-title="carMana" class="layui-icon site-demo-active layui-icon-password" style="font-size: 12px; align-items: center;" href="javascript:;" name="carMana">修改密码</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a data-url="/user/index" data-id="carMana" data-title="carMana" class="layui-icon layui-icon-list site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="carMana">预定管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a data-url="/user/index" data-id="carMana" data-title="carMana" class="layui-icon layui-icon-engine site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="carMana">购车记录</a>
+                </li>
             </ul>
         </div>
     </div>

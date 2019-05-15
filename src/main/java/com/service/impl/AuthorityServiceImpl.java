@@ -12,9 +12,14 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Autowired
     private AuthorityMapper authorityMapper;
-    @Override
+    @Override//查询权限
     public List<Authority> findAuthoritys(String ids) {
         return authorityMapper.selectByIds(ids);
+    }
+
+    @Override//获取全部权限
+    public List<Authority> showAuthoritys(){
+        return authorityMapper.selectByExample(null);
     }
 
 }
