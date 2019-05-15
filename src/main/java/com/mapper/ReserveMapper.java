@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.VO.ReserveVO;
 import com.bean.Reserve;
 import com.bean.ReserveExample;
 import org.apache.ibatis.annotations.Param;
@@ -16,6 +17,8 @@ public interface ReserveMapper {
     int insert(Reserve record);
 
     int insertSelective(Reserve record);
+
+    List<ReserveVO> selectByAll(ReserveVO reserveVO);
 
     List<Reserve> selectByExample(ReserveExample example);
 

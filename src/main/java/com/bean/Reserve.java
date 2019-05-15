@@ -1,5 +1,7 @@
 package com.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Reserve {
@@ -9,6 +11,7 @@ public class Reserve {
 
     private Integer userid;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:dd",timezone = "GMT+8")
     private Date time;
 
     public Integer getId() {

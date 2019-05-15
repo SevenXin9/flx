@@ -3,6 +3,7 @@ package com.service.impl;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Car;
 import com.bean.Type;
 import com.bean.Picture;
 import com.github.pagehelper.PageHelper;
@@ -112,5 +113,10 @@ public class CarServiceImpl implements CarService {
         picture.setUrl(carPictureVO.getUrl());
         picture.setCarId(carPictureVO.getId());
         return pictureMapper.insertSelective(picture);  //添加车的图片地址
+    }
+
+    @Override//查询所有车
+    public List<Car> selectByAll() {
+        return carMapper.selectByAll();
     }
 }

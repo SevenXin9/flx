@@ -3,6 +3,7 @@ package com.service;
 import com.VO.CarPictureTypeBrandVO;
 import com.VO.CarPictureVO;
 import com.bean.Brand;
+import com.bean.Car;
 import com.bean.Type;
 
 import java.util.List;
@@ -82,4 +83,10 @@ public interface CarService {
      * @return
      */
     public int insert(CarPictureVO carPictureVO);
+
+    /**
+     * 查询所有车信息
+     * @return
+     */
+    public List<Car> selectByAll();
 }

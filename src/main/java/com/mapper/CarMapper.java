@@ -18,6 +18,7 @@ public interface CarMapper {
 
     int insertSelective(CarPictureVO record);//添加车辆信息并返回主键
 
+    List<Car> selectByAll();
     List<CarPictureVO> selectCarPicture1();//查询即将发行车信息
     List<CarPictureVO> selectCarPicture2();//查询流行车
     List<CarPictureVO> selectCarPicture3();//查询新车上市
