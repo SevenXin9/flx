@@ -16,6 +16,8 @@ public interface TypeMapper {
 
     int insertSelective(Type record);
 
+    List<Type> selectByAll();
+
     List<Type> selectByExample(TypeExample example);
 
     Type selectByPrimaryKey(Integer id);

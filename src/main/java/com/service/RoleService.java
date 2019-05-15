@@ -2,6 +2,8 @@ package com.service;
 
 import com.bean.Role;
 
+import java.util.List;
+
 /**
  * @create 2019/5/13
  */
@@ -26,4 +28,10 @@ public interface RoleService {
      * @return
      */
     public  int delRole(String roleIds);
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    public List<Role> selectByAll();
 }

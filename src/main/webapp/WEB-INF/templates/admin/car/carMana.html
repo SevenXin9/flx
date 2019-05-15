@@ -15,7 +15,7 @@
                 <div class="layui-input-inline">
                     <select id="brand" name="brand">
                         <option value=""></option>
-                        <option value="1">名字</option>
+                        <option th:each="brand:${brands}" th:text="${brand.name}" th:value="${brand.id}"></option>
                     </select>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="layui-input-inline">
                     <select id="type" name="type">
                         <option value=""></option>
-                        <option value="1">汽车类型</option>
+                        <option value="1" th:each="type:${types}" th:value="${type.id}" th:text="${type.name}"></option>
                     </select>
                 </div>
             </div>
@@ -124,12 +124,12 @@
                     data=checkStatus.data,
                     ids=[];
                 for(var i=0;i<data.length;i++){
-                    ids.push(data[i].admin.id);
+                    ids.push(data[i].car.id);
                 }
                 if(ids.length > 0){
                     layer.confirm('确定要删除吗？',function (index) {
                         $.ajax({
-                            url:"/admin/Manage/"+ids.toString(),
+                            url:"/admin/car/"+ids.toString(),
                             type:"delete",
                             async:true,
                             success:function(data){
@@ -164,7 +164,7 @@
                     ,shade: 0.7
                     ,shadeClose:true
                     ,maxmin: true
-                    ,content: '/admin/toUpManage/'+data.admin.id
+                    ,content: '/admin/toUpManage/'+data.car.id
                     ,yes: function(){
                         $(that).click();
                     }

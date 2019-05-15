@@ -15,7 +15,7 @@
 <body>
 
 <div class="layui-body" style="padding-top: 30px">
-    <form class="layui-form" action="" enctype="multipart/form-data">
+    <form class="layui-form" action="" id="formData"  enctype="multipart/form-data">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">汽车名称：</label>
@@ -42,7 +42,7 @@
                 <div class="layui-input-inline">
                     <select id="brand" name="brand">
                         <option value=""></option>
-                        <option value="1">名字</option>
+                        <option th:each="brand:${brands}" th:text="${brand.name}" th:value="${brand.id}"></option>
                     </select>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="layui-input-inline">
                     <select id="type" name="type">
                         <option value=""></option>
-                        <option value="1">汽车类型</option>
+                        <option value="1" th:each="type:${types}" th:value="${type.id}" th:text="${type.name}"></option>
                     </select>
                 </div>
             </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <input type="file" id="img">
+                <input type="file" name="file" id="img">
             </div>
         </div>
         <div class="layui-form-item">
@@ -91,10 +91,16 @@
 
         //监听提交
         form.on('submit(formDemo)', function(data){
+            var form = new FormData($("#formData")[0]);
             $.ajax({
                 url:"/admin/car",
                 type:"post",
-                data:{
+                data:form,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                /*{
                     "name":$("#name").val()
                     ,"price":$("#price").val()
                     ,"releasetime":$("#releasetime").val()
@@ -102,8 +108,7 @@
                     ,"type":$("#type").val()
                     ,"count":$("#count").val()
                     ,"file":$("#img").val()
-                },
-                async:true,
+                }*/
                 success:function(data){
                     if(data){
                         var index = parent.layer.getFrameIndex(window.name)

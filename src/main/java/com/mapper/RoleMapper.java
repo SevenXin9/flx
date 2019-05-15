@@ -20,6 +20,8 @@ public interface RoleMapper {
 
     Role selectByName(String roleName);
 
+    List<Role> selectByAll();
+
     List<Role> selectByExampleWithBLOBs(RoleExample example);
 
     List<Role> selectByExample(RoleExample example);

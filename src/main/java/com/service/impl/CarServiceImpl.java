@@ -107,10 +107,10 @@ public class CarServiceImpl implements CarService {
 
     @Override//添加车信息
     public int insert(CarPictureVO carPictureVO) {
-        int id=carMapper.insertSelective(carPictureVO);//添加车的信息  id为次车辆的主键
+        carMapper.insert(carPictureVO);//添加车的信息  id为次车辆的主键
         Picture picture =new Picture();
         picture.setUrl(carPictureVO.getUrl());
-        picture.setCarId(id);
+        picture.setCarId(carPictureVO.getId());
         return pictureMapper.insertSelective(picture);  //添加车的图片地址
     }
 }

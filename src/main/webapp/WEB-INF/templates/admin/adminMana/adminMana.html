@@ -21,7 +21,7 @@
                 <div class="layui-input-inline">
                     <select id="roleid" name="roleid" lay-filter="aihao">
                         <option value=""></option>
-                        <option value="1">名字</option>
+                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.rolename}"></option>
                     </select>
                 </div>
             </div>
