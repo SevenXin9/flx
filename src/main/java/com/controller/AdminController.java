@@ -98,9 +98,10 @@ public class AdminController {
         return "/admin/roleMana/editRole";
     }
 
-    // 进入角色授权界面
-    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
-    public String intoGrantRole(){
-        return "/admin/roleMana/grantRole";
-    }
+//    // 进入角色授权界面
+//    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
+//    public String intoGrantRole(){
+//
+//        return "/admin/roleMana/grantRole";
+//    }
 }

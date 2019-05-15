@@ -25,19 +25,25 @@ public class AuthorityController{
     @RequestMapping(value = "/authority",method = RequestMethod.GET)
     @RequiresPermissions("role:grant")
     public String authority(String roleId,String ids, Model model){
-        List<Authority> authorities =  authorityService.findAuthoritys(ids);
         List<Authority> authorityList = authorityService.showAuthoritys();
         List<AuthorityVo> authorityVos = new ArrayList<AuthorityVo>();
-        boolean falg = false;
-        for (Authority authority:authorityList) {
-            falg = false;
-            for (Authority authority1:authorities) {
-                if(authority.getId().equals(authority1.getId())) {
-                    System.out.println(authority.getId() + ":" + authority1.getId());
-                    falg = true;
-                }
+        if (ids==null||ids.equals("")){
+            for (Authority authority:authorityList) {
+                authorityVos.add(new AuthorityVo(authority,false));
             }
-            authorityVos.add(new AuthorityVo(authority,falg));
+        }else {
+            List<Authority> authorities = authorityService.findAuthoritys(ids);
+            boolean falg = false;
+            for (Authority authority : authorityList) {
+                falg = false;
+                for (Authority authority1 : authorities) {
+                    if (authority.getId().equals(authority1.getId())) {
+                        System.out.println(authority.getId() + ":" + authority1.getId());
+                        falg = true;
+                    }
+                }
+                authorityVos.add(new AuthorityVo(authority, falg));
+            }
         }
         model.addAttribute("authorities",authorityVos);
         model.addAttribute("roleId",roleId);
