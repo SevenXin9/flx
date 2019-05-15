@@ -12,14 +12,16 @@
 <script th:src="@{/static/js/bootstrap.js}"></script>
 <script type="text/javascript" th:src="@{/static/js/jquery-ui.js}"></script>
 <!-- //for-mobile-apps -->
+<link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
 <link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" type="text/css" th:href="@{/static/css/zoomslider.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/static/css/component.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/static/css/jquery-ui1.css}">
-			<link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
+<link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet" type="text/css" media="all" />
 
 <script type="text/javascript" th:src="@{/static/js/modernizr-2.6.2.min.js}"></script>
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
 <!--/web-fonts-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
@@ -735,11 +737,8 @@
 				'<div class="clearfix"></div>' +
 				'<div class="list-form">' +
 				'<div class="phone-info">' +
-				'<form action="used_cars.html" method="post">' +
-				'<input type="text" class="phone" placeholder="Phone" required="">' +
-				'</form>' +
 				'</div>' +
-				'<div class="get-one"><a href="used_cars.html">  购 买  </a><a href="used_cars.html"></a></div>' +
+				'<div class="get-one"><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')">  预 定  </a><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')"></a></div>' +
 				'<div class="clearfix"></div>' +
 				'</div>' +
 				'</div>' +
@@ -766,6 +765,31 @@
 			  alert("系统异常");
 		  }
 	  });
+  }
+  function reserve(carid) {
+      layui.use(['layer', 'form'], function(){
+          var form = layui.form;
+          var layer = layui.layer;
+          var $ = layui.$;
+
+          layer.open({
+              type: 1 //此处以iframe举例
+              ,title: '温馨提示'
+              ,shade: 0.7
+              ,shadeClose:true
+              ,maxmin: true
+              ,content: '<div style="padding: 20px 100px;">您确定要预定吗？</div>'
+              ,btn: ['确定', '取消']
+              ,btnAlign: 'c' //按钮居中
+              ,yes: function(){
+                  layer.closeAll();
+                  layer.msg(carid)
+              }
+              ,zIndex: layer.zIndex //重点1
+              ,id: 'exit' //设定一个id，防止重复弹出
+          });
+
+      })
 
   }
 </script>
