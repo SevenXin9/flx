@@ -189,14 +189,10 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bean.Role" >
     update role
-    set id = #{record.id,jdbcType=INTEGER},
-      rolename = #{record.rolename,jdbcType=VARCHAR},
-      authority = #{record.authority,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    set rolename = #{rolename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByExample" parameterType="map" >
     update role

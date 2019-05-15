@@ -44,6 +44,7 @@ public class RoleManaController {
 
     // 进入角色授权界面
     @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
+
     public String intoGrantRole(){
         return "/admin/roleMana/grantRole";
     }
@@ -55,9 +56,8 @@ public class RoleManaController {
      */
     @RequestMapping(value = "/role",method = RequestMethod.POST)
     @ResponseBody
-    @RequiresPermissions("role:append")
+    @RequiresPermissions("role:create")
     public boolean addRole(Role role){
-        System.out.println(role);
         if (roleService.insert(role)==1){
             return true;
         }
@@ -73,7 +73,7 @@ public class RoleManaController {
     @ResponseBody
     @RequiresPermissions("role:update")
     public boolean upRole(Role role){
-        System.out.println(role);
+        System.out.println("aaa");
         if (roleService.updataRole(role)==1){
             return true;
         }return false;
@@ -101,6 +101,7 @@ public class RoleManaController {
      */
     @RequestMapping(value = "/role",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions(value = "role:view")
     public Map<String,Object> roles(RoleVo roleVo){
         return roleService.findRoles(roleVo);
     }

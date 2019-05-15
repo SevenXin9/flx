@@ -47,12 +47,13 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.insert(role);
     }
 
-    @Override//修改权限
+    @Override//修改角色
     public int updataRole(Role role) {
+        System.out.println("jinlaile");
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
         }
-        return roleMapper.updateByPrimaryKeyWithBLOBs(role);
+        return roleMapper.updateByPrimaryKeySelective(role);
     }
 
 
@@ -61,7 +62,7 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.deleteByPrimaryKey(roleIds);
     }
 
-    @Override
+    @Override//添加用户权限
     public void addAuthority(Integer roleId,String authority){
         Role role= roleMapper.selectByPrimaryKey(roleId);
         String auth = role.getAuthority();
@@ -74,7 +75,7 @@ public class RoleServiceImpl implements RoleService {
         roleMapper.updateByPrimaryKeySelective(role);
     }
 
-    @Override
+    @Override//删除用户权限
     public void delAuthority(Integer roleId,String authority) {
         Role role= roleMapper.selectByPrimaryKey(roleId);
         String auth[] = role.getAuthority().split(",");

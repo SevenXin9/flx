@@ -38,11 +38,14 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         Admin admin =  (Admin) principalCollection.getPrimaryPrincipal();
         Role role = roleService.findRole(admin.getRole());
-        List<Authority> authorities = authorityService.findAuthoritys(role.getAuthority());
-        Collection<String> collection = new ArrayList<String>();
-        for (Authority authority:authorities) {
-            collection.add(authority.getAuthority());
+        List<String> collection = new ArrayList<String>();
+        if (role.getAuthority()!=null&&role.getAuthority().equals("")) {
+            List<Authority> authorities = authorityService.findAuthoritys(role.getAuthority());
+            for (Authority authority:authorities) {
+                collection.add(authority.getAuthority());
+            }
         }
+//        System.out.println(collection.toArray().toString());
         info.addStringPermissions(collection);
         return info;
     }

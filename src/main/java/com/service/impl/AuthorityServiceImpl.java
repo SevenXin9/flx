@@ -22,4 +22,5 @@ public class AuthorityServiceImpl implements AuthorityService {
         return authorityMapper.selectByExample(null);
     }
 
+
 }
