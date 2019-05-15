@@ -90,7 +90,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> selectByAll() {
-        roleMapper.selectByExample(null);
-        return null;
+        return roleMapper.selectByExample(null);
     }
 }

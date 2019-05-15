@@ -73,11 +73,6 @@ public class AdminController {
         return "/admin/editPWD/editPWD";
     }
 
-    @RequestMapping("error/405")
-    public String error(){
-        return "/error/405";
-    }
-
     // 进入角色管理界面
     @RequestMapping(value = "intoRoleMana", method = RequestMethod.GET)
     public String intoRoleMana(){
