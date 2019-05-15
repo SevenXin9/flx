@@ -6,6 +6,8 @@ import com.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @create 2019/5/13
  */
@@ -34,5 +36,10 @@ public class RoleServiceImpl implements RoleService {
     @Override//删除角色
     public int delRole(String roleIds) {
         return roleMapper.deleteByPrimaryKey(roleIds);
+    }
+
+    @Override//查询所有角色
+    public List<Role> selectByAll() {
+        return roleMapper.selectByAll();
     }
 }

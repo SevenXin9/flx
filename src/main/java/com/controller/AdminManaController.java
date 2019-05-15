@@ -2,6 +2,7 @@ package com.controller;
 
 import com.bean.Admin;
 import com.service.AdminService;
+import com.service.RoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,18 +33,22 @@ public class AdminManaController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RoleService roleService;
     //日志
     private final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     // 进入管理员管理界面
     @RequestMapping(value = "intoAdminMana", method = RequestMethod.GET)
-    public String intoAdmin(){
+    public String intoAdmin(Model model){
+        model.addAttribute("roles",roleService.selectByAll());
         return "/admin/adminMana/adminMana";
     }
 
     // 进入添加管理员界面
     @RequestMapping(value = "intoAddAdmin", method = RequestMethod.GET)
-    public String intoAddAdmin(){
+    public String intoAddAdmin(Model model){
+        model.addAttribute("roles",roleService.selectByAll());
         return "/admin/adminMana/addAdmin";
     }
 
@@ -66,6 +71,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/toUpManage/{manageId}",method = RequestMethod.GET)
     public String toUpMana(@PathVariable("manageId") Integer id, Model model){
+        model.addAttribute("roles",roleService.selectByAll());
         model.addAttribute("manage",adminService.selectByPrimaryKey(id));
         return "/admin/adminMana/editAdmin";
     }

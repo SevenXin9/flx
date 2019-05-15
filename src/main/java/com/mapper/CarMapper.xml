@@ -188,11 +188,11 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.VO.CarPictureVO" >
-    insert into car (id, name, price,
+  <insert id="insert" parameterType="com.VO.CarPictureVO" useGeneratedKeys="true" keyProperty="id">
+    insert into car ( name, price,
       releaseTime, brand, type,
       count)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
+    values ( #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
       #{releasetime,jdbcType=DATE}, #{brand,jdbcType=INTEGER}, #{type,jdbcType=INTEGER},
       #{count,jdbcType=INTEGER})
   </insert>

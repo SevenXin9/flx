@@ -1,12 +1,15 @@
 package com.controller;
 
 import com.VO.CarPictureVO;
+import com.service.BrandService;
 import com.service.CarService;
+import com.service.TypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,16 +30,24 @@ public class CarManaController {
 
     @Autowired
     private CarService carService;
+    @Autowired
+    private BrandService brandService;
+    @Autowired
+    private TypeService typeService;
 
     // 进入汽车管理界面
     @RequestMapping(value = "/intoCarMana", method = RequestMethod.GET)
-    public String intoCarMana(){
+    public String intoCarMana(Model model){
+        model.addAttribute("brands",brandService.selectByAll());
+        model.addAttribute("types",typeService.selectByAll());
         return "admin/car/carMana";
     }
 
     // 进入添加汽车界面
     @RequestMapping(value = "/intoAddCar", method = RequestMethod.GET)
-    public String intoAddCar(){
+    public String intoAddCar(Model model){
+        model.addAttribute("brands",brandService.selectByAll());
+        model.addAttribute("types",typeService.selectByAll());
         return "admin/car/addCar";
     }
 
@@ -68,10 +79,13 @@ public class CarManaController {
     @ResponseBody
     /*@RequiresPermissions("car:append")*/
     public boolean addCar(HttpSession session, CarPictureVO carPictureVO, @RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(carPictureVO.getBrand()+carPictureVO.getName());
         InputStream inputStream = file.getInputStream();//获取文件的输入流
         String fileName = file.getOriginalFilename(); //获取文件的名字和后缀
+        System.out.println("图片名字："+fileName);
         String path=this.getClass().getProtectionDomain().getCodeSource().getLocation().toString()+"static"+ File.separator+"images"+File.separator+file.getOriginalFilename();
         path = path.substring(6);//项目发布路径
+        System.out.println(path);
         OutputStream outputStream = new FileOutputStream(path); //指定上传位置
         byte bs[] = new byte[1024];
         int len=-1;

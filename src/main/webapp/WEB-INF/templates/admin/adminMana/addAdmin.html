@@ -21,6 +21,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-inline">
+                    <option value="">请选择</option>
                     <input type="password" name="password" id="password" required  lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -31,8 +32,8 @@
                 <label class="layui-form-label">角色：</label>
                 <div class="layui-input-inline">
                     <select id="role" name="role" lay-filter="aihao" required  lay-verify="required">
-                        <option value=""></option>
-                            <option value="1">角色名字</option>
+                        <option value="">请选择</option>
+                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.rolename}"></option>
                     </select>
                 </div>
             </div>
