@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,7 @@ public class AdminServiceImpl implements AdminService {
     public Map<String, Object> selectAll(AdminVo adminVo){
         PageInfo<AdminVo> pageInfo = PageHelper.startPage(adminVo.getPage(), adminVo.getLimit()).doSelectPageInfo(() -> adminMapper.selectAdmin(adminVo));
         return LayuiUtil.data(pageInfo.getTotal(), pageInfo.getList());
+
     }
 
     @Override//通过ids删除管理员
@@ -56,9 +58,7 @@ public class AdminServiceImpl implements AdminService {
     @Override//修改管理员
     public int updateByPrimaryKeySelective(Admin admin) {
         admin.setPassword(MD5Utils.MD5(admin.getName(), admin.getPassword()));
-        if (adminMapper.selectByNamePass(admin.getName())!=null){//用户名重复
-            return 2;
-        }else if(adminMapper.updateByPrimaryKeySelective(admin) > 0){
+        if(adminMapper.updateByPrimaryKeySelective(admin) > 0){
             logger.info("编号为:"+admin.getId()+"的管理员修改成功");
             return 1;
         }

@@ -50,7 +50,7 @@ public class IndexController {
         //展示车
         List<CarPictureVO> Cars5=carService.selectCarPicture4(1);
         //获得所有品牌信息
-        List<Brand> brands = brandService.selectBrands();
+        List<Brand> brands = brandService.selectByAll();
         model.addAttribute("addresses", addresses);
         model.addAttribute("Cars",Cars1);
         model.addAttribute("Cars2",Cars2);

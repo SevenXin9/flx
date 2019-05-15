@@ -10,31 +10,10 @@
     <form class="layui-form" action="">
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">账号：</label>
+                <label class="layui-form-label">品牌：</label>
                 <div class="layui-input-inline">
-                    <input hidden type="text" id="id" th:value="${manage.id}" />
-                    <input type="text" name="name" id="name" readonly autocomplete="off" class="layui-input" th:value="${manage.name}">
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">新密码：</label>
-                <div class="layui-input-inline">
-                    <input type="password" name="password" id="password" required  lay-verify="required" autocomplete="off" class="layui-input" />
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">角色：</label>
-                <div class="layui-input-inline">
-                    <select id="roleid" name="rolename" lay-filter="aihao" required  lay-verify="required">
-                        <option >请选择</option>
-                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.rolename}"></option>
-                    </select>
+                    <input hidden type="text" id="id" th:value="${brand.id}" />
+                    <input type="text" name="name" id="name" autocomplete="off" class="layui-input" th:value="${brand.name}">
                 </div>
             </div>
         </div>
@@ -63,24 +42,22 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             $.ajax({
-                url:"/admin/Manage",
+                url:"/admin/brand",
                 type:"POST",
                 data:{
                     _method:"PUT"
                     ,"id":$("#id").val()
                     ,"name":$("#name").val()
-                    ,"password":$("#password").val()
-                    ,"role":$("#roleid").val()
                 },
                 async:true,
                 success:function(data){
-                    if(data == 1){
+                    if(data){
                         var index = parent.layer.getFrameIndex(window.name)
                         layer.alert("成功",{title:"修改成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
                     }else{
-                        layer.alert("系统异常，修改失败",{title:"修改失败"})
+                        layer.alert("已有此品牌，修改失败",{title:"修改失败"})
                     }
                 },
                 error:function(){

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>添加汽车信息</title>
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
+</head>
+<style type="text/css">
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+</style>
+<body>
+
+<div class="layui-body" style="padding-top: 30px">
+    <form class="layui-form" action="" id="formData"  enctype="multipart/form-data">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">汽车名称：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" id="name" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">价格：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="price" id="price" required  lay-verify="required" autocomplete="off" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">上架时间：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="releasetime" id="releasetime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌：</label>
+                <div class="layui-input-inline">
+                    <select id="brand" name="brand">
+                        <option value=""></option>
+                        <option th:each="brand:${brands}" th:text="${brand.name}" th:value="${brand.id}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">汽车类型：</label>
+                <div class="layui-input-inline">
+                    <select id="type" name="type">
+                        <option value=""></option>
+                        <option value="1" th:each="type:${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">数量：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="count" id="count" required  lay-verify="required" autocomplete="off" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <input type="file" name="file" id="img">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+<script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
+<script type="text/javascript">
+    //Demo
+    layui.use(['form','layer','laydate','upload'], function(){
+        var form = layui.form,
+        layer = layui.layer,
+        $ = layui.$,
+        laydate = layui.laydate,
+        upload = layui.upload;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            var form = new FormData($("#formData")[0]);
+            $.ajax({
+                url:"/admin/car",
+                type:"post",
+                data:form,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                /*{
+                    "name":$("#name").val()
+                    ,"price":$("#price").val()
+                    ,"releasetime":$("#releasetime").val()
+                    ,"brand":$("#brand").val()
+                    ,"type":$("#type").val()
+                    ,"count":$("#count").val()
+                    ,"file":$("#img").val()
+                }*/
+                success:function(data){
+                    if(data){
+                        var index = parent.layer.getFrameIndex(window.name)
+                        layer.alert("添加成功",{title:"添加成功"});
+                        parent.layer.close(index);
+                        parent.layui.table.reload("list");
+                    }else{
+                        layer.alert("系统异常，添加失败",{title:"添加失败"})
+                    }
+                },
+                error:function(){
+                    alert("系统异常");
+                }
+            })
+            return false;
+        });
+
+        //日期
+        laydate.render({
+            elem: '#releasetime'
+        });
+    });
+</script>
+</html>

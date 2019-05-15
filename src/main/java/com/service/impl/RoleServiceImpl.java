@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import java.util.List;
+
+/**
+ * @create 2019/5/13
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -42,7 +47,7 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.insert(role);
     }
 
-    @Override//修改角色
+    @Override//修改权限
     public int updataRole(Role role) {
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
@@ -81,5 +86,11 @@ public class RoleServiceImpl implements RoleService {
         }
         role.setAuthority(StringUtils.join(list.toArray(), ","));
         roleMapper.updateByPrimaryKeySelective(role);
+    }
+
+    @Override
+    public List<Role> selectByAll() {
+        roleMapper.selectByExample(null);
+        return null;
     }
 }
