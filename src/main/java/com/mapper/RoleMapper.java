@@ -30,8 +30,6 @@ public interface RoleMapper {
 
     int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Role record, @Param("example") RoleExample example);
-
     int updateByExample(@Param("record") Role record, @Param("example") RoleExample example);
 
     int updateByPrimaryKeySelective(Role record);
