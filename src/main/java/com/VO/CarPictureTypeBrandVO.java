@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class CarPictureTypeBrandVO {
 
-    private Integer id;
-
     private Car car;
 
     private Picture picture;
@@ -52,14 +50,6 @@ public class CarPictureTypeBrandVO {
 
     public void setPage(Integer page) {
         this.page = page;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Car getCar() {

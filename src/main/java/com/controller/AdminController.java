@@ -64,27 +64,4 @@ public class AdminController {
         return "/admin/editPWD/editPWD";
     }
 
-    // 进入角色管理界面
-    @RequestMapping(value = "intoRoleMana", method = RequestMethod.GET)
-    public String intoRoleMana(){
-        return "/admin/roleMana/roleMana";
-    }
-
-    // 进入角色添加界面
-    @RequestMapping(value = "intoAddRole", method = RequestMethod.GET)
-    public String intoAddRole(){
-        return "/admin/roleMana/addRole";
-    }
-
-    // 进入修改角色界面
-    @RequestMapping(value = "intoEditRole", method = RequestMethod.GET)
-    public String intoEditRole(){
-        return "/admin/roleMana/editRole";
-    }
-
-    // 进入角色授权界面
-    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
-    public String intoGrantRole(){
-        return "/admin/roleMana/grantRole";
-    }
 }

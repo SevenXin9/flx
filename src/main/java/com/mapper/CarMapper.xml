@@ -24,7 +24,7 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
   </resultMap>
 
   <resultMap id="car_picture_type_brand_map" type="com.VO.CarPictureTypeBrandVO">
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="car.id" jdbcType="INTEGER" />
     <association property="car" javaType="com.bean.Car">
       <id column="id" property="id" jdbcType="INTEGER" />
       <result column="name" property="name" jdbcType="VARCHAR" />
