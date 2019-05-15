@@ -4,7 +4,9 @@ package com.controller;
 import com.VO.CarPictureTypeBrandVO;
 import com.bean.Brand;
 import com.bean.Type;
+import com.bean.User;
 import com.service.CarService;
+import com.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +27,8 @@ public class CarController {
 
     @Autowired
     private CarService carService;
+    @Autowired
+    private ReserveService reserveService;
 
     // 条件查询车信息
     @RequestMapping(value = "/findCar", method = RequestMethod.GET)
@@ -54,5 +59,13 @@ public class CarController {
     @ResponseBody
     public CarPictureTypeBrandVO findCarId(@RequestParam(value = "id", defaultValue = "-1")Integer id){
         return carService.getCarPictureTypeVO(id);
+    }
+
+    // 添加订单信息
+    @RequestMapping(value = "/reserve", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean insert(@RequestParam("carid") Integer carid, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        return reserveService.insertReservice(carid, user.getId());
     }
 }

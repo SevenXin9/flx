@@ -16,4 +16,11 @@ public interface ReserveService {
      * @return
      */
     public Map<String, Object> selectByAll(ReserveVO reserveVO);
+
+    /**
+     * 添加订单信息
+     * @param carid 车id
+     * @return
+     */
+    public Boolean insertReservice(Integer carid, Integer userid);
 }

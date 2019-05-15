@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import com.VO.ReserveVO;
+import com.bean.Reserve;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.ReserveMapper;
@@ -9,6 +10,7 @@ import com.utils.LayuiUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,5 +27,13 @@ public class ReserveServiceImpl implements ReserveService {
     public Map<String, Object> selectByAll(ReserveVO reserveVO){
         PageInfo<ReserveVO> pageInfo = PageHelper.startPage(reserveVO.getPage(),reserveVO.getLimit()).doSelectPageInfo(()->reserveMapper.selectByAll(reserveVO));
         return LayuiUtil.data(pageInfo.getTotal(),pageInfo.getList());
+    }
+
+    @Override// 添加订单信息
+    public Boolean insertReservice(Integer carid, Integer userid) {
+        if(reserveMapper.insertSelective(new Reserve(carid, userid, new Date())) > 0){
+            return true;
+        }
+        return false;
     }
 }

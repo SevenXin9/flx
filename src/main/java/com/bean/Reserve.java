@@ -14,6 +14,15 @@ public class Reserve {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:dd",timezone = "GMT+8")
     private Date time;
 
+    public Reserve() {
+    }
+
+    public Reserve(Integer carid, Integer userid, Date time) {
+        this.carid = carid;
+        this.userid = userid;
+        this.time = time;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -44,5 +53,15 @@ public class Reserve {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "id=" + id +
+                ", carid=" + carid +
+                ", userid=" + userid +
+                ", time=" + time +
+                '}';
     }
 }
