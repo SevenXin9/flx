@@ -51,7 +51,6 @@
 				<!-- /sidebar -->
 
 				<!-- //sidebar -->
-				<div class="tag"><a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-tag"></span> 优惠折扣 » </a></div>
 				<div class="tag"><a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-log-in"></span> 注册</a></div>
 			</div>
 			<!-- //header-left -->
@@ -73,7 +72,7 @@
 				<ul>
 
 					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
+						<a href="#" id="address" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 
 					<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
 						<button id="out" class="navig" th:if="${session.user}!=null">退出　</button>
@@ -385,8 +384,8 @@
 
                                 function intocounty(){
                                     var cityName = $("#province option:selected").text() + $("#county option:selected").text();
-                                    var id = $("#province").val();
-                                    if(id != null || id != ""){
+                                    var id = $("#province option:selected").val();
+                                    if(id != ""){
                                         // 创建地址解析器实例
                                         var myGeo = new BMap.Geocoder();
                                         // 将地址解析结果显示在地图上,并调整地图视野
@@ -394,12 +393,47 @@
                                             if (point) {
                                                 map.centerAndZoom(point, 12);
                                                 map.addOverlay(new BMap.Marker(point));
+                                                $("#address").html("<i class=\"glyphicon glyphicon-map-marker\" aria-hidden=\"true\"></i>"+cityName);
+                                                setCookie("address", cityName, 7);
                                             }else{
                                                 alert("您选择地址没有解析到结果!");
                                             }
                                         });
+									}else{
+                                        delCookie("address");
+                                        $("#address").html("<i class=\"glyphicon glyphicon-map-marker\" aria-hidden=\"true\"></i>选择您的位置");
 									}
                                 }
+
+                                var setCookie = function(name, value, day){
+                                    if(day != 0){     //当设置的时间等于0时，不设置expires属性，cookie在浏览器关闭后删除
+                                        var expires = day*24*60*60*1000;
+                                        var date = new Date(+new Date()+expires);
+                                        document.cookie = name + "=" + escape(value) + ";expires=" + date.toUTCString();
+									}else{
+                                        document.cookie = name + "=" + escape(value);
+									}
+								}
+								
+								var getCookie = function (name) {
+                                    var arr;
+                                    var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                                    if (arr = document.cookie.match(reg))
+                                        return unescape(arr[2]);
+                                    else
+                                        return null;
+                                }
+
+                                var delCookie = function (name) {
+                                    setCookie(name, ' ', -1);
+                                };
+
+                                onload = function () {
+                                    var address = getCookie("address");
+                                    if(address != null){
+                                        $("#address").html("<i class=\"glyphicon glyphicon-map-marker\" aria-hidden=\"true\"></i>"+address);
+									}
+								}
 							</script>
 
 					</div>
