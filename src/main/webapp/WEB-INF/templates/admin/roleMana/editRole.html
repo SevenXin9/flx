@@ -11,15 +11,15 @@
             <div class="layui-inline">
                 <label class="layui-form-label">角色名称：</label>
                 <div class="layui-input-inline">
-                    <input type="text" hidden id="roleid" value="${role.roleid}" />
-                    <input type="text" name="rolename" id="rolename" required  lay-verify="required" autocomplete="off" class="layui-input" value="${role.rolename}">
+                    <input type="text" hidden id="roleid" th:value="${role.id}" />
+                    <input type="text" name="rolename" id="rolename" required  lay-verify="required" autocomplete="off" class="layui-input" th:value="${role.rolename}">
                 </div>
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">更改</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -37,26 +37,26 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             $.ajax({
-                url:"/updateRole.action",
+                url:"/admin/role",
                 type:"post",
                 data:{
-                    "roleid":$("#roleid").val()
-                    ,"rolename":$("#rolename").val()
-                    ,"roledescription":$("#roledescription").val()
+                    "_method":"PUT",
+                    "id":$("#roleid").val(),
+                    "rolename":$("#rolename").val()
                 },
                 async:true,
                 success:function(data){
-                    if(data == 1){
+                    if(data){
                         var index = parent.layer.getFrameIndex(window.name)
                         layer.alert("修改成功",{title:"修改成功"});
                         parent.layer.close(index);
                         parent.layui.table.reload("list");
                     }else{
-                        layer.alert("修改失败",{title:"修改失败"})
+                        layer.alert("管理员名称已存在",{title:"管理员名称已存在"})
                     }
                 },
                 error:function(){
-                    alert("系统异常");
+                    alert("修改失败");
                 }
             })
             return false;

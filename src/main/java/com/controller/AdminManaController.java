@@ -8,7 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.VO.AdminVo;
+import com.bean.Role;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.service.AdminService;
+import com.utils.LayuiUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,7 +110,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/Manage",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> admin(AdminVo adminVo){
+    public Map<String,Object> admin(AdminVo adminVo){
         return adminService.selectAll(adminVo);
     }
 }

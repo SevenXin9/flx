@@ -50,13 +50,13 @@
         var $ = layui.$;
         table.render({
             elem: '#test'
-            , url: '/roles'
+            , url: '/admin/role'
+            ,type:'get'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , cols: [[
                 {checkbox: true}
-                , {field: 'id', width: '29%', title: '编号', sort: true}
-                , {field: 'rolename', width: '29%', title: '角色名称'}
-                , {field: 'authority', width: '29%', title: '权限'}
+                , {field: 'id', title: '编号', sort: true}
+                , {field: 'rolename', title: '角色名称'}
                 , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
             ]]
             , page: true
@@ -93,21 +93,22 @@
                     data = checkStatus.data,
                     ids = [];
                 for (var i = 0; i < data.length; i++) {
-                    ids.push(data[i].roleid);
+                    ids.push(data[i].id);
                 }
                 if (ids.length > 0) {
                     layer.confirm('确定要删除吗？', function (index) {
                         $.ajax({
-                            url: "/deleteRole.action",
+                            url: "/admin/role",
                             type: "post",
                             data: {
-                                "ids": ids
+                                "_method":"DELETE",
+                                "roleIds": ids.toString()
                             },
                             dataType: "json",
                             async: true,
                             traditional: true,
                             success: function (data) {
-                                if (data == 1) {
+                                if (data == true) {
                                     layer.alert("删除成功", {title: "删除成功"});
                                     table.reload("list");
                                 } else {
@@ -132,7 +133,7 @@
                     curr:1
                 }
                 ,where:{
-                    rolename:$("#rolename").val()
+                    'role.rolename':$("#rolename").val()
                 }
             })
             return false;
@@ -150,7 +151,7 @@
                     ,shade: 0.7
                     ,shadeClose:true
                     ,maxmin: true
-                    ,content: '/intoUpdateRole.action?roleid='+data.roleid
+                    ,content: '/admin/intoEditRole/'+data.id
                     ,yes: function(){
                         $(that).click();
                     }
@@ -170,7 +171,7 @@
                     ,shade: 0.7
                     ,shadeClose:true
                     ,maxmin: true
-                    ,content: '/intoGrantRole.action?roleid='+data.roleid
+                    ,content: '/admin/authority?ids='+data.authority+'&roleId='+data.id
                     ,yes: function(){
                         $(that).click();
                     }

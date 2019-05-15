@@ -6,27 +6,36 @@
     <link rel="stylesheet" th:href="@{/webjars/layui/2.3.0/css/layui.css}">
 </head>
 <body>
-<div class="layui-collapse" lay-accordion="">
-        <div class="layui-colla-item">
-            授权
+<form class="layui-form" action="">
+    <input type="hidden" th:value="${roleId}" name="role" id="roleId">
+    <div class="layui-form-item" >
+        <div class="layui-inline" th:each="authoritie:${authorities}">
+        <label class="layui-form-label" th:text="${authoritie.authority.name}">开关</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="switch" lay-filter="switchTest" lay-skin="switch" th:value="${authoritie.authority.id}" th:checked="${authoritie.checked}">
         </div>
-
-    <div class="layui-nav-item sub" align="center">
-        <button class="layui-btn" data-type="submit"><i class="layui-icon"></i>  提交</button>
+        </div>
     </div>
-</div>
+</form>
 </body>
 
 <script th:src="@{/webjars/layui/2.3.0/layui.js}"></script>
 <script>
-    layui.use(['element', 'layer'], function(){
+    var $ = layui.$;
+    layui.use(['element', 'layer','form'], function(){
         var element = layui.element;
         var layer = layui.layer;
         var $ = layui.$;
+        var form = layui.form;
 
         //监听折叠
         element.on('collapse(test)', function(data){
             layer.msg('展开状态：'+ data.show);
+        });
+
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
         });
 
         var chk_value = [];
@@ -35,36 +44,26 @@
                 $('input[name="interest"]:checked').each(function(){
                     chk_value.push($(this).val());
                 });
-                $.ajax({
-                    url:"/updateRoleOperationIds.action",
-                    type:"post",
-                    data:{
-                        "roleid":[[${role.roleid}]]
-                        ,"operationids":chk_value.toString()
-                    },
-                    traditional: true,
-                    async:true,
-                    success:function(data){
-                        if(data == 1){
-                            var index = parent.layer.getFrameIndex(window.name)
-                            layer.alert("修改成功",{title:"修改成功"});
-                            parent.layer.close(index);
-                            parent.layui.table.reload("list");
-                        }else{
-                            layer.alert("修改失败",{title:"修改失败"})
-                        }
-                    },
-                    error:function(){
-                        alert("系统异常");
-                    }
-                });
             }
         };
-
-        //监听按钮
-        $('.sub .layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
+        form.on('switch(switchTest)', function(data){
+            $.ajax({
+                url:"/admin/authority",
+                type:"post",
+                data:{
+                    "_method":"PUT",
+                    "roleId":$("#roleId").val()
+                    ,"authorityId":this.value
+                    ,"falg":this.checked
+                },
+                async:true,
+                success:function(data){
+                    parent.layui.table.reload("list");
+                },
+                error:function(){
+                    layer.msg("系统异常");
+                }
+            });
         });
     });
 </script>

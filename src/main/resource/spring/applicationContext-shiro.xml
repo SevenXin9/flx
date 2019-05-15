@@ -76,9 +76,9 @@
           PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <!--<property name="loginUrl" value="/login.jsp"/>-->
-        <!--<property name="successUrl" value="/NewFile.jsp"/>-->
-        <!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
+        <!--<property name="loginUrl" value="/admin/login"/>-->
+        <!--<property name="successUrl" value="/"/>-->
+        <property name="unauthorizedUrl" value="/error/403"/>
         <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean
              defined will be automatically acquired and available via its beanName in chain
              definitions, but you can perform overrides or parent/child consolidated configuration

@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.bean.Authority" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="authority" property="authority" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
-    <where>
+    <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, authority
+    id, authority, name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bean.AuthorityExample" >
     select
@@ -81,7 +82,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from authority
     where id = #{id,jdbcType=INTEGER}
@@ -97,8 +98,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Authority" >
-    insert into authority (id, authority)
-    values (#{id,jdbcType=INTEGER}, #{authority,jdbcType=VARCHAR})
+    insert into authority (id, authority, name
+      )
+    values (#{id,jdbcType=INTEGER}, #{authority,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Authority" >
     insert into authority
@@ -109,6 +112,9 @@
       <if test="authority != null" >
         authority,
       </if>
+      <if test="name != null" >
+        name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -116,6 +122,9 @@
       </if>
       <if test="authority != null" >
         #{authority,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -134,6 +143,9 @@
       <if test="record.authority != null" >
         authority = #{record.authority,jdbcType=VARCHAR},
       </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +154,8 @@
   <update id="updateByExample" parameterType="map" >
     update authority
     set id = #{record.id,jdbcType=INTEGER},
-      authority = #{record.authority,jdbcType=VARCHAR}
+      authority = #{record.authority,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +166,22 @@
       <if test="authority != null" >
         authority = #{authority,jdbcType=VARCHAR},
       </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Authority" >
     update authority
-    set authority = #{authority,jdbcType=VARCHAR}
+    set authority = #{authority,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByIds" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from authority
+    where id in (${value})
+  </select>
 </mapper>

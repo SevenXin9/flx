@@ -28,4 +28,6 @@ public interface AuthorityMapper {
     int updateByPrimaryKeySelective(Authority record);
 
     int updateByPrimaryKey(Authority record);
+
+    List<Authority> selectByIds(String ids);
 }

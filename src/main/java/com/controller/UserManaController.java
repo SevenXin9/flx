@@ -3,6 +3,7 @@ package com.controller;
 import com.VO.UserVo;
 import com.bean.User;
 import com.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class UserManaController {
      */
     @RequestMapping(value = "/user/{ids}",method = RequestMethod.DELETE)
     @ResponseBody
+    @RequiresPermissions("user:delete")
     public boolean users(@PathVariable("ids") String ids ){
         int flag=userService.deleteByIds(ids);
         if (flag > 0){

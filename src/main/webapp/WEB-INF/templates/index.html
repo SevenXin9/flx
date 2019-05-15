@@ -46,7 +46,7 @@
 <div id="demo-1" data-zs-src='["/static/images/2.jpg", "/static/images/1.jpg", "/static/images/3.jpg"]' data-zs-overlay="dots">
 	<div class="demo-inner-content">
 		<div class="header-top">
-			<!-- /header-left -->
+			<!-- /header-left ->-
 			<div class="header-left">
 				<!-- /sidebar -->
 
@@ -75,6 +75,7 @@
 						<a href="#" id="address" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>选择您的位置</a></li>
 
 					<li><button id="showRight" class="navig" th:if="${session.user}==null">登录 </button>
+						<button id="out" class="navig" th:if="${session.user}!=null" onclick="toCenter()">个人中心</button>
 						<button id="out" class="navig" th:if="${session.user}!=null">退出　</button>
 						<div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
@@ -129,6 +130,9 @@
                 }
                 function logout1() {
 					window.location.href='/user/logout';
+				}
+				function toCenter() {
+					window.location.href="/user/userCenter/index";
 				}
             </script>
 							</div> 
