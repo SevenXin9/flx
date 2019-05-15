@@ -27,7 +27,6 @@ public class UserManaController {
 
     // 进入用户管理界面
     @RequestMapping(value = "/intoUserMana", method = RequestMethod.GET)
-    @RequiresPermissions("user:select")
     public String intoUserMana(){
         return "/admin/userMana/userMana";
     }
