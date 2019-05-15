@@ -7,6 +7,31 @@
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="BaseResultMap_reserve" type="com.VO.ReserveVO" >
+    <id column="id" property="reserve.id" jdbcType="INTEGER" />
+    <association property="reserve" javaType="com.bean.Reserve">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="carid" property="carid" jdbcType="INTEGER" />
+      <result column="userid" property="userid" jdbcType="INTEGER" />
+      <result column="time" property="time" jdbcType="TIMESTAMP" />
+    </association>
+    <association property="car" javaType="com.bean.Car">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="price" property="price" jdbcType="DOUBLE" />
+      <result column="releaseTime" property="releasetime" jdbcType="DATE" />
+      <result column="brand" property="brand" jdbcType="INTEGER" />
+      <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="count" property="count" jdbcType="INTEGER" />
+    </association>
+    <association property="user" javaType="com.bean.User">
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -193,4 +218,23 @@
       time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="reserve_Column_List" >
+    select R.id, R.time,U.id, U.email, C.id, C.name, C.price, C.releaseTime, C.brand, C.type, C.count from reserve R,user U,car C
+  </sql>
+
+  <select id="selectByAll" resultMap="BaseResultMap_reserve" parameterType="com.VO.ReserveVO">
+        <include refid="reserve_Column_List"/>
+    <where>
+          R.carid = C.id and R.userid = U.id
+      <if test="reserve!=null">
+        <if test="reserve.time!=null">AND R.time like  '%${reserve.time}%'</if>
+      </if>
+      <if test="car!=null">
+        <if test="car.name!=null">AND C.name like  '%${car.name}%'</if>
+      </if>
+
+    </where>
+  </select>
+
 </mapper>

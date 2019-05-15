@@ -151,7 +151,11 @@ readOnly：是否只读，如果为true，则所有相同的sql语句返回的�
     id, name, price, releaseTime, brand, type, count, url
   </sql>
 
-
+<select id="selectByAll" resultType="com.bean.Car">
+  select
+  <include refid="Base_Column_List" />
+  from car limit 0,6
+</select>
 
   <!-- 查询即将发行车 -->
   <select id="selectCarPicture1" resultType="com.VO.CarPictureVO">

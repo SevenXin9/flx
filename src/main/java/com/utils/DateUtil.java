@@ -9,6 +9,7 @@ public class DateUtil {
 
     //日期转字符串
     public static String dateToString(Date date, String dateFormat) throws Exception {
+        if (date==null) return "";
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         return format.format(date);
     }

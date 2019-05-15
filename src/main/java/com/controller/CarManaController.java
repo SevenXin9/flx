@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.VO.CarPictureVO;
+import com.bean.Car;
 import com.service.BrandService;
 import com.service.CarService;
 import com.service.TypeService;
@@ -16,6 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @create 2019/5/11
@@ -97,6 +102,27 @@ public class CarManaController {
         carPictureVO.setUrl(File.separator+"static"+ File.separator+"images"+File.separator+file.getOriginalFilename());
         carService.insert(carPictureVO);
         return true;
+    }
 
+
+    @RequestMapping(value = "/select",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> select(){
+        List<Car> list = carService.selectByAll();
+        List<String> counts=new ArrayList<String>();
+        List<String> names = new ArrayList<String>();
+        for (int i=0;i<list.size(); i++) {
+            names.add(list.get(i).getName());
+            counts.add(list.get(i).getCount()+"");
+        }
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("names",names);
+        map.put("counts",counts);
+        return map;
+    }
+
+    @RequestMapping(value = "/number")
+    public String number(){
+        return "admin/line-style";
     }
 }

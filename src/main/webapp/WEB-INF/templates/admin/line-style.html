@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html style="height: 100%" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js}"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js}"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js}"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js}"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js}"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=jVyzgUcULca3pow3jCDWrATagRy4jBMT"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js}"></script>
+<script type="text/javascript" th:src="@{http://echarts.baidu.com/gallery/vendors/simplex.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script type="text/javascript" th:inline="none">
+
+    $.get("/admin/select",function (result) {
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        option = {
+            xAxis: {
+                type: 'category',
+                data: result["names"]
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: result["counts"],
+                type: 'line',
+                symbol: 'triangle',
+                symbolSize: 20,
+                lineStyle: {
+                    normal: {
+                        color: 'green',
+                        width: 4,
+                        type: 'dashed'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: 3,
+                        borderColor: 'yellow',
+                        color: 'blue'
+                    }
+                }
+            }]
+        };
+        ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    })
+</script>
+</body>
+</html>
