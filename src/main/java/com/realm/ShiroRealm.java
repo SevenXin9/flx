@@ -46,7 +46,6 @@ public class ShiroRealm extends AuthorizingRealm {
                 collection.add(authority.getAuthority());
             }
         }
-//        System.out.println(collection.toArray().toString());
         info.addStringPermissions(collection);
         return info;
     }
