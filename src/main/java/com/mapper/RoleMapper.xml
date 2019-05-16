@@ -214,12 +214,6 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bean.Role" >
-    update role
-    set rolename = #{rolename,jdbcType=VARCHAR},
-      authority = #{authority,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Role" >
     update role
     set rolename = #{rolename,jdbcType=VARCHAR}

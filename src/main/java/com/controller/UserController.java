@@ -130,6 +130,7 @@ public class UserController {
         return false;
     }
 
+    // 进入个人中心
     @RequestMapping(value = "/userCenter/index",method = RequestMethod.GET)
     public String userCenter(){
         return "/userCenter/index";

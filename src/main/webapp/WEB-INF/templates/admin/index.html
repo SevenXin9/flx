@@ -18,7 +18,7 @@
                     <span style="color: red;" th:text="${session.admin.name}"></span>
                 </a>
             </li>
-            <li class="layui-nav-item"><a href="/exit.action">退出</a></li>
+            <li class="layui-nav-item"><a href="/admin/logout">退出</a></li>
         </ul>
     </div>
 
@@ -143,7 +143,7 @@
                         ,success: function(layero){
                             var btn = layero.find('.layui-layer-btn');
                             btn.find('.layui-layer-btn0').attr({
-                                href: '/exit.action'
+                                href: '/admin/logout'
                             });
                         }
                         ,id: 'exit' //设定一个id，防止重复弹出

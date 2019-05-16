@@ -62,41 +62,23 @@ public class AdminController {
     }
 
     // 进入首页
-    @RequestMapping(value = "index",method = RequestMethod.GET)
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpSession session){
         return "/admin/index";
     }
 
     // 进入修改密码界面
-    @RequestMapping(value = "intoEditUserPWD",method = RequestMethod.GET)
+    @RequestMapping(value = "/intoEditUserPWD",method = RequestMethod.GET)
     public String intoEditUserPWD(){
         return "/admin/editPWD/editPWD";
     }
 
-    // 进入角色管理界面
-    @RequestMapping(value = "intoRoleMana", method = RequestMethod.GET)
-    public String intoRoleMana(){
-        return "/admin/roleMana/roleMana";
+    // 退出登录
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "/admin/login";
     }
 
-    // 进入角色添加界面
-    @RequestMapping(value = "intoAddRole", method = RequestMethod.GET)
-    public String intoAddRole(){
-        return "/admin/roleMana/addRole";
-    }
-
-    // 进入修改角色界面
-    @RequestMapping(value = "/intoEditRole/{id}", method = RequestMethod.GET)
-    public String intoEditRole(@PathVariable("id") Integer roleid, Model model){
-        Role role = roleService.findRole(roleid);
-        model.addAttribute("role",role);
-        return "/admin/roleMana/editRole";
-    }
-
-//    // 进入角色授权界面
-//    @RequestMapping(value = "intoGrantRole", method = RequestMethod.GET)
-//    public String intoGrantRole(){
-//
-//        return "/admin/roleMana/grantRole";
-//    }
 }
