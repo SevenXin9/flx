@@ -105,6 +105,7 @@ public class CarManaController {
     }
 
 
+    //车辆统计图
     @RequestMapping(value = "/select",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> select(){

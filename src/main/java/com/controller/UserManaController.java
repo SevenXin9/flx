@@ -27,11 +27,13 @@ public class UserManaController {
 
     // 进入用户管理界面
     @RequestMapping(value = "/intoUserMana", method = RequestMethod.GET)
+    @RequiresPermissions("user:view")
     public String intoUserMana(){
         return "/admin/userMana/userMana";
     }
 
     // 进入添加用户界面
+    @RequiresPermissions("user:create")
     @RequestMapping(value = "/intoAddUser", method = RequestMethod.GET)
     public String intoAddUser(){
         return "/admin/userMana/addUser";
@@ -61,6 +63,7 @@ public class UserManaController {
      */
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions("user:view")
     public Map<String,Object> users(UserVo userVo){
         return userService.findUsers(userVo);
     }
@@ -72,6 +75,7 @@ public class UserManaController {
      */
     @RequestMapping(value = "/user",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("user:create")
     public int addUser(User user){
         return userService.insertUser(user);
     }

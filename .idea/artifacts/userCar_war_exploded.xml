@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="userCar:war exploded">
     <output-path>$PROJECT_DIR$/target/userCar</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>userCar</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -65,6 +72,7 @@
           <element id="library" level="project" name="Maven: org.webjars:jquery:3.0.0" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.0.0" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:0.9.5" />
+          <element id="library" level="project" name="Maven: com.github.theborakompanioni:thymeleaf-extras-shiro:2.0.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

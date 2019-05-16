@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>用户管理</title>
@@ -24,10 +24,10 @@
         </div>
     </form>
     <div id="edit">
-        <button class="layui-btn" data-method="add">
-            <i class="layui-icon layui-icon-add-circle"></i> 添加
+        <button class="layui-btn" data-method="add" shiro:hasPermission="user:create">
+            <i class="layui-icon layui-icon-add-circle" ></i> 添加
         </button>
-        <button class="layui-btn layui-btn-danger" data-method="delete">
+        <button class="layui-btn layui-btn-danger" data-method="delete" shiro:hasPermission="user:delete">
             <i class="layui-icon layui-icon-delete"></i> 删除
         </button>
     </div>
