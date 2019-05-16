@@ -58,12 +58,12 @@
     <!--  Enable Shiro Annotations for Spring-configured beans.  Only run after
           the lifecycleBeanProcessor has run:
           为spring配置的bean启用Shiro注释。只在lifecycleBeanProcessor运行之后运行: -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor"/>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
-
+    <!-- 启用IOC 容器中shiro的注解 -->
+    <!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"-->
+          <!--depends-on="lifecycleBeanPostProcessor"></bean>-->
+    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+        <!--<property name="securityManager" ref="securityManager"></property>-->
+    <!--</bean>-->
     <!--     Secure Spring remoting:  Ensure any Spring Remoting method invocations can be associated
              with a Subject for security checks. -->
     <bean id="secureRemoteInvocationExecutor" class="org.apache.shiro.spring.remoting.SecureRemoteInvocationExecutor">
@@ -76,9 +76,8 @@
           PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <!--<property name="loginUrl" value="/admin/login"/>-->
-        <!--<property name="successUrl" value="/"/>-->
-        <property name="unauthorizedUrl" value="/error/403"/>
+        <property name="loginUrl" value="/admin/login"/>
+        <property name="successUrl" value="/admin/index"/>
         <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean
              defined will be automatically acquired and available via its beanName in chain
              definitions, but you can perform overrides or parent/child consolidated configuration
@@ -91,7 +90,8 @@
 
         <property name="filterChainDefinitions">
             <value>
-
+                /admin/login=anon
+                /admin/**=authc
             </value>
         </property>
     </bean>

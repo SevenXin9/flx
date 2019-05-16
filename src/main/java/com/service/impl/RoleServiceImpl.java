@@ -49,7 +49,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override//修改角色
     public int updataRole(Role role) {
-        System.out.println("jinlaile");
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
         }
@@ -66,7 +65,7 @@ public class RoleServiceImpl implements RoleService {
     public void addAuthority(Integer roleId,String authority){
         Role role= roleMapper.selectByPrimaryKey(roleId);
         String auth = role.getAuthority();
-        if(auth!=null) {
+        if(auth!=null&&!auth.equals("")) {
             auth+=","+authority;
         }else {
             auth=authority;

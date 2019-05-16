@@ -44,6 +44,7 @@ public class AdminManaController {
 
     // 进入管理员管理界面
     @RequestMapping(value = "intoAdminMana", method = RequestMethod.GET)
+    @RequiresPermissions("admin:view")
     public String intoAdmin(Model model){
         model.addAttribute("roles",roleService.selectByAll());
         return "/admin/adminMana/adminMana";
@@ -51,6 +52,7 @@ public class AdminManaController {
 
     // 进入添加管理员界面
     @RequestMapping(value = "intoAddAdmin", method = RequestMethod.GET)
+    @RequiresPermissions("admin:create")
     public String intoAddAdmin(Model model){
         model.addAttribute("roles",roleService.selectByAll());
         return "/admin/adminMana/addAdmin";
@@ -62,6 +64,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/Manage/{ids}",method = RequestMethod.DELETE)
     @ResponseBody
+    @RequiresPermissions("admin:delete")
     public boolean delManage(@PathVariable("ids") String manageIds){
         return adminService.deleteByPrimaryKey(manageIds);
     }
@@ -74,6 +77,7 @@ public class AdminManaController {
      * @return
      */
     @RequestMapping(value = "/toUpManage/{manageId}",method = RequestMethod.GET)
+    @RequiresPermissions("admin:update")
     public String toUpMana(@PathVariable("manageId") Integer id, Model model){
         model.addAttribute("roles",roleService.selectByAll());
         model.addAttribute("manage",adminService.selectByPrimaryKey(id));
@@ -88,6 +92,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/Manage",method = RequestMethod.PUT)
     @ResponseBody
+    @RequiresPermissions("admin:update")
     public int upManage(Admin admin){
         return adminService.updateByPrimaryKeySelective(admin);
     }
@@ -99,6 +104,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/Manage",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("admin:create")
     public int addMana(Admin admin){
         return adminService.insert(admin);
     }
@@ -110,6 +116,7 @@ public class AdminManaController {
      */
     @RequestMapping(value = "/Manage",method = RequestMethod.GET)
     @ResponseBody
+    @RequiresPermissions("admin:view")
     public Map<String,Object> admin(AdminVo adminVo){
         return adminService.selectAll(adminVo);
     }

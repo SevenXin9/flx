@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -26,12 +27,12 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" layui-bg-cyan lay-shrink="all" lay-filter="test">
-                        <li class="layui-nav-item">
+                        <li class="layui-nav-item" shiro:hasAnyPermissions="role:view,user:view,admin:view">
                             <a class="layui-icon layui-icon-set-fill" style="font-size: 12px;" href="javascript:;">  系统管理</a>
                                     <dl class="layui-nav-child">
-                                        <dd><a data-url="/admin/intoRoleMana" data-id="roleMana" data-title="角色管理" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
-                                        <dd><a data-url="/admin/intoUserMana" data-id="userMana" data-title="用户管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
-                                        <dd><a data-url="/admin/intoAdminMana" data-id="adminMana" data-title="管理员管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="adminMana">  管理员管理</a></dd>
+                                        <dd shiro:hasPermission="role:view"><a data-url="/admin/intoRoleMana"  data-id="roleMana" data-title="角色管理" class="layui-icon layui-icon-user site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="roleMana">  角色管理</a></dd>
+                                        <dd><a data-url="/admin/intoUserMana" shiro:hasPermission="user:view" data-id="userMana" data-title="用户管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="userMana">  用户管理</a></dd>
+                                        <dd><a data-url="/admin/intoAdminMana" shiro:hasPermission="admin:view" data-id="adminMana" data-title="管理员管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="adminMana">  管理员管理</a></dd>
                                     </dl>
                         </li>
                         <li class="layui-nav-item">
@@ -41,6 +42,7 @@
                                         <dd><a data-url="/user/index" data-id="reserveMana" data-title="订单管理" class="layui-icon layui-icon-friends site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="reserveMana">  订单管理</a></dd>
                                         <dd><a data-url="/admin/intoBrandMana" data-id="brandMana" data-title="品牌管理" class="layui-icon layui-icon-flag site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="brandMana">  品牌管理</a></dd>
                                         <dd><a data-url="/user/index" data-id="garage" data-title="购车记录" class="layui-icon layui-icon-log site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="garage">  购车记录</a></dd>
+                                        <dd><a data-url="/admin/number" data-id="number" data-title="车辆统计" class="layui-icon layui-icon-log site-demo-active" style="font-size: 12px; align-items: center;" href="javascript:;" name="number">  车辆统计</a></dd>
                                     </dl>
                         </li>
                         <li class="layui-nav-item">

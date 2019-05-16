@@ -23,7 +23,7 @@ public class AuthorityController{
     private AuthorityService authorityService;
 
     @RequestMapping(value = "/authority",method = RequestMethod.GET)
-    @RequiresPermissions("rolegrant")
+    @RequiresPermissions("role:grant")
     public String authority(String roleId,String ids, Model model){
         List<Authority> authorityList = authorityService.showAuthoritys();
         List<AuthorityVo> authorityVos = new ArrayList<AuthorityVo>();
