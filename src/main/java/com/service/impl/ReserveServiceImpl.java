@@ -30,10 +30,10 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override// 添加订单信息
-    public Boolean insertReservice(Integer carid, Integer userid) {
+    public int  insertReservice(Integer carid, Integer userid) {
         if(reserveMapper.insertSelective(new Reserve(carid, userid, new Date())) > 0){
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 }

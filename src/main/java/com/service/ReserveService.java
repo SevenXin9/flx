@@ -22,5 +22,5 @@ public interface ReserveService {
      * @param carid 车id
      * @return
      */
-    public Boolean insertReservice(Integer carid, Integer userid);
+    public int  insertReservice(Integer carid, Integer userid);
 }

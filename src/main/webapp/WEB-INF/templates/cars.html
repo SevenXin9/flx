@@ -34,8 +34,8 @@
 	 <div class="banner-inner-dott">
        <div class="header-top">
 		    <!-- /header-left -->
-		          <div class="header-left">
-				  <!-- /sidebar -->
+		<!--          <div class="header-left">
+				  &lt;!&ndash; /sidebar &ndash;&gt;
 				        <div id="sidebar">
 						     <h4 class="menu">Menu</h4>
 						          <ul>
@@ -94,19 +94,19 @@
 									}
 								  });
 								</script>
-					    <!-- //sidebar -->
+					    &lt;!&ndash; //sidebar &ndash;&gt;
 					  <div class="tag"><a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-tag"></span> Discounts On New Cars » </a></div>
 					  <div class="tag"><a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></div>
-					</div>
+					</div>-->
 				  <!-- //header-left -->
 		             <div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form action="#" method="post">
-								<input name="search" class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
-						</div>
+						<!--<div id="sb-search" class="sb-search">-->
+							<!--<form action="#" method="post">-->
+								<!--<input name="search" class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">-->
+								<!--<input class="sb-search-submit" type="submit" value="">-->
+								<!--<span class="sb-icon-search"> </span>-->
+							<!--</form>-->
+						<!--</div>-->
 						<!-- search-scripts -->
 						<script th:src="@{/static/js/classie.js}"></script>
 						<script th:src="@{/static/js/uisearch.js}"></script>
@@ -116,10 +116,10 @@
 						<!-- //search-scripts -->
 					    <ul>
 
-							<li>
-							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Select Your Location</a></li>
+							<!--<li>
+							<a href="#" data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Select Your Location</a></li>-->
 
-							<li><button id="showRight" class="navig">Login </button>
+							<!--<li><button id="showRight" class="navig">Login </button>-->
 							 <div class="cbp-spmenu-push">
 							<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 								<h3>Login</h3>
@@ -390,7 +390,7 @@
 										<form action="#" method="post">
 
 										<div class="send-button">
-											<input type="submit" value="购买">
+
 										</div>
 									</form>
 									</div>
@@ -431,7 +431,7 @@
 						<div class="col-md-3 search-car-left-sidebar" id="interval">
 						   <section class="sky-form">
 							   <h4>价格区间</h4>
-							 <div class="range">
+							<!-- <div class="range">
 
 								<ul class="dropdown-menu6">
 									<li>
@@ -442,7 +442,7 @@
 									</ul>
 
 
-								</div>
+								</div>-->
 								 </section>
 										<div class="w_nav1 two">
 										<h4>选择预算</h4>
@@ -738,7 +738,7 @@
 				'<div class="list-form">' +
 				'<div class="phone-info">' +
 				'</div>' +
-				'<div class="get-one"><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')">  预 定  </a><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')"></a></div>' +
+				'<div class="get-one"><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')" >  预 定  </a><a href="javascript:;" onclick="reserve('+result.data[i].car.id+')"></a></div>' +
 				'<div class="clearfix"></div>' +
 				'</div>' +
 				'</div>' +
@@ -791,14 +791,16 @@
 					  },
                       success:function(data){
                           layer.closeAll();
-                          if(data){
+                          if(data==1){
                               layer.msg('预定成功！', {icon: 1});
-						  }else{
+						  }else if(data==0){
                               layer.msg('预定失败！', {icon: 2});
+						  }else{
+                              layer.msg('请先登录！', {icon: 2});
 						  }
                       },
                       error:function(){
-                          layer.msg('系统异常！', {icon: 2});
+                          layer.msg('预定失败！', {icon: 2});
                       }
                   })
 

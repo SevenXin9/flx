@@ -78,7 +78,7 @@ public class AdminController {
     public String logout(){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "/admin/login";
+        return "redirect:/admin/login";
     }
 
 }

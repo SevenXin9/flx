@@ -54,13 +54,13 @@
 			</div>
 			<!-- //header-left -->
 			<div class="search-box">
-				<div id="sb-search" class="sb-search">
+			<!--	<div id="sb-search" class="sb-search">
 					<form action="#" method="post">
 						<input name="name" class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
 						<input class="sb-search-submit" type="submit" value="">
 						<span class="sb-icon-search"> </span>
 					</form>
-				</div>
+				</div>-->
 				<!-- search-scripts -->
 				<script th:src="@{/static/js/classie.js}"></script>
 				<script th:src="@{/static/js/uisearch.js}"></script>
@@ -693,7 +693,7 @@
 		<div class="bottom-form">
 			<div class="inner-text">
 
-				<form action="#" method="post">
+				<!--<form action="#" method="post">
 					<h3>选择您看好的车</h3>
 					<div class="best-hot">
 						<h5>姓名</h5>
@@ -723,7 +723,7 @@
 						</select>
 					</div>
 					<input type="submit" value="立即预定">
-				</form>
+				</form>-->
 			</div>
 		</div>
 	</div>
@@ -846,7 +846,8 @@
         var reg = $(".regActive").val();
         $.post("/user/regest",{"email":email,"password":password,"name":reg},function (date) {//发送注册信息
             if (date=="ok"){
-                alert("注册成功");
+               window.location.href="/user/index";
+
             }else{
                 alert("注册失败");
             }

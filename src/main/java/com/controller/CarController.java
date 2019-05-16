@@ -64,8 +64,10 @@ public class CarController {
     // 添加订单信息
     @RequestMapping(value = "/reserve", method = RequestMethod.POST)
     @ResponseBody
-    public boolean insert(@RequestParam("carid") Integer carid, HttpSession session){
+    public int insert(@RequestParam("carid") Integer carid, HttpSession session){
         User user = (User) session.getAttribute("user");
+        if(user==null)
+            return 2;
         return reserveService.insertReservice(carid, user.getId());
     }
 }
