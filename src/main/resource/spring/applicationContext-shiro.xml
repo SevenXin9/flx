@@ -58,11 +58,8 @@
     <!--  Enable Shiro Annotations for Spring-configured beans.  Only run after
           the lifecycleBeanProcessor has run:
           为spring配置的bean启用Shiro注释。只在lifecycleBeanProcessor运行之后运行: -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor"/>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
+    <!-- 启用IOC 容器中shiro的注解 -->
+
 
     <!--     Secure Spring remoting:  Ensure any Spring Remoting method invocations can be associated
              with a Subject for security checks. -->

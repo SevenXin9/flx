@@ -8,6 +8,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,8 +39,9 @@ public class RoleManaController {
     }
 
     // 进入修改角色界面
-    @RequestMapping(value = "intoEditRole", method = RequestMethod.GET)
-    public String intoEditRole(){
+    @RequestMapping(value = "intoEditRole/{roleId}", method = RequestMethod.GET)
+    public String intoEditRole(@PathVariable("roleId") Integer id, Model model) {
+        model.addAttribute("role",roleService.findRole(id));
         return "/admin/roleMana/editRole";
     }
 
@@ -73,7 +76,6 @@ public class RoleManaController {
     @ResponseBody
     @RequiresPermissions("role:update")
     public boolean upRole(Role role){
-        System.out.println("aaa");
         if (roleService.updataRole(role)==1){
             return true;
         }return false;

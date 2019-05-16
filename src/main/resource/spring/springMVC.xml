@@ -50,6 +50,14 @@
     <mvc:resources mapping="/backups" location="/backups/**.xls" />-->
     <!---->
 
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true" />
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />
+    </bean>
+
     <!-- 对静态资源文件的访问 -->
     <mvc:resources mapping="/static/**" location="classpath:static/" />
     <!-- 访问webjars -->

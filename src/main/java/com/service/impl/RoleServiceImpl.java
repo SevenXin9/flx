@@ -49,7 +49,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override//修改角色
     public int updataRole(Role role) {
-        System.out.println("jinlaile");
         if (roleMapper.selectByName(role.getRolename())!=null){
             return 0;
         }
